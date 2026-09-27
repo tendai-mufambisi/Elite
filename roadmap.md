@@ -1,0 +1,3 @@
+- [x] Build the branded multi-page site and dedicated service pages.
+- [x] Add editable content/media slots, contact flow, SEO, and sitemap.
+- [ ] Check desktop/mobile presentation and core interactions.
