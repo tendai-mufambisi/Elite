@@ -10,33 +10,89 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ColourRangeRouteImport } from './routes/colour-range'
+import { Route as CommercialIndustrialRouteImport } from './routes/commercial-industrial'
+import { Route as WhySeamlessGuttersRouteImport } from './routes/why-seamless-gutters'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ColourRangeRoute = ColourRangeRouteImport.update({
+  id: '/colour-range',
+  path: '/colour-range',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommercialIndustrialRoute = CommercialIndustrialRouteImport.update({
+  id: '/commercial-industrial',
+  path: '/commercial-industrial',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WhySeamlessGuttersRoute = WhySeamlessGuttersRouteImport.update({
+  id: '/why-seamless-gutters',
+  path: '/why-seamless-gutters',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/services/$slug',
+  path: '/services/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/colour-range': typeof ColourRangeRoute
+  '/commercial-industrial': typeof CommercialIndustrialRoute
+  '/why-seamless-gutters': typeof WhySeamlessGuttersRoute
+  '/services/$slug': typeof ServicesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/colour-range': typeof ColourRangeRoute
+  '/commercial-industrial': typeof CommercialIndustrialRoute
+  '/why-seamless-gutters': typeof WhySeamlessGuttersRoute
+  '/services/$slug': typeof ServicesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/colour-range': typeof ColourRangeRoute
+  '/commercial-industrial': typeof CommercialIndustrialRoute
+  '/why-seamless-gutters': typeof WhySeamlessGuttersRoute
+  '/services/$slug': typeof ServicesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/colour-range'
+    | '/commercial-industrial'
+    | '/why-seamless-gutters'
+    | '/services/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/colour-range'
+    | '/commercial-industrial'
+    | '/why-seamless-gutters'
+    | '/services/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/colour-range'
+    | '/commercial-industrial'
+    | '/why-seamless-gutters'
+    | '/services/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ColourRangeRoute: typeof ColourRangeRoute
+  CommercialIndustrialRoute: typeof CommercialIndustrialRoute
+  WhySeamlessGuttersRoute: typeof WhySeamlessGuttersRoute
+  ServicesSlugRoute: typeof ServicesSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +104,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/colour-range': {
+      id: '/colour-range'
+      path: '/colour-range'
+      fullPath: '/colour-range'
+      preLoaderRoute: typeof ColourRangeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/commercial-industrial': {
+      id: '/commercial-industrial'
+      path: '/commercial-industrial'
+      fullPath: '/commercial-industrial'
+      preLoaderRoute: typeof CommercialIndustrialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/why-seamless-gutters': {
+      id: '/why-seamless-gutters'
+      path: '/why-seamless-gutters'
+      fullPath: '/why-seamless-gutters'
+      preLoaderRoute: typeof WhySeamlessGuttersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/services/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ColourRangeRoute: ColourRangeRoute,
+  CommercialIndustrialRoute: CommercialIndustrialRoute,
+  WhySeamlessGuttersRoute: WhySeamlessGuttersRoute,
+  ServicesSlugRoute: ServicesSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
