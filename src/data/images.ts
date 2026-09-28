@@ -120,6 +120,14 @@ const photos = [
     576,
     "Two arched aluminium and glass garage doors with a matching aluminium sliding gate",
   ),
+  // Sample picture until the client supplies a real photo of the founder.
+  img(
+    "founder",
+    "founder/founder-sample.svg",
+    800,
+    1000,
+    "Sample placeholder picture for Mr Peter, founder",
+  ),
   img(
     "colour-range-chart",
     "colour-range/colour-coated-gutter-colour-samples.webp",

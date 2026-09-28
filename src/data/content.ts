@@ -22,7 +22,14 @@ export const site = {
   whatsapp: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(quoteText)}`,
   quoteText,
   domain: "https://eliteguttersandaluminium.co.za",
-  credit: "Website by Digits Digital",
+  // Website credit strip at the very bottom of every page.
+  credit: {
+    name: "Digits Digital",
+    phone: "0776611049",
+    phoneHref: "tel:+263776611049",
+    website: "www.digitsdigital.co.zw",
+    websiteHref: "https://www.digitsdigital.co.zw",
+  },
 };
 
 export const whatsappLink = (text: string) =>
@@ -854,10 +861,14 @@ export const contactPage = {
 // CLIENT CONTENT: fill in to show the "Meet the founder" section on Home and About.
 // The section stays hidden while `name` is empty. Add the photo to images.ts as slot "founder".
 export const founder = {
-  name: "",
+  name: "Mr Peter",
   role: "Founder",
-  photoSlot: "",
-  bio: [] as string[],
+  // Sample picture until the client sends a real photo (see images.ts slot "founder").
+  photoSlot: "founder",
+  bio: [
+    "Mr Peter is the founder of Elite Gutters and Aluminium Products.",
+    "Talk to him about your gutters, fascia, balustrades or aluminium project: call or WhatsApp +27 84 258 6400.",
+  ],
 };
 
 export const whatsappPopup = {

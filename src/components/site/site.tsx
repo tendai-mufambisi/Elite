@@ -254,7 +254,20 @@ export function Footer() {
         <span>
           {site.tagline} · {site.secondary}
         </span>
-        <span>{site.credit}</span>
+      </div>
+      <div className="credit-strip">
+        <p>
+          Powered by{" "}
+          <a
+            href={site.credit.phoneHref}
+            aria-label={`${site.credit.name}, call ${site.credit.phone}`}
+          >
+            {site.credit.name}
+          </a>
+        </p>
+        <a href={site.credit.websiteHref} target="_blank" rel="noopener" className="credit-site">
+          {site.credit.website}
+        </a>
       </div>
     </footer>
   );

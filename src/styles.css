@@ -3415,3 +3415,64 @@ body {
     transform: none !important;
   }
 }
+
+/* Website credit strip (very bottom of every page) */
+.credit-strip {
+  background: #0b0b0c;
+  padding: 26px 20px 30px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.credit-strip p {
+  margin: 0;
+  color: #9aa0a6;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+.credit-strip p a {
+  color: #ff6a1a;
+  font-weight: 800;
+  transition: color 0.2s;
+}
+.credit-strip p a:hover {
+  color: #ff8a4a;
+  text-decoration: underline;
+}
+.credit-site {
+  color: #9aa0a6;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  transition: color 0.2s;
+}
+.credit-site:hover {
+  color: #fff;
+}
+/* Leave room so the floating WhatsApp button doesn't sit on the credit on phones. */
+@media (max-width: 600px) {
+  .credit-strip {
+    padding-bottom: 92px;
+  }
+}
+
+/* Founder */
+.founder .founder-photo {
+  aspect-ratio: 4 / 5;
+  max-width: 440px;
+  width: 100%;
+  justify-self: center;
+}
+
+/* Footer link columns (nav elements) stack one link per line. */
+.footer-grid > nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Section labels inside split layouts keep the brand red (paragraph colour rules were greying them). */
+.section .content-split p.eyebrow {
+  color: oklch(0.52 0.21 27);
+}
