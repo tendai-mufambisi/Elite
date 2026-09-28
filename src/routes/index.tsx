@@ -2,8 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowUpRight,
   Building2,
-  ChevronLeft,
-  ChevronRight,
   CloudRain,
   Layers,
   Palette,
@@ -13,18 +11,20 @@ import {
   Wrench,
   type LucideIcon,
 } from "lucide-react";
-import { useRef, type CSSProperties } from "react";
+import type { CSSProperties } from "react";
 import { Button } from "@/components/ui/button";
 import {
   ArrowLink,
   Eyebrow,
+  FounderSection,
   Media,
+  ParallaxBand,
   QuoteBand,
   ScrollCue,
   SectionHead,
-  VideoSlot,
 } from "@/components/site/site";
 import { WindowGuardDrawing } from "@/components/site/illustrations";
+import { HeroSlideshow, Reel, TextRotator } from "@/components/site/motion";
 import { Reveal } from "@/components/site/Reveal";
 import { benefits, colours, home, projects, services, site } from "@/data/content";
 import { pageHead } from "@/data/seo";
@@ -45,24 +45,23 @@ const benefitIcons: Record<(typeof benefits)[number]["icon"], LucideIcon> = {
   building: Building2,
 };
 
-// One image project per category for the home carousel.
-const featured = projects.filter(
-  (p, i, all) => !p.video && all.findIndex((q) => !q.video && q.category === p.category) === i,
-);
+const captionFor = (slot: string) => projects.find((p) => p.slot === slot);
 
 function Home() {
-  const track = useRef<HTMLDivElement>(null);
-  const scrollTrack = (dir: 1 | -1) =>
-    track.current?.scrollBy({ left: dir * track.current.clientWidth * 0.8, behavior: "smooth" });
-
   return (
     <>
       <section className="hero">
-        <Media slot="hero-home" className="hero-image" priority sizes="100vw" />
+        <HeroSlideshow slots={home.heroSlides} />
         <div className="hero-overlay" />
+        <div className="hero-shapes" aria-hidden="true">
+          <span className="shape shape-1" data-parallax="-0.12" />
+          <span className="shape shape-2" data-parallax="0.08" />
+          <span className="shape shape-3" data-parallax="-0.2" />
+        </div>
         <div className="container hero-content">
           <Eyebrow>{site.tagline}</Eyebrow>
           <h1>{home.h1}</h1>
+          <TextRotator lead={home.rotatorLead} words={home.rotator} />
           <p>{home.sub}</p>
           <div className="hero-actions">
             <Button asChild variant="brand" size="large">
@@ -92,14 +91,32 @@ function Home() {
         </div>
       </div>
 
-      <section className="section">
+      <section className="section reels-section">
+        <div className="container">
+          <Reveal>
+            <SectionHead
+              {...home.reelsHead}
+              action={<ArrowLink to="/projects">All projects</ArrowLink>}
+            />
+          </Reveal>
+          <div className="reels">
+            {home.reels.map((r, i) => (
+              <Reveal key={r.slot} variant="scale" delay={i * 120}>
+                <Reel slot={r.slot} label={r.label} />
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-soft">
         <div className="container">
           <Reveal>
             <SectionHead {...home.servicesHead} />
           </Reveal>
           <div className="services-grid">
             {services.map((s, i) => (
-              <Reveal key={s.slug} className="service-cell">
+              <Reveal key={s.slug} className="service-cell" delay={(i % 4) * 90}>
                 <Link className="service-card" to="/services/$slug" params={{ slug: s.slug }}>
                   {s.image ? (
                     <Media slot={s.image} />
@@ -125,25 +142,63 @@ function Home() {
         </div>
       </section>
 
+      <ParallaxBand {...home.bands[0]!} />
+
       <section className="feature" aria-labelledby="matched-title">
         <div className="feature-copy">
-          <Eyebrow>{home.matched.eyebrow}</Eyebrow>
-          <h2 id="matched-title">{home.matched.title}</h2>
-          <p>{home.matched.text}</p>
-          <ul className="matched-list">
-            {home.matched.examples.map((x) => (
-              <li key={x}>{x}</li>
-            ))}
-          </ul>
-          <ArrowLink to="/colour-range">Explore the colour range</ArrowLink>
+          <Reveal variant="left">
+            <Eyebrow>{home.matched.eyebrow}</Eyebrow>
+            <h2 id="matched-title">{home.matched.title}</h2>
+            <p>{home.matched.text}</p>
+            <ul className="matched-list">
+              {home.matched.examples.map((x) => (
+                <li key={x}>{x}</li>
+              ))}
+            </ul>
+            <ArrowLink to="/colour-range">Explore the colour range</ArrowLink>
+          </Reveal>
         </div>
         <div className="feature-images">
-          {home.matched.slots.map((m) => (
+          {home.matched.slots.map((m, i) => (
             <figure key={m.slot}>
-              <Media slot={m.slot} />
+              {/* Each photo drifts at its own speed. */}
+              <div className="feature-media" data-parallax={["0.12", "-0.08", "0.05"][i]}>
+                <Media slot={m.slot} />
+              </div>
               <figcaption>{m.label}</figcaption>
             </figure>
           ))}
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <Reveal>
+            <SectionHead
+              {...home.mosaicHead}
+              action={<ArrowLink to="/projects">View all projects</ArrowLink>}
+            />
+          </Reveal>
+          <ul className="mosaic">
+            {home.mosaic.map((slot, i) => {
+              const info = captionFor(slot);
+              return (
+                <li key={slot} className={`mosaic-item mosaic-${i + 1}`}>
+                  <Reveal variant="wipe" delay={(i % 4) * 80}>
+                    <Link to="/projects" className="mosaic-link">
+                      <Media slot={slot} />
+                      {info && (
+                        <span className="mosaic-caption">
+                          <small>{info.category}</small>
+                          {info.caption}
+                        </span>
+                      )}
+                    </Link>
+                  </Reveal>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </section>
 
@@ -153,10 +208,10 @@ function Home() {
             <SectionHead {...home.benefitsHead} />
           </Reveal>
           <div className="benefits-grid">
-            {benefits.map((b) => {
+            {benefits.map((b, i) => {
               const Icon = benefitIcons[b.icon];
               return (
-                <Reveal key={b.title} className="benefit-cell">
+                <Reveal key={b.title} className="benefit-cell" delay={(i % 4) * 90}>
                   <article className="benefit">
                     <span className="benefit-icon" aria-hidden="true">
                       <Icon size={26} strokeWidth={1.8} />
@@ -171,75 +226,31 @@ function Home() {
         </div>
       </section>
 
-      <section className="section" aria-roledescription="carousel" aria-label="Featured projects">
-        <div className="container">
-          <Reveal>
-            <SectionHead
-              {...home.projectsHead}
-              action={
-                <div className="carousel-controls">
-                  <button
-                    type="button"
-                    onClick={() => scrollTrack(-1)}
-                    aria-label="Previous projects"
-                  >
-                    <ChevronLeft />
-                  </button>
-                  <button type="button" onClick={() => scrollTrack(1)} aria-label="Next projects">
-                    <ChevronRight />
-                  </button>
-                  <ArrowLink to="/projects">View all projects</ArrowLink>
-                </div>
-              }
-            />
-          </Reveal>
-          <div className="project-scroll" ref={track}>
-            {featured.map((p) => (
-              <Link to="/projects" className="project-tile" key={p.slot}>
-                <Media slot={p.slot} />
-                <span>
-                  <small>{p.category}</small>
-                  {p.caption} ↗
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ParallaxBand {...home.bands[1]!} />
 
-      <section className="section section-soft">
+      <section className="section">
         <div className="container colour-teaser">
-          <div>
+          <Reveal variant="left">
             <Eyebrow>{home.colourTeaser.eyebrow}</Eyebrow>
             <h2>{home.colourTeaser.title}</h2>
             <p>{home.colourTeaser.text}</p>
             <ArrowLink to="/colour-range">View all colours</ArrowLink>
-          </div>
-          <div
-            className="colour-bars"
-            role="img"
-            aria-label={`Colour range: ${colours.map(([n]) => n).join(", ")}`}
-          >
-            {colours.map(([name, colour]) => (
-              <span key={name} style={{ "--swatch": colour } as CSSProperties} />
-            ))}
-          </div>
+          </Reveal>
+          <Reveal variant="right">
+            <div
+              className="colour-bars"
+              role="img"
+              aria-label={`Colour range: ${colours.map(([n]) => n).join(", ")}`}
+            >
+              {colours.map(([name, colour], i) => (
+                <span key={name} style={{ "--swatch": colour, "--i": i } as CSSProperties} />
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="video-feature">
-            <div>
-              <Eyebrow>{home.videoHead.eyebrow}</Eyebrow>
-              <h2>{home.videoHead.title}</h2>
-              <p>{home.videoHead.text}</p>
-              <ArrowLink to="/projects">More projects</ArrowLink>
-            </div>
-            <VideoSlot slot="video-featured" />
-          </div>
-        </div>
-      </section>
+      <FounderSection />
 
       <QuoteBand title={home.cta.title} text={home.cta.text} />
     </>

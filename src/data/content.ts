@@ -55,13 +55,8 @@ export const services = [
       "Low maintenance, with fewer joints to check",
     ],
     finishes: ["Stainless steel", "Charcoal", "Bronze", "Black", "Colour-coated steel"],
-    image: "gutters-stainless-yellow-house",
-    gallery: [
-      "gutters-stainless-yellow-house",
-      "fascia-bronze-double-storey",
-      "gutters-charcoal-fascia-double-storey",
-      "pillar-stainless-fascia-two-garage-doors",
-    ],
+    image: "fascia-bronze-double-storey",
+    gallery: ["fascia-bronze-double-storey", "gutters-charcoal-fascia-double-storey"],
     video: "gutters-charcoal-video",
     faqs: [
       [
@@ -100,7 +95,7 @@ export const services = [
     gallery: [
       "pillar-stainless-fascia-two-garage-doors",
       "fascia-bronze-double-storey",
-      "gutters-stainless-yellow-house",
+      "pillar-yellow-house-garage-doors",
       "gutters-charcoal-fascia-double-storey",
     ],
     faqs: [
@@ -141,7 +136,7 @@ export const services = [
     gallery: [
       "pillar-stainless-veranda",
       "pillar-stainless-fascia-two-garage-doors",
-      "gutters-stainless-yellow-house",
+      "pillar-yellow-house-garage-doors",
     ],
     faqs: [
       [
@@ -257,7 +252,7 @@ export const services = [
       "garage-three-charcoal-glass",
       "garage-arched-glass-gate",
       "pillar-stainless-fascia-two-garage-doors",
-      "gutters-stainless-yellow-house",
+      "pillar-yellow-house-garage-doors",
     ],
     video: "garage-doors-video",
     faqs: [
@@ -384,11 +379,61 @@ export const home = {
     title: "Find your finish.",
     text: "Colour-coated steel gutters and fascia boards in a wide range of colours, from charcoal and black to cream, brick red and forest green.",
   },
-  videoHead: {
-    eyebrow: "In motion",
-    title: "See the finish.",
-    text: "A walk around a double-storey home finished with charcoal gutters and fascia boards, aluminium windows, folding doors and balustrades.",
+  // Hero slideshow (slow zoom + crossfade). First slide is the LCP image.
+  heroSlides: [
+    "pillar-yellow-house-garage-doors",
+    "fascia-bronze-double-storey",
+    "balustrade-glass-staircase",
+    "aluminium-windows-glass-balustrades",
+    "garage-three-charcoal-glass",
+  ],
+  rotatorLead: "We install",
+  rotator: [
+    "seamless gutters",
+    "fascia boards",
+    "pillar cladding",
+    "glass balustrades",
+    "folding doors",
+    "garage doors",
+  ],
+  reelsHead: {
+    eyebrow: "Our work in motion",
+    title: "Watch the finish.",
+    text: "Real installations filmed on site. Tap a video to watch it with sound controls.",
   },
+  reels: [
+    { slot: "project-video-garage", label: "Automated garage doors" },
+    { slot: "project-video-charcoal", label: "Charcoal gutters & fascia" },
+    { slot: "project-video-gutters", label: "Gutters & aluminium gate" },
+  ],
+  mosaicHead: {
+    eyebrow: "Recent projects",
+    title: "Real homes. Real finishes.",
+    text: "Photos from our installations: fascia, pillar cladding, balustrades, folding doors and garage doors.",
+  },
+  mosaic: [
+    "fascia-bronze-double-storey",
+    "balustrade-glass-staircase",
+    "pillar-yellow-house-garage-doors",
+    "folding-doors-gazebo",
+    "garage-three-charcoal-glass",
+    "pillar-stainless-veranda",
+    "aluminium-windows-glass-balustrades",
+    "balustrade-tinted-glass-commercial",
+  ],
+  // Full-width photo bands that scroll slower than the page (parallax).
+  bands: [
+    {
+      slot: "aluminium-commercial-complex",
+      eyebrow: "Build | Protect | Enhance",
+      title: "Quality finishes last longer.",
+    },
+    {
+      slot: "fascia-bronze-double-storey",
+      eyebrow: "Matched finishes",
+      title: "From the roofline to the front door.",
+    },
+  ],
   cta: {
     title: "Ready to upgrade your roofline?",
     text: "Send us your details and a few photos. We will come back to you with a free quote.",
@@ -647,9 +692,9 @@ export const projects: {
   video?: boolean;
 }[] = [
   {
-    slot: "gutters-stainless-yellow-house",
-    category: "Gutters",
-    caption: "Stainless steel gutters, fascia and pillar cladding",
+    slot: "pillar-yellow-house-garage-doors",
+    category: "Pillar Cladding",
+    caption: "Stainless fascia, pillar cladding and charcoal garage doors",
   },
   {
     slot: "project-video-charcoal",
@@ -675,8 +720,8 @@ export const projects: {
   },
   {
     slot: "gutters-charcoal-fascia-double-storey",
-    category: "Fascia",
-    caption: "Charcoal fascia with charcoal folding doors",
+    category: "Gutters",
+    caption: "Charcoal gutters and fascia with charcoal folding doors",
   },
   {
     slot: "pillar-stainless-veranda",
@@ -804,6 +849,21 @@ export const contactPage = {
   propertyTypes: ["Residential", "Commercial", "Industrial", "School"],
   formNote:
     "Submitting opens WhatsApp with your details filled in. If you added a photo, attach it in the chat before sending.",
+};
+
+// CLIENT CONTENT: fill in to show the "Meet the founder" section on Home and About.
+// The section stays hidden while `name` is empty. Add the photo to images.ts as slot "founder".
+export const founder = {
+  name: "",
+  role: "Founder",
+  photoSlot: "",
+  bio: [] as string[],
+};
+
+export const whatsappPopup = {
+  greeting: "Hi there! 👋",
+  text: "Need a free quote? Send us a photo of your roofline on WhatsApp.",
+  cta: "Chat on WhatsApp",
 };
 
 export const notFoundPage = {

@@ -11,8 +11,9 @@ import {
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { nav, notFoundPage, services, site } from "@/data/content";
+import { founder, nav, notFoundPage, services, site } from "@/data/content";
 import { getImage, getVideo } from "@/data/images";
+import { ParallaxDriver, RouteProgress, WhatsAppWidget } from "@/components/site/motion";
 
 export function Media({
   slot,
@@ -142,6 +143,9 @@ export function Header() {
               Get a Free Quote <ArrowUpRight />
             </Link>
           </Button>
+          <a href={site.phoneHref} className="mobile-call" aria-label={`Call ${site.phone}`}>
+            <Phone size={19} />
+          </a>
           <Button
             variant="iconPlain"
             size="icon"
@@ -256,31 +260,17 @@ export function Footer() {
   );
 }
 
-export function WhatsApp() {
-  return (
-    <a
-      className="whatsapp-float"
-      href={site.whatsapp}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Chat with Elite Gutters on WhatsApp"
-    >
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a8 8 0 0 1-2.4-1.5 9 9 0 0 1-1.6-2.1c-.2-.3 0-.5.1-.6l.5-.5.3-.5v-.5l-1-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.3 3.3 0 0 0-1 2.5 5.8 5.8 0 0 0 1.2 3.1 13.3 13.3 0 0 0 5.1 4.5c1.9.8 2.6.9 3.6.7a3 3 0 0 0 2-1.4 2.4 2.4 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3ZM12 21.8a9.9 9.9 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4a9.9 9.9 0 1 1 8.3 4.6ZM20.5 3.5A11.8 11.8 0 0 0 1.9 17.7L.2 24l6.4-1.7a11.8 11.8 0 0 0 5.6 1.4 11.8 11.8 0 0 0 8.3-20.2Z" />
-      </svg>
-    </a>
-  );
-}
-
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <>
+      <RouteProgress />
       <Header />
       <main id="main" tabIndex={-1}>
         {children}
       </main>
       <Footer />
-      <WhatsApp />
+      <WhatsAppWidget />
+      <ParallaxDriver />
     </>
   );
 }
@@ -336,7 +326,11 @@ export function PageIntro({
 }) {
   return (
     <section className={`page-intro ${slot ? "" : "page-intro-plain"}`}>
-      {slot && <Media slot={slot} className="page-intro-image" priority />}
+      {slot && (
+        <div className="page-intro-media" data-parallax="0.22">
+          <Media slot={slot} className="page-intro-image" priority sizes="100vw" />
+        </div>
+      )}
       <div className="page-intro-shade" />
       <div className="container page-intro-content">
         {crumbs && (
@@ -364,12 +358,18 @@ export function PageIntro({
 export function QuoteBand({
   title = "Ready to upgrade your roofline?",
   text = "Tell us what you have in mind. We will help you find a finish that fits.",
+  slot = "garage-three-charcoal-glass",
 }: {
   title?: string;
   text?: string;
+  /** Background photo that scrolls slower than the page. */
+  slot?: string;
 }) {
   return (
     <section className="quote-band">
+      <div className="band-media" data-parallax="0.3" aria-hidden="true">
+        <img src={getImage(slot).src} alt="" loading="lazy" decoding="async" />
+      </div>
       <div className="container quote-inner">
         <div>
           <Eyebrow>Free quote</Eyebrow>
@@ -459,6 +459,59 @@ export function NotFound() {
           >
             <Link to="/contact">Contact us</Link>
           </Button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Full-width photo band: the photo drifts slower than the page while the text scrolls normally. */
+export function ParallaxBand({
+  slot,
+  eyebrow,
+  title,
+}: {
+  slot: string;
+  eyebrow: string;
+  title: string;
+}) {
+  const image = getImage(slot);
+  return (
+    <section className="parallax-band">
+      <div className="band-media" data-parallax="0.35">
+        <img
+          data-slot={slot}
+          src={image.src}
+          alt={image.alt}
+          width={image.width}
+          height={image.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+      <div className="parallax-band-shade" />
+      <div className="container parallax-band-content">
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <p className="parallax-band-title">{title}</p>
+      </div>
+    </section>
+  );
+}
+
+/** "Meet the founder". Renders nothing until the client details are filled in content.ts. */
+export function FounderSection() {
+  if (!founder.name) return null;
+  return (
+    <section className="section founder">
+      <div className="container content-split">
+        {founder.photoSlot && <Media slot={founder.photoSlot} className="founder-photo" />}
+        <div>
+          <Eyebrow>Meet the founder</Eyebrow>
+          <h2>{founder.name}</h2>
+          <p className="founder-role">{founder.role}</p>
+          {founder.bio.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
         </div>
       </div>
     </section>

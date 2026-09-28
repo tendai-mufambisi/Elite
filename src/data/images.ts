@@ -16,11 +16,11 @@ const img = (slot: string, src: string, width: number, height: number, alt: stri
 // Project photos: one slot per photo.
 const photos = [
   img(
-    "gutters-stainless-yellow-house",
+    "pillar-yellow-house-garage-doors",
     "seamless-gutters/stainless-steel-gutters-fascia-pillar-cladding-charcoal-garage-doors.webp",
     1280,
     576,
-    "Yellow single-storey home with stainless steel gutters and fascia boards, stainless steel pillar cladding and three charcoal aluminium glass garage doors",
+    "Yellow single-storey home with stainless steel fascia, stainless steel pillar cladding and three charcoal aluminium glass garage doors",
   ),
   img(
     "gutters-charcoal-fascia-double-storey",
@@ -131,8 +131,8 @@ const photos = [
 
 // Named page slots that reuse a project photo.
 const aliases: Record<string, string> = {
-  "hero-home": "gutters-stainless-yellow-house",
-  "og-default": "gutters-stainless-yellow-house",
+  "hero-home": "pillar-yellow-house-garage-doors",
+  "og-default": "pillar-yellow-house-garage-doors",
   "matched-bronze-01": "fascia-bronze-double-storey",
   "matched-charcoal-01": "gutters-charcoal-fascia-double-storey",
   "matched-stainless-01": "pillar-stainless-fascia-two-garage-doors",

@@ -1,5 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Eyebrow, Media, PageIntro, QuoteBand, SectionHead } from "@/components/site/site";
+import {
+  Eyebrow,
+  FounderSection,
+  Media,
+  PageIntro,
+  QuoteBand,
+  SectionHead,
+} from "@/components/site/site";
 import { Reveal } from "@/components/site/Reveal";
 import { aboutPage as page } from "@/data/content";
 import { breadcrumb, pageHead } from "@/data/seo";
@@ -64,6 +71,8 @@ function About() {
           </ol>
         </div>
       </section>
+
+      <FounderSection />
 
       <QuoteBand />
     </>

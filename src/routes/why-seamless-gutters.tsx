@@ -35,7 +35,7 @@ function WhyPage() {
 
       <section className="section">
         <div className="container content-split">
-          <Media slot="gutters-stainless-yellow-house" />
+          <Media slot="fascia-bronze-double-storey" />
           <div>
             <Eyebrow>{whyPage.what.eyebrow}</Eyebrow>
             <h2>{whyPage.what.title}</h2>
