@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowUpRight, CloudRain } from "lucide-react";
 import { Eyebrow, Media, PageIntro, QuoteBand, SectionHead } from "@/components/site/site";
 import { Reveal } from "@/components/site/Reveal";
 import { commercialPage as page } from "@/data/content";
@@ -38,6 +39,24 @@ function Commercial() {
             </ul>
           </div>
           <Media slot="commercial-key-01" />
+        </div>
+        <div className="container">
+          <aside className="callout" aria-label={page.callout.title}>
+            <span className="callout-icon" aria-hidden="true">
+              <CloudRain size={30} />
+            </span>
+            <p>
+              <strong>{page.callout.title}:</strong> {page.callout.text}
+            </p>
+            <Link
+              to="/services/$slug"
+              params={{ slug: "seamless-gutters" }}
+              hash="gutter-profiles"
+              className="callout-link"
+            >
+              {page.callout.link} <ArrowUpRight size={18} aria-hidden="true" />
+            </Link>
+          </aside>
         </div>
       </section>
 

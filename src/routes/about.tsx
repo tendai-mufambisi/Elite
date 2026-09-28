@@ -12,7 +12,11 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <>
-      <PageIntro {...page.intro} slot="hero-home" crumbs={[{ label: "About" }]} />
+      <PageIntro
+        {...page.intro}
+        slot="balustrade-stainless-balconies"
+        crumbs={[{ label: "About" }]}
+      />
 
       <section className="section">
         <div className="container content-split">
@@ -23,7 +27,7 @@ function About() {
               <p key={p}>{p}</p>
             ))}
           </div>
-          <Media slot="about-team-01" />
+          <Media slot="about-01" />
         </div>
       </section>
 

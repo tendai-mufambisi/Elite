@@ -7,7 +7,6 @@ import {
   Menu,
   MessageCircle,
   Phone,
-  Play,
   X,
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
@@ -30,7 +29,6 @@ export function Media({
   return (
     <img
       data-slot={slot}
-      data-placeholder={image.isPlaceholder || undefined}
       src={image.src}
       alt={image.alt}
       width={image.width}
@@ -46,34 +44,20 @@ export function Media({
 
 export function VideoSlot({ slot, className = "" }: { slot: string; className?: string }) {
   const video = getVideo(slot);
-  if (video.src) {
-    return (
-      <video
-        data-slot={slot}
-        className={`video-slot video-real ${className}`}
-        src={video.src}
-        poster={video.poster}
-        controls
-        preload="none"
-        playsInline
-        aria-label={video.title}
-      />
-    );
-  }
   return (
-    <div
+    <video
       data-slot={slot}
-      className={`video-slot ${className}`}
-      style={{ backgroundImage: `url(${video.poster})` }}
-      role="img"
-      aria-label={`${video.title} (coming soon)`}
-    >
-      <span className="video-play" aria-hidden="true">
-        <Play size={26} fill="currentColor" />
-      </span>
-      <span className="video-label">{video.title}</span>
-      <span className="video-notice">Video coming soon</span>
-    </div>
+      className={`video-real ${className}`}
+      src={video.src}
+      poster={video.poster}
+      width={video.width}
+      height={video.height}
+      controls
+      muted
+      preload="none"
+      playsInline
+      aria-label={video.title}
+    />
   );
 }
 
@@ -340,18 +324,19 @@ export function PageIntro({
   eyebrow,
   title,
   text,
-  slot = "hero-home",
+  slot,
   crumbs,
 }: {
   eyebrow: string;
   title: string;
   text: string;
-  slot?: string;
+  /** Omit for a plain navy banner when there is no photo. */
+  slot?: string | undefined;
   crumbs?: { label: string; to?: string }[];
 }) {
   return (
-    <section className="page-intro">
-      <Media slot={slot} className="page-intro-image" priority />
+    <section className={`page-intro ${slot ? "" : "page-intro-plain"}`}>
+      {slot && <Media slot={slot} className="page-intro-image" priority />}
       <div className="page-intro-shade" />
       <div className="container page-intro-content">
         {crumbs && (

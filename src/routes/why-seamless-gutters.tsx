@@ -19,7 +19,7 @@ export const Route = createFileRoute("/why-seamless-gutters")({
       whyPage.metaDescription,
       "/why-seamless-gutters",
       [breadcrumb(["Why Seamless Gutters", "/why-seamless-gutters"]), faqSchema(whyPage.faqs)],
-      "gutters-charcoal-01",
+      "og-default",
     ),
   component: WhyPage,
 });
@@ -29,13 +29,13 @@ function WhyPage() {
     <>
       <PageIntro
         {...whyPage.intro}
-        slot="gutters-roofline-01"
+        slot="pillar-stainless-fascia-two-garage-doors"
         crumbs={[{ label: "Why Seamless Gutters" }]}
       />
 
       <section className="section">
         <div className="container content-split">
-          <Media slot="gutters-charcoal-01" />
+          <Media slot="gutters-stainless-yellow-house" />
           <div>
             <Eyebrow>{whyPage.what.eyebrow}</Eyebrow>
             <h2>{whyPage.what.title}</h2>
@@ -110,7 +110,7 @@ function WhyPage() {
               <p key={p}>{p}</p>
             ))}
           </div>
-          <Media slot="gutters-stainless-01" />
+          <Media slot="pillar-stainless-veranda" />
         </div>
       </section>
 

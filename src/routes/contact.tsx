@@ -37,7 +37,7 @@ function Contact() {
     <>
       <PageIntro
         {...page.intro}
-        slot="aluminium-folding-bronze-01"
+        slot="aluminium-windows-glass-balustrades"
         crumbs={[{ label: "Contact" }]}
       />
       <section className="section section-soft">

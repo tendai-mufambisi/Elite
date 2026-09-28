@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Eyebrow,
   FaqList,
@@ -9,8 +10,10 @@ import {
   SectionHead,
   VideoSlot,
 } from "@/components/site/site";
+import { GutterProfileDrawing, WindowGuardDrawing } from "@/components/site/illustrations";
 import { Reveal } from "@/components/site/Reveal";
-import { services } from "@/data/content";
+import { gutterProfiles, services, whatsappLink } from "@/data/content";
+import { getVideo } from "@/data/images";
 import { breadcrumb, faqSchema, pageHead, serviceSchema } from "@/data/seo";
 
 export const Route = createFileRoute("/services/$slug")({
@@ -30,7 +33,7 @@ export const Route = createFileRoute("/services/$slug")({
             faqSchema(loaderData.faqs),
             breadcrumb([loaderData.title, `/services/${loaderData.slug}`]),
           ],
-          loaderData.image,
+          loaderData.image ?? "og-default",
         )
       : {},
   component: ServicePage,
@@ -48,7 +51,7 @@ function ServicePage() {
         eyebrow="Our services"
         title={s.title}
         text={s.short}
-        slot={s.image}
+        slot={"banner" in s ? s.banner : s.image}
         crumbs={[{ label: s.title }]}
       />
 
@@ -73,23 +76,35 @@ function ServicePage() {
               ))}
             </ul>
           </div>
-          <Media slot={s.gallery[1] ?? s.image} />
+          {s.image ? <Media slot={s.image} /> : <WindowGuardDrawing className="split-drawing" />}
         </div>
       </section>
 
-      <section className="section section-soft">
-        <div className="container">
-          <Reveal>
-            <SectionHead eyebrow="Gallery" title="The finished look." />
-          </Reveal>
-          <div className="gallery-grid">
-            {s.gallery.map((slot) => (
-              <Media key={slot} slot={slot} />
-            ))}
+      {s.gallery.length > 0 && (
+        <section className="section section-soft">
+          <div className="container">
+            <Reveal>
+              <SectionHead eyebrow="Gallery" title="The finished look." />
+            </Reveal>
+            <div className="gallery-grid">
+              {s.gallery.map((slot) => (
+                <Media key={slot} slot={slot} />
+              ))}
+            </div>
+            {"video" in s && s.video && (
+              <div className="video-feature">
+                <div>
+                  <Eyebrow>Project video</Eyebrow>
+                  <h3>{getVideo(s.video).title}</h3>
+                </div>
+                <VideoSlot slot={s.video} />
+              </div>
+            )}
           </div>
-          {"video" in s && s.video && <VideoSlot slot={s.video} className="mt-3" />}
-        </div>
-      </section>
+        </section>
+      )}
+
+      {s.slug === "seamless-gutters" && <GutterProfiles />}
 
       <section className="section">
         <div className="container faq-layout">
@@ -120,5 +135,44 @@ function ServicePage() {
         text="Send us your details and a few photos. We will come back to you with a free quote."
       />
     </>
+  );
+}
+
+function GutterProfiles() {
+  return (
+    <section className="section" id="gutter-profiles">
+      <div className="container">
+        <Reveal>
+          <SectionHead eyebrow={gutterProfiles.eyebrow} title={gutterProfiles.title} />
+        </Reveal>
+        <div className="profile-grid">
+          {gutterProfiles.profiles.map((p) => (
+            <article key={p.kind} className={`profile-card profile-${p.kind}`}>
+              <GutterProfileDrawing kind={p.kind} />
+              <h3>
+                {p.label} <small>({p.for})</small>
+              </h3>
+              <ul className="check-list">
+                {p.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+        <div className="profile-note">
+          <p>{gutterProfiles.note}</p>
+          <Button asChild variant="brand" size="large">
+            <a
+              href={whatsappLink(gutterProfiles.whatsappText)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle /> WhatsApp Us
+            </a>
+          </Button>
+        </div>
+      </div>
+    </section>
   );
 }

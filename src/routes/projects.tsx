@@ -3,7 +3,7 @@ import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Media, PageIntro, QuoteBand, SectionHead, VideoSlot } from "@/components/site/site";
 import { projectCategories, projects, projectsPage as page } from "@/data/content";
-import { getImage, getVideo } from "@/data/images";
+import { getVideo } from "@/data/images";
 import { breadcrumb, pageHead } from "@/data/seo";
 
 export const Route = createFileRoute("/projects")({
@@ -13,7 +13,7 @@ export const Route = createFileRoute("/projects")({
       page.metaDescription,
       "/projects",
       breadcrumb(["Projects", "/projects"]),
-      "project-01",
+      "og-default",
     ),
   component: Projects,
 });
@@ -25,9 +25,6 @@ function Projects() {
   const closeButton = useRef<HTMLButtonElement>(null);
   const visible = projects.filter((item) => filter === "All" || item.category === filter);
   const active = activeIndex === null ? null : visible[activeIndex];
-  const anyPlaceholder = visible.some((p) =>
-    p.video ? !getVideo(p.slot).src : getImage(p.slot).isPlaceholder,
-  );
 
   const close = () => {
     setActiveIndex(null);
@@ -55,7 +52,11 @@ function Projects() {
 
   return (
     <>
-      <PageIntro {...page.intro} slot="balustrade-glass-01" crumbs={[{ label: "Projects" }]} />
+      <PageIntro
+        {...page.intro}
+        slot="aluminium-commercial-complex"
+        crumbs={[{ label: "Projects" }]}
+      />
       <section className="section">
         <div className="container">
           <SectionHead {...page.head} />
@@ -92,8 +93,8 @@ function Projects() {
                       <img
                         src={getVideo(item.slot).poster}
                         alt=""
-                        width={1200}
-                        height={912}
+                        width={getVideo(item.slot).width}
+                        height={getVideo(item.slot).height}
                         loading="lazy"
                         data-slot={item.slot}
                       />
@@ -115,11 +116,6 @@ function Projects() {
               </li>
             ))}
           </ul>
-          {anyPlaceholder && (
-            <p className="placeholder-note">
-              Some images shown are illustrative. Project photography is being added.
-            </p>
-          )}
         </div>
       </section>
 

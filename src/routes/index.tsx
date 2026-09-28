@@ -24,6 +24,7 @@ import {
   SectionHead,
   VideoSlot,
 } from "@/components/site/site";
+import { WindowGuardDrawing } from "@/components/site/illustrations";
 import { Reveal } from "@/components/site/Reveal";
 import { benefits, colours, home, projects, services, site } from "@/data/content";
 import { pageHead } from "@/data/seo";
@@ -100,7 +101,11 @@ function Home() {
             {services.map((s, i) => (
               <Reveal key={s.slug} className="service-cell">
                 <Link className="service-card" to="/services/$slug" params={{ slug: s.slug }}>
-                  <Media slot={s.image} />
+                  {s.image ? (
+                    <Media slot={s.image} />
+                  ) : (
+                    <WindowGuardDrawing className="card-drawing" />
+                  )}
                   <span className="service-card-index">
                     0{i + 1} / 0{services.length}
                   </span>
@@ -224,8 +229,15 @@ function Home() {
 
       <section className="section">
         <div className="container">
-          <SectionHead {...home.videoHead} />
-          <VideoSlot slot="video-featured" />
+          <div className="video-feature">
+            <div>
+              <Eyebrow>{home.videoHead.eyebrow}</Eyebrow>
+              <h2>{home.videoHead.title}</h2>
+              <p>{home.videoHead.text}</p>
+              <ArrowLink to="/projects">More projects</ArrowLink>
+            </div>
+            <VideoSlot slot="video-featured" />
+          </div>
         </div>
       </section>
 

@@ -15,11 +15,11 @@ Built with TanStack Start (React, Vite, TypeScript, Tailwind). Connected to [Lov
 
 Blocks marked `CLIENT CONTENT` in `content.ts` (the Why Seamless Gutters advantages list and the About story) are waiting on client material.
 
-### Swapping in real photos and videos
+### Photos and videos
 
-Every image renders with a `data-slot` attribute matching an entry in `src/data/images.ts`. Until a slot has a `src`, it shows a generated illustrative placeholder with its own honest alt text. To use a real photo, put it in `public/media/` and set `src`, `width` and `height` on that slot, and make sure its `alt` describes the actual photo.
+Every image renders with a `data-slot` attribute matching an entry in `src/data/images.ts`. Project photos are WebP files in `public/images/<category>/` (max 1920px wide) and videos are muted H.264 MP4s with WebP posters in `public/videos/`. `media-plan.md` records which original client file became which slot.
 
-Video slots (`<VideoSlot slot="..." />`) show a "coming soon" poster until you set `src` to an `.mp4`.
+To replace a photo, add the new file, point its slot's `src` at it and update `width`, `height` and `alt`. Keep every file under 5 MB.
 
 ## Development
 

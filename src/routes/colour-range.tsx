@@ -19,7 +19,11 @@ export const Route = createFileRoute("/colour-range")({
 function ColourRange() {
   return (
     <>
-      <PageIntro {...page.intro} slot="fascia-bronze-01" crumbs={[{ label: "Colour Range" }]} />
+      <PageIntro
+        {...page.intro}
+        slot="fascia-bronze-double-storey"
+        crumbs={[{ label: "Colour Range" }]}
+      />
 
       <section className="section">
         <div className="container">

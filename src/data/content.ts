@@ -55,13 +55,12 @@ export const services = [
       "Low maintenance, with fewer joints to check",
     ],
     finishes: ["Stainless steel", "Charcoal", "Bronze", "Black", "Colour-coated steel"],
-    image: "gutters-charcoal-01",
+    image: "gutters-stainless-yellow-house",
     gallery: [
-      "gutters-charcoal-01",
-      "gutters-stainless-01",
-      "gutters-bronze-01",
-      "gutters-downpipe-01",
-      "gutters-roofline-01",
+      "gutters-stainless-yellow-house",
+      "fascia-bronze-double-storey",
+      "gutters-charcoal-fascia-double-storey",
+      "pillar-stainless-fascia-two-garage-doors",
     ],
     video: "gutters-charcoal-video",
     faqs: [
@@ -97,13 +96,12 @@ export const services = [
       "No painting or regular upkeep needed",
     ],
     finishes: ["Stainless steel", "Bronze", "Charcoal", "Colour-coated steel"],
-    image: "fascia-bronze-01",
+    image: "pillar-stainless-fascia-two-garage-doors",
     gallery: [
-      "fascia-bronze-01",
-      "fascia-stainless-01",
-      "fascia-charcoal-01",
-      "fascia-matched-01",
-      "fascia-detail-01",
+      "pillar-stainless-fascia-two-garage-doors",
+      "fascia-bronze-double-storey",
+      "gutters-stainless-yellow-house",
+      "gutters-charcoal-fascia-double-storey",
     ],
     faqs: [
       [
@@ -138,12 +136,12 @@ export const services = [
       "Complements matched gutters, fascia and balustrades",
     ],
     finishes: ["Brushed stainless steel", "Polished stainless steel"],
-    image: "pillar-stainless-01",
+    image: "pillar-stainless-veranda",
+    banner: "pillar-stainless-fascia-two-garage-doors",
     gallery: [
-      "pillar-stainless-01",
-      "pillar-entrance-01",
-      "pillar-patio-01",
-      "pillar-commercial-01",
+      "pillar-stainless-veranda",
+      "pillar-stainless-fascia-two-garage-doors",
+      "gutters-stainless-yellow-house",
     ],
     faqs: [
       [
@@ -174,13 +172,14 @@ export const services = [
       "Rust-free, low-maintenance materials",
     ],
     finishes: ["Clear glass", "Stainless steel", "Glass with stainless steel"],
-    image: "balustrade-glass-01",
+    image: "balustrade-glass-staircase",
+    banner: "balustrade-stainless-balconies",
     gallery: [
-      "balustrade-glass-01",
-      "balustrade-steel-01",
-      "balustrade-staircase-01",
-      "balustrade-balcony-01",
-      "balustrade-handrail-01",
+      "balustrade-glass-staircase",
+      "balustrade-tinted-glass-commercial",
+      "balustrade-stainless-balconies",
+      "aluminium-windows-glass-balustrades",
+      "fascia-bronze-double-storey",
     ],
     faqs: [
       [
@@ -215,13 +214,14 @@ export const services = [
       "Frames matched to your fascia and gutters",
     ],
     finishes: ["Bronze", "Charcoal", "Black", "Silver"],
-    image: "aluminium-folding-bronze-01",
+    image: "folding-doors-gazebo",
     gallery: [
-      "aluminium-folding-bronze-01",
-      "aluminium-windows-charcoal-01",
-      "aluminium-patio-folding-01",
-      "aluminium-shopfront-01",
-      "aluminium-sliding-01",
+      "folding-doors-gazebo",
+      "folding-doors-interior",
+      "aluminium-windows-glass-balustrades",
+      "aluminium-commercial-complex",
+      "aluminium-new-build",
+      "fascia-bronze-double-storey",
     ],
     faqs: [
       [
@@ -252,8 +252,14 @@ export const services = [
       "Finished to match gutters and fascia",
     ],
     finishes: ["Charcoal", "Bronze", "Black", "Wood-look"],
-    image: "garage-double-01",
-    gallery: ["garage-double-01", "garage-single-01", "garage-charcoal-01", "garage-matched-01"],
+    image: "garage-three-charcoal-glass",
+    gallery: [
+      "garage-three-charcoal-glass",
+      "garage-arched-glass-gate",
+      "pillar-stainless-fascia-two-garage-doors",
+      "gutters-stainless-yellow-house",
+    ],
+    video: "garage-doors-video",
     faqs: [
       [
         "Are your garage doors automated?",
@@ -283,8 +289,8 @@ export const services = [
       "Finished to match your window frames",
     ],
     finishes: ["Clear glass", "Aluminium", "Charcoal", "Bronze"],
-    image: "burglar-aluminium-01",
-    gallery: ["burglar-aluminium-01", "burglar-glass-01", "burglar-window-01", "burglar-door-01"],
+    image: undefined,
+    gallery: [],
     faqs: [
       [
         "What materials do you use?",
@@ -303,6 +309,37 @@ export const services = [
 ] as const;
 
 export type Service = (typeof services)[number];
+
+// Shown on /services/seamless-gutters (#gutter-profiles). No measurements anywhere on the site.
+export const gutterProfiles = {
+  eyebrow: "Gutter profiles",
+  title: "Domestic & Industrial Gutter Profiles",
+  profiles: [
+    {
+      kind: "domestic",
+      label: "Domestic",
+      for: "Homes",
+      points: [
+        "Standard domestic profile, sized for residential roofs",
+        "Ideal for: houses, townhouses, residential estates",
+        "Matching downpipes in the same finish",
+      ],
+    },
+    {
+      kind: "industrial",
+      label: "Industrial",
+      for: "Commercial, Schools, Factories",
+      points: [
+        "Wider industrial profile for large roof areas",
+        "Wider opening moves more water, faster - reduces overflow in heavy storms",
+        "Larger downpipes to match the higher water volume",
+        "Ideal for: schools, warehouses, factories, shopping centres, offices",
+      ],
+    },
+  ],
+  note: "Not sure which profile you need? We'll assess your roof and recommend the right size.",
+  whatsappText: "Hi Elite Gutters, I'd like advice on which gutter profile I need.",
+} as const;
 
 export const home = {
   metaTitle: "Seamless Gutters & Premium Aluminium Finishes in South Africa",
@@ -347,7 +384,11 @@ export const home = {
     title: "Find your finish.",
     text: "Colour-coated steel gutters and fascia boards in a wide range of colours, from charcoal and black to cream, brick red and forest green.",
   },
-  videoHead: { eyebrow: "In motion", title: "See the finish." },
+  videoHead: {
+    eyebrow: "In motion",
+    title: "See the finish.",
+    text: "A walk around a double-storey home finished with charcoal gutters and fascia boards, aluminium windows, folding doors and balustrades.",
+  },
   cta: {
     title: "Ready to upgrade your roofline?",
     text: "Send us your details and a few photos. We will come back to you with a free quote.",
@@ -445,7 +486,7 @@ export const whyPage = {
   },
   comparison: [
     ["Construction", "One continuous length per run", "Short sections joined together"],
-    ["Joints along the run", "None", "Every few metres"],
+    ["Joints along the run", "None", "Along the whole run"],
     ["Leak risk", "Far lower", "Joints can leak as sealant ages"],
     ["Appearance", "Clean, uninterrupted line", "Visible joins along the roofline"],
     ["Maintenance", "Low", "Joints need checking and resealing"],
@@ -536,6 +577,11 @@ export const commercialPage = {
       "Matched fascia boards, downpipes and shopfronts",
     ],
   },
+  callout: {
+    title: "Built for big roofs",
+    text: "Our wider industrial gutters carry far more water than standard domestic gutters, keeping schools, warehouses and factories dry in heavy rain.",
+    link: "Compare gutter profiles",
+  },
   sectorsHead: { eyebrow: "Sectors we serve", title: "Made for your building." },
   sectors: [
     {
@@ -575,13 +621,7 @@ export const commercialPage = {
     },
   ],
   galleryHead: { eyebrow: "Project gallery", title: "Built at scale." },
-  gallery: [
-    "commercial-warehouse-01",
-    "commercial-school-01",
-    "commercial-office-01",
-    "commercial-shopfront-01",
-    "commercial-factory-01",
-  ],
+  gallery: ["aluminium-commercial-complex", "balustrade-tinted-glass-commercial"],
   cta: {
     title: "Planning a larger project?",
     text: "Tell us about the building and we will help you choose the right gutter profile and finish.",
@@ -606,66 +646,97 @@ export const projects: {
   caption: string;
   video?: boolean;
 }[] = [
-  { slot: "project-01", category: "Gutters", caption: "Charcoal seamless gutters and downpipes" },
   {
-    slot: "project-02",
+    slot: "gutters-stainless-yellow-house",
     category: "Gutters",
-    caption: "Stainless steel gutters on a modern roofline",
-  },
-  { slot: "project-03", category: "Gutters", caption: "Wide-profile gutters on a large roof" },
-  { slot: "project-04", category: "Gutters", caption: "Bronze gutters with matching downpipes" },
-  { slot: "project-05", category: "Fascia", caption: "Bronze fascia boards with matched gutters" },
-  { slot: "project-06", category: "Fascia", caption: "Charcoal fascia on a contemporary home" },
-  { slot: "project-07", category: "Fascia", caption: "Stainless steel fascia boards" },
-  { slot: "project-08", category: "Fascia", caption: "Fascia and gutters in one finish" },
-  {
-    slot: "project-09",
-    category: "Pillar Cladding",
-    caption: "Stainless steel pillar cladding at an entrance",
-  },
-  { slot: "project-10", category: "Pillar Cladding", caption: "Clad patio pillars" },
-  {
-    slot: "project-11",
-    category: "Pillar Cladding",
-    caption: "Pillar cladding on a commercial frontage",
-  },
-  { slot: "project-12", category: "Balustrades", caption: "Glass balustrade on a balcony" },
-  { slot: "project-13", category: "Balustrades", caption: "Stainless steel staircase balustrade" },
-  { slot: "project-14", category: "Balustrades", caption: "Glass and stainless steel handrail" },
-  {
-    slot: "project-15",
-    category: "Aluminium Doors & Windows",
-    caption: "Bronze aluminium folding doors",
+    caption: "Stainless steel gutters, fascia and pillar cladding",
   },
   {
-    slot: "project-16",
-    category: "Aluminium Doors & Windows",
-    caption: "Charcoal aluminium windows",
-  },
-  { slot: "project-17", category: "Aluminium Doors & Windows", caption: "Patio folding doors" },
-  { slot: "project-18", category: "Garage Doors", caption: "Automated double garage door" },
-  {
-    slot: "project-19",
-    category: "Garage Doors",
-    caption: "Charcoal garage door matched to the roofline",
-  },
-  { slot: "project-20", category: "Garage Doors", caption: "Single aluminium garage door" },
-  {
-    slot: "project-video-01",
+    slot: "project-video-charcoal",
     category: "Gutters",
-    caption: "Seamless gutter installation",
+    caption: "Charcoal gutters and fascia boards",
     video: true,
   },
   {
-    slot: "project-video-02",
-    category: "Aluminium Doors & Windows",
-    caption: "Folding doors in action",
+    slot: "project-video-gutters",
+    category: "Gutters",
+    caption: "New gutters, downpipes and sliding gate",
     video: true,
   },
   {
-    slot: "project-video-03",
+    slot: "fascia-bronze-double-storey",
+    category: "Fascia",
+    caption: "Bronze fascia and downpipes matched to bronze windows",
+  },
+  {
+    slot: "pillar-stainless-fascia-two-garage-doors",
+    category: "Fascia",
+    caption: "Stainless steel fascia boards and gutters",
+  },
+  {
+    slot: "gutters-charcoal-fascia-double-storey",
+    category: "Fascia",
+    caption: "Charcoal fascia with charcoal folding doors",
+  },
+  {
+    slot: "pillar-stainless-veranda",
+    category: "Pillar Cladding",
+    caption: "Stainless steel pillar cladding on a veranda",
+  },
+  {
+    slot: "balustrade-glass-staircase",
     category: "Balustrades",
-    caption: "Glass balustrade walkthrough",
+    caption: "Frameless glass staircase balustrade",
+  },
+  {
+    slot: "balustrade-tinted-glass-commercial",
+    category: "Balustrades",
+    caption: "Tinted glass balcony balustrade, commercial",
+  },
+  {
+    slot: "balustrade-stainless-balconies",
+    category: "Balustrades",
+    caption: "Stainless steel balcony balustrades",
+  },
+  {
+    slot: "aluminium-windows-glass-balustrades",
+    category: "Balustrades",
+    caption: "Glass balustrades and aluminium windows",
+  },
+  {
+    slot: "folding-doors-gazebo",
+    category: "Aluminium Doors & Windows",
+    caption: "Aluminium folding doors on a thatched gazebo",
+  },
+  {
+    slot: "folding-doors-interior",
+    category: "Aluminium Doors & Windows",
+    caption: "Five-panel aluminium folding doors",
+  },
+  {
+    slot: "aluminium-commercial-complex",
+    category: "Aluminium Doors & Windows",
+    caption: "Aluminium windows on an office complex",
+  },
+  {
+    slot: "aluminium-new-build",
+    category: "Aluminium Doors & Windows",
+    caption: "Aluminium windows and folding doors, new build",
+  },
+  {
+    slot: "garage-three-charcoal-glass",
+    category: "Garage Doors",
+    caption: "Three charcoal aluminium glass garage doors",
+  },
+  {
+    slot: "garage-arched-glass-gate",
+    category: "Garage Doors",
+    caption: "Arched glass garage doors with matching gate",
+  },
+  {
+    slot: "project-video-garage",
+    category: "Garage Doors",
+    caption: "Automated garage doors by remote control",
     video: true,
   },
 ];
