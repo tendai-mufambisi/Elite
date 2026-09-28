@@ -1,6 +1,67 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { Eyebrow, Media, PageIntro, QuoteBand, SectionHead } from '@/components/site/site';
-import { process } from '@/data/content';
-import { pageHead, breadcrumb } from '@/data/seo';
-export const Route = createFileRoute('/about')({ head: () => pageHead('About Us', 'Learn about the approach behind Elite Gutters and Aluminium Products: quality finishes, lasting results and honest service.', '/about', breadcrumb('About','/about')), component: About });
-function About() { return <><PageIntro eyebrow="ABOUT ELITE" title="Pride in every line." text="Good work shows in the details — in the fit, the finish and the feeling that everything belongs."/><section className="section"><div className="container content-split"><div><Eyebrow>OUR APPROACH</Eyebrow><h2>Quality finishes last longer.</h2><p>Elite Gutters and Aluminium Products brings together practical protection and considered design. We work across gutters, fascia, balustrades, aluminium doors and more, helping each element feel part of one complete exterior.</p><p>Our company story can be expanded here with details from the team. For now, the principles stay simple: thoughtful materials, careful work and clear communication.</p></div><Media slot="bronze-home"/></div></section><section className="section section-soft"><div className="container"><SectionHead eyebrow="WHAT WE STAND FOR" title="The way we work."/><div className="number-list">{[['01','Quality finishes','Materials and details selected to look good and work hard.'],['02','Lasting results','Practical solutions made for everyday use.'],['03','Honest service','Straightforward conversations from first enquiry to final fit.']].map(([n,t,d]) => <article key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p></article>)}</div></div></section><section className="section"><div className="container"><SectionHead eyebrow="THE PROCESS" title="From idea to installation."/><div className="number-list">{process.map((step,i) => <article key={step}><span>0{i+1}</span><h3>{step}</h3></article>)}</div></div></section><QuoteBand/></>; }
+import { createFileRoute } from "@tanstack/react-router";
+import { Eyebrow, Media, PageIntro, QuoteBand, SectionHead } from "@/components/site/site";
+import { Reveal } from "@/components/site/Reveal";
+import { aboutPage as page } from "@/data/content";
+import { breadcrumb, pageHead } from "@/data/seo";
+
+export const Route = createFileRoute("/about")({
+  head: () => pageHead("About Us", page.metaDescription, "/about", breadcrumb(["About", "/about"])),
+  component: About,
+});
+
+function About() {
+  return (
+    <>
+      <PageIntro {...page.intro} slot="hero-home" crumbs={[{ label: "About" }]} />
+
+      <section className="section">
+        <div className="container content-split">
+          <div>
+            <Eyebrow>{page.story.eyebrow}</Eyebrow>
+            <h2>{page.story.title}</h2>
+            {page.story.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
+          <Media slot="about-team-01" />
+        </div>
+      </section>
+
+      <section className="section section-soft">
+        <div className="container">
+          <Reveal>
+            <SectionHead eyebrow="What we stand for" title="The way we work." />
+          </Reveal>
+          <ol className="number-list number-list-3">
+            {page.values.map((v, i) => (
+              <li key={v.title}>
+                <span aria-hidden="true">0{i + 1}</span>
+                <h3>{v.title}</h3>
+                <p>{v.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <Reveal>
+            <SectionHead eyebrow="Our process" title="From first call to aftercare." />
+          </Reveal>
+          <ol className="process">
+            {page.process.map((step, i) => (
+              <li key={step.title}>
+                <span aria-hidden="true">0{i + 1}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <QuoteBand />
+    </>
+  );
+}

@@ -1,9 +1,157 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { type FormEvent, useState } from 'react';
-import { ArrowUpRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Eyebrow, PageIntro } from '@/components/site/site';
-import { services, site } from '@/data/content';
-import { pageHead, breadcrumb } from '@/data/seo';
-export const Route = createFileRoute('/contact')({ head: () => pageHead('Contact & Free Quote', 'Contact Elite Gutters and Aluminium Products for a quote on gutters, fascia, balustrades, aluminium doors and more.', '/contact', breadcrumb('Contact','/contact')), component: Contact });
-function Contact() { const [photoName,setPhotoName] = useState(''); function submit(e: FormEvent<HTMLFormElement>) { e.preventDefault(); const data = new FormData(e.currentTarget); const selected = data.getAll('service').join(', ') || 'Not specified'; const message = [`Hi Elite Gutters, I'd like a quote.`,`Name: ${data.get('name')}`,`Phone: ${data.get('phone')}`,`Email: ${data.get('email') || 'Not provided'}`,`Property: ${data.get('property')}`,`Services: ${selected}`,`Message: ${data.get('message') || 'Not provided'}`, photoName ? `Photo selected: ${photoName} (I can send it in this chat)` : ''].filter(Boolean).join('\n'); window.open(`https://wa.me/27842586400?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer'); } return <><PageIntro eyebrow="LET'S TALK" title="Make it happen." text="Tell us about your space. We’ll help you find the right finish." slot="gutters-detail"/><section className="section section-soft"><div className="container contact-grid"><div><Eyebrow>GET IN TOUCH</Eyebrow><h2>Let's build something better.</h2><p>Have a question or a project in mind? Reach out directly or send us the details below.</p><div className="contact-method"><small>CALL OR WHATSAPP</small><a href={site.phoneHref}>{site.phone}</a></div><div className="contact-method"><small>EMAIL</small><a href={`mailto:${site.email}`}>{site.email}</a></div><div className="contact-method"><small>SOCIAL</small><a href={site.facebook} target="_blank" rel="noreferrer">Find us on Facebook ↗</a></div></div><form className="quote-form" onSubmit={submit}><h2>Request a quote.</h2><div className="form-row"><div className="field"><label htmlFor="name">Your name *</label><input id="name" name="name" required autoComplete="name" placeholder="Full name"/></div><div className="field"><label htmlFor="phone">Phone number *</label><input id="phone" name="phone" type="tel" required autoComplete="tel" placeholder="Your number"/></div></div><div className="form-row"><div className="field"><label htmlFor="email">Email address</label><input id="email" name="email" type="email" autoComplete="email" placeholder="you@example.com"/></div><div className="field"><label htmlFor="property">Property type *</label><select id="property" name="property" required defaultValue=""><option value="" disabled>Select property type</option>{['Residential','Commercial','Industrial','School'].map(x=><option key={x}>{x}</option>)}</select></div></div><fieldset className="field"><legend className="mb-3">Services needed</legend><div className="checkbox-grid">{services.map(s => <label key={s.slug}><input type="checkbox" name="service" value={s.title}/>{s.title}</label>)}</div></fieldset><div className="field"><label htmlFor="message">Tell us about your project</label><textarea id="message" name="message" rows={4} placeholder="What are you looking for?"/></div><div className="field"><label htmlFor="photo">Project photo (optional)</label><input id="photo" type="file" accept="image/*" onChange={e=>setPhotoName(e.target.files?.[0]?.name ?? '')}/></div><p className="form-note">Your details will open in WhatsApp. If you selected a photo, attach it in the chat before sending.</p><Button variant="brand" size="large" type="submit">Continue to WhatsApp <ArrowUpRight/></Button></form></div></section></>; }
+import { createFileRoute } from "@tanstack/react-router";
+import { type FormEvent, useState } from "react";
+import { ArrowUpRight, Mail, MessageCircle, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Eyebrow, FacebookIcon, PageIntro } from "@/components/site/site";
+import { contactPage as page, services, site, whatsappLink } from "@/data/content";
+import { breadcrumb, pageHead } from "@/data/seo";
+
+export const Route = createFileRoute("/contact")({
+  head: () =>
+    pageHead(page.metaTitle, page.metaDescription, "/contact", breadcrumb(["Contact", "/contact"])),
+  component: Contact,
+});
+
+function Contact() {
+  const [photoName, setPhotoName] = useState("");
+
+  function submit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const field = (name: string) => String(data.get(name) ?? "").trim();
+    const selected = data.getAll("service").join(", ");
+    const details = [
+      `Name: ${field("name")}`,
+      `Phone: ${field("phone")}`,
+      field("email") && `Email: ${field("email")}`,
+      `Property type: ${field("property")}`,
+      selected && `Services: ${selected}`,
+      field("message") && `Message: ${field("message")}`,
+      photoName && `Photo: I'll attach ${photoName} in this chat.`,
+    ].filter(Boolean);
+    const message = [site.quoteText, "", ...details].join("\n");
+    window.open(whatsappLink(message), "_blank", "noopener,noreferrer");
+  }
+
+  return (
+    <>
+      <PageIntro
+        {...page.intro}
+        slot="aluminium-folding-bronze-01"
+        crumbs={[{ label: "Contact" }]}
+      />
+      <section className="section section-soft">
+        <div className="container contact-grid">
+          <div>
+            <Eyebrow>{page.aside.eyebrow}</Eyebrow>
+            <h2>{page.aside.title}</h2>
+            <p>{page.aside.text}</p>
+            <div className="contact-method">
+              <small>
+                <Phone size={13} aria-hidden="true" /> Call
+              </small>
+              <a href={site.phoneHref}>{site.phone}</a>
+            </div>
+            <div className="contact-method">
+              <small>
+                <MessageCircle size={13} aria-hidden="true" /> WhatsApp
+              </small>
+              <a href={site.whatsapp} target="_blank" rel="noopener noreferrer">
+                Chat on WhatsApp ↗
+              </a>
+            </div>
+            <div className="contact-method">
+              <small>
+                <Mail size={13} aria-hidden="true" /> Email
+              </small>
+              <a href={`mailto:${site.email}`}>{site.email}</a>
+            </div>
+            <div className="contact-method">
+              <small>
+                <FacebookIcon size={13} /> Facebook
+              </small>
+              <a href={site.facebook} target="_blank" rel="noopener noreferrer">
+                Find us on Facebook ↗
+              </a>
+            </div>
+          </div>
+
+          <form className="quote-form" onSubmit={submit}>
+            <h2>Request a quote</h2>
+            <div className="form-row">
+              <div className="field">
+                <label htmlFor="name">Name *</label>
+                <input id="name" name="name" required autoComplete="name" />
+              </div>
+              <div className="field">
+                <label htmlFor="phone">Phone *</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  autoComplete="tel"
+                  inputMode="tel"
+                />
+              </div>
+            </div>
+            <div className="form-row">
+              <div className="field">
+                <label htmlFor="email">Email</label>
+                <input id="email" name="email" type="email" autoComplete="email" />
+              </div>
+              <div className="field">
+                <label htmlFor="property">Property type *</label>
+                <select id="property" name="property" required defaultValue="">
+                  <option value="" disabled>
+                    Select property type
+                  </option>
+                  {page.propertyTypes.map((x) => (
+                    <option key={x}>{x}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <fieldset className="field">
+              <legend>Services needed</legend>
+              <div className="checkbox-grid">
+                {services.map((s) => (
+                  <label key={s.slug}>
+                    <input type="checkbox" name="service" value={s.title} />
+                    {s.title}
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+            <div className="field">
+              <label htmlFor="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows={4}
+                placeholder="Tell us about your project"
+              />
+            </div>
+            <div className="field">
+              <label htmlFor="photo">Photo (optional)</label>
+              <input
+                id="photo"
+                name="photo"
+                type="file"
+                accept="image/*"
+                onChange={(e) => setPhotoName(e.target.files?.[0]?.name ?? "")}
+                aria-describedby="form-note"
+              />
+            </div>
+            <p className="form-note" id="form-note">
+              {page.formNote}
+            </p>
+            <Button variant="brand" size="large" type="submit">
+              Send via WhatsApp <ArrowUpRight />
+            </Button>
+          </form>
+        </div>
+      </section>
+    </>
+  );
+}

@@ -1,11 +1,124 @@
-import { createFileRoute, Link, notFound } from '@tanstack/react-router';
-import { ArrowUpRight } from 'lucide-react';
-import { Eyebrow, Media, PageIntro, QuoteBand, SectionHead } from '@/components/site/site';
-import { services } from '@/data/content';
-import { pageHead, breadcrumb, faqSchema } from '@/data/seo';
-export const Route = createFileRoute('/services/$slug')({
-  loader: ({ params }) => { const service = services.find(s => s.slug === params.slug); if (!service) throw notFound(); return service; },
-  head: ({ loaderData }) => loaderData ? pageHead(loaderData.title, `${loaderData.intro} Explore finishes, benefits and answers.`, `/services/${loaderData.slug}`, [{ '@context': 'https://schema.org', '@type': 'Service', name: loaderData.title, description: loaderData.intro, provider: { '@type':'HomeAndConstructionBusiness', name:'Elite Gutters and Aluminium Products' } }, faqSchema(loaderData.faqs), breadcrumb(loaderData.title, `/services/${loaderData.slug}`)]) : pageHead('Service not found', 'Explore our services.', '/'),
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { ArrowUpRight } from "lucide-react";
+import {
+  Eyebrow,
+  FaqList,
+  Media,
+  PageIntro,
+  QuoteBand,
+  SectionHead,
+  VideoSlot,
+} from "@/components/site/site";
+import { Reveal } from "@/components/site/Reveal";
+import { services } from "@/data/content";
+import { breadcrumb, faqSchema, pageHead, serviceSchema } from "@/data/seo";
+
+export const Route = createFileRoute("/services/$slug")({
+  loader: ({ params }) => {
+    const service = services.find((s) => s.slug === params.slug);
+    if (!service) throw notFound();
+    return service;
+  },
+  head: ({ loaderData }) =>
+    loaderData
+      ? pageHead(
+          loaderData.metaTitle,
+          loaderData.intro.split(". ").slice(0, 2).join(". ").replace(/\.?$/, "."),
+          `/services/${loaderData.slug}`,
+          [
+            serviceSchema(loaderData),
+            faqSchema(loaderData.faqs),
+            breadcrumb([loaderData.title, `/services/${loaderData.slug}`]),
+          ],
+          loaderData.image,
+        )
+      : {},
   component: ServicePage,
 });
-function ServicePage() { const s = Route.useLoaderData(); const related = services.filter(item => item.slug !== s.slug).slice(0,3); return <><PageIntro eyebrow="OUR EXPERTISE" title={s.title} text={s.short} slot={s.image}/><section className="section"><div className="container content-split"><div><Eyebrow>THE DETAILS MATTER</Eyebrow><h2>{s.short}</h2><p>{s.intro}</p><ul className="check-list">{s.benefits.map(item => <li key={item}>{item}</li>)}</ul><Eyebrow>AVAILABLE FINISHES</Eyebrow><div className="chip-list">{s.finishes.map(item => <span key={item} className="chip">{item}</span>)}</div></div><Media slot={s.image}/></div></section><section className="section section-soft"><div className="container"><SectionHead eyebrow="A CLOSER LOOK" title="The finished look."/><div className="gallery-grid">{[s.image,'hero-home','matched-charcoal-01','matched-bronze-01','matched-stainless-01'].map((slot,i) => <Media key={i} slot={slot}/>)}</div></div></section><section className="section"><div className="container faq-layout"><div><Eyebrow>GOOD TO KNOW</Eyebrow><h2>Questions,<br/>answered.</h2></div><div>{s.faqs.map(([q,a]) => <details className="faq-item" key={q}><summary>{q}</summary><p>{a}</p></details>)}</div></div></section><section className="section section-soft"><div className="container"><SectionHead eyebrow="KEEP EXPLORING" title="Complete the picture."/><div className="related-links">{related.map(item => <Link key={item.slug} to="/services/$slug" params={{slug:item.slug}}>{item.title}<ArrowUpRight/></Link>)}</div></div></section><QuoteBand title={`Let's talk ${s.title.toLowerCase()}.`}/></>; }
+
+function ServicePage() {
+  const s = Route.useLoaderData();
+  const index = services.findIndex((item) => item.slug === s.slug);
+  // The next three services in menu order, wrapping around.
+  const related = [1, 2, 3].map((n) => services[(index + n) % services.length]!);
+
+  return (
+    <>
+      <PageIntro
+        eyebrow="Our services"
+        title={s.title}
+        text={s.short}
+        slot={s.image}
+        crumbs={[{ label: s.title }]}
+      />
+
+      <section className="section">
+        <div className="container content-split">
+          <div>
+            <Eyebrow>{s.metaTitle}</Eyebrow>
+            <h2>{s.short}</h2>
+            <p>{s.intro}</p>
+            <h3 className="sub-heading">Key benefits</h3>
+            <ul className="check-list">
+              {s.benefits.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+            <h3 className="sub-heading">Available finishes</h3>
+            <ul className="chip-list">
+              {s.finishes.map((item) => (
+                <li key={item} className="chip">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <Media slot={s.gallery[1] ?? s.image} />
+        </div>
+      </section>
+
+      <section className="section section-soft">
+        <div className="container">
+          <Reveal>
+            <SectionHead eyebrow="Gallery" title="The finished look." />
+          </Reveal>
+          <div className="gallery-grid">
+            {s.gallery.map((slot) => (
+              <Media key={slot} slot={slot} />
+            ))}
+          </div>
+          {"video" in s && s.video && <VideoSlot slot={s.video} className="mt-3" />}
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container faq-layout">
+          <div>
+            <Eyebrow>FAQ</Eyebrow>
+            <h2>{s.title}: questions answered.</h2>
+          </div>
+          <FaqList faqs={s.faqs} />
+        </div>
+      </section>
+
+      <section className="section section-soft">
+        <div className="container">
+          <SectionHead eyebrow="Related services" title="Complete the look." />
+          <div className="related-links">
+            {related.map((item) => (
+              <Link key={item.slug} to="/services/$slug" params={{ slug: item.slug }}>
+                {item.title}
+                <ArrowUpRight aria-hidden="true" />
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <QuoteBand
+        title={`Get a quote for ${s.title.toLowerCase()}.`}
+        text="Send us your details and a few photos. We will come back to you with a free quote."
+      />
+    </>
+  );
+}

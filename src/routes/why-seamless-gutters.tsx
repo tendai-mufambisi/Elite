@@ -1,6 +1,130 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
-import { Eyebrow, Media, PageIntro, QuoteBand, SectionHead } from '@/components/site/site';
-import { seamlessFaqs } from '@/data/content';
-import { pageHead, breadcrumb, faqSchema } from '@/data/seo';
-export const Route = createFileRoute('/why-seamless-gutters')({ head: () => pageHead('Why Seamless Gutters?', 'See how seamless gutters compare with sectional gutters and why stainless steel and wider profiles matter.', '/why-seamless-gutters', [breadcrumb('Why Seamless Gutters','/why-seamless-gutters'), faqSchema(seamlessFaqs)]), component: WhyPage });
-function WhyPage() { return <><PageIntro eyebrow="THE KNOW-HOW" title="Why seamless gutters?" text="A better roofline starts with understanding what goes into it." slot="gutters-detail"/><section className="section"><div className="container content-split"><Media slot="gutters-detail"/><div><Eyebrow>THE FUNDAMENTALS</Eyebrow><h2>Fewer joins.<br/>Cleaner lines.</h2><p>Seamless gutters are made in continuous lengths to follow your roofline. Unlike sectional systems assembled from shorter pieces, they have fewer joints along the run — creating a neater look and fewer potential leak points.</p><p>Paired with properly sized downpipes and a considered finish, they become an integral part of your exterior rather than an afterthought.</p><Link className="arrow-link" to="/services/seamless-gutters">Explore seamless gutters ↗</Link></div></div></section><section className="section section-soft"><div className="container"><SectionHead eyebrow="SIDE BY SIDE" title="Seamless vs sectional."/><div style={{overflowX:'auto'}}><table className="comparison"><thead><tr><th>Consideration</th><th>Seamless gutters</th><th>Sectional gutters</th></tr></thead><tbody><tr><td>Construction</td><td>Continuous runs fitted to the roofline</td><td>Shorter sections joined together</td></tr><tr><td>Joints</td><td>Fewer along each run</td><td>More connection points</td></tr><tr><td>Appearance</td><td>Clean, uninterrupted profile</td><td>Visible joins may interrupt the line</td></tr><tr><td>Potential leak points</td><td>Fewer joints along the run</td><td>Each join needs ongoing attention</td></tr></tbody></table></div></div></section><section className="section"><div className="container"><SectionHead eyebrow="THE ADVANTAGES" title="What makes the difference."/><div className="number-list">{[['01','A cleaner finish','Continuous runs make the roofline feel more refined and architectural.'],['02','Fewer potential leaks','With fewer joints, there are fewer connection points to monitor.'],['03','Built for rainfall','Wider profiles help channel larger volumes of water away from the building.'],['04','A coordinated exterior','Choose a colour-coated finish to pair with fascia, doors, windows and downpipes.'],['05','Stainless steel durability','Stainless steel resists corrosion, making it a strong option for a lasting finish.']].map(([n,t,d]) => <article key={n}><span>{n}</span><h3>{t}</h3><p>{d}</p></article>)}</div><p className="mt-8 text-sm text-muted-foreground">Additional advantages from client material can be added here.</p></div></section><section className="section section-soft"><div className="container faq-layout"><div><Eyebrow>COMMON QUESTIONS</Eyebrow><h2>Good to know.</h2></div><div>{seamlessFaqs.map(([q,a]) => <details key={q} className="faq-item"><summary>{q}</summary><p>{a}</p></details>)}</div></div></section><QuoteBand/></>; }
+import { createFileRoute } from "@tanstack/react-router";
+import {
+  ArrowLink,
+  Eyebrow,
+  FaqList,
+  Media,
+  PageIntro,
+  QuoteBand,
+  SectionHead,
+} from "@/components/site/site";
+import { Reveal } from "@/components/site/Reveal";
+import { whyPage } from "@/data/content";
+import { breadcrumb, faqSchema, pageHead } from "@/data/seo";
+
+export const Route = createFileRoute("/why-seamless-gutters")({
+  head: () =>
+    pageHead(
+      whyPage.metaTitle,
+      whyPage.metaDescription,
+      "/why-seamless-gutters",
+      [breadcrumb(["Why Seamless Gutters", "/why-seamless-gutters"]), faqSchema(whyPage.faqs)],
+      "gutters-charcoal-01",
+    ),
+  component: WhyPage,
+});
+
+function WhyPage() {
+  return (
+    <>
+      <PageIntro
+        {...whyPage.intro}
+        slot="gutters-roofline-01"
+        crumbs={[{ label: "Why Seamless Gutters" }]}
+      />
+
+      <section className="section">
+        <div className="container content-split">
+          <Media slot="gutters-charcoal-01" />
+          <div>
+            <Eyebrow>{whyPage.what.eyebrow}</Eyebrow>
+            <h2>{whyPage.what.title}</h2>
+            {whyPage.what.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+            <ArrowLink to="/contact">Get a free quote</ArrowLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-soft">
+        <div className="container">
+          <Reveal>
+            <SectionHead eyebrow="Seamless vs sectional" title="Side by side." />
+          </Reveal>
+          <div
+            className="table-scroll"
+            tabIndex={0}
+            role="region"
+            aria-label="Seamless vs sectional gutters comparison"
+          >
+            <table className="comparison">
+              <caption className="sr-only">
+                Seamless gutters compared with sectional gutters
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Feature</th>
+                  <th scope="col">Seamless gutters</th>
+                  <th scope="col">Sectional gutters</th>
+                </tr>
+              </thead>
+              <tbody>
+                {whyPage.comparison.map(([feature, seamless, sectional]) => (
+                  <tr key={feature}>
+                    <th scope="row">{feature}</th>
+                    <td className="win">{seamless}</td>
+                    <td>{sectional}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* CLIENT CONTENT: the advantages list is edited in whyPage.advantages in src/data/content.ts */}
+      <section className="section" id="advantages">
+        <div className="container">
+          <Reveal>
+            <SectionHead eyebrow="Advantages" title="Advantages of seamless gutters." />
+          </Reveal>
+          <ol className="number-list">
+            {whyPage.advantages.map((a, i) => (
+              <li key={a.title}>
+                <span aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                <h3>{a.title}</h3>
+                <p>{a.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="stainless">
+        <div className="container content-split">
+          <div>
+            <Eyebrow>{whyPage.stainless.eyebrow}</Eyebrow>
+            <h2>{whyPage.stainless.title}</h2>
+            {whyPage.stainless.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
+          <Media slot="gutters-stainless-01" />
+        </div>
+      </section>
+
+      <section className="section section-soft">
+        <div className="container faq-layout">
+          <div>
+            <Eyebrow>FAQ</Eyebrow>
+            <h2>Seamless gutter questions.</h2>
+          </div>
+          <FaqList faqs={whyPage.faqs} />
+        </div>
+      </section>
+
+      <QuoteBand />
+    </>
+  );
+}

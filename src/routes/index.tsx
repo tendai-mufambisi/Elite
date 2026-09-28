@@ -1,24 +1,235 @@
-import { createFileRoute, Link } from '@tanstack/react-router';
-import { ArrowUpRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { ArrowLink, Eyebrow, Media, QuoteBand, ScrollCue, SectionHead, VideoSlot } from '@/components/site/site';
-import { Reveal } from '@/components/site/Reveal';
-import { benefits, colours, services, site } from '@/data/content';
-import { pageHead } from '@/data/seo';
+import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+  ArrowUpRight,
+  Building2,
+  ChevronLeft,
+  ChevronRight,
+  CloudRain,
+  Layers,
+  Palette,
+  ShieldCheck,
+  Sparkles,
+  Waves,
+  Wrench,
+  type LucideIcon,
+} from "lucide-react";
+import { useRef, type CSSProperties } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  ArrowLink,
+  Eyebrow,
+  Media,
+  QuoteBand,
+  ScrollCue,
+  SectionHead,
+  VideoSlot,
+} from "@/components/site/site";
+import { Reveal } from "@/components/site/Reveal";
+import { benefits, colours, home, projects, services, site } from "@/data/content";
+import { pageHead } from "@/data/seo";
 
-export const Route = createFileRoute('/')({
-  head: () => pageHead('Seamless Gutters & Premium Aluminium Finishes', 'Seamless gutters, fascia boards, balustrades, aluminium doors and garage doors. Quality finishes for homes and buildings in South Africa.', '/'),
+export const Route = createFileRoute("/")({
+  head: () => pageHead(home.metaTitle, home.metaDescription, "/", undefined, "hero-home"),
   component: Home,
 });
+
+const benefitIcons: Record<(typeof benefits)[number]["icon"], LucideIcon> = {
+  shield: ShieldCheck,
+  waves: Waves,
+  "cloud-rain": CloudRain,
+  layers: Layers,
+  palette: Palette,
+  sparkles: Sparkles,
+  wrench: Wrench,
+  building: Building2,
+};
+
+// One image project per category for the home carousel.
+const featured = projects.filter(
+  (p, i, all) => !p.video && all.findIndex((q) => !q.video && q.category === p.category) === i,
+);
+
 function Home() {
-  return <>
-    <section className="hero"><Media slot="hero-home" className="hero-image" priority/><div className="hero-overlay"/><div className="container hero-content"><Eyebrow>BUILD | PROTECT | ENHANCE</Eyebrow><h1>Built to<br/>protect.<br/><em>Made to impress.</em></h1><p>Seamless gutters and premium aluminium finishes in South Africa. Stainless steel and colour-coated gutters, fascia boards, balustrades, doors and garage doors — built to last and designed to match.</p><div className="hero-actions"><Button asChild variant="brand" size="large"><Link to="/contact">Get a free quote <ArrowUpRight/></Link></Button><Button asChild variant="lightOutline" size="large"><a href={site.whatsapp} target="_blank" rel="noreferrer">WhatsApp us <ArrowUpRight/></a></Button></div><ScrollCue/></div><span className="hero-aside">QUALITY FINISHES LAST LONGER</span></section>
-    <div className="trust-strip"><div className="container trust-inner"><span>FINISHES FOR EVERY SETTING</span>{['Residential','Commercial','Industrial','Schools'].map(x => <strong key={x}>{x}</strong>)}</div></div>
-    <section className="section"><div className="container"><Reveal><SectionHead eyebrow="WHAT WE DO" title="Every detail. One vision." text="From the roofline to the entrance, we bring every element together with clean lines and lasting materials."/></Reveal><div className="services-grid">{services.map((s,i) => <Reveal key={s.slug}><Link className="service-card" to="/services/$slug" params={{ slug:s.slug }}><Media slot={s.image}/><span className="service-card-index">0{i+1} / 07</span><div className="service-card-content"><div><h3>{s.title}</h3><p>{s.short}</p></div><span className="service-card-icon"><ArrowUpRight size={19}/></span></div></Link></Reveal>)}</div></div></section>
-    <section className="feature"><div className="feature-copy"><Eyebrow>OUR SIGNATURE APPROACH</Eyebrow><h2>The beauty<br/>is in the<br/>match.</h2><p>Bronze fascia with bronze folding doors. Charcoal gutters with charcoal garage doors. The best exteriors don't happen by accident — they come together in the details.</p><ArrowLink to="/colour-range">Explore the colour range</ArrowLink></div><div className="feature-images"><Media slot="matched-bronze-01"/><Media slot="matched-charcoal-01"/><Media slot="matched-stainless-01"/></div></section>
-    <section className="section section-soft"><div className="container"><Reveal><SectionHead eyebrow="THE ELITE DIFFERENCE" title="More than a good look." text="Considered materials. Thoughtful installation. Details that work hard behind the scenes."/></Reveal><div className="benefits-grid">{benefits.map(([num,title,text]) => <Reveal key={num}><article className="benefit"><span className="num">{num}</span><h3>{title}</h3><p>{text}</p></article></Reveal>)}</div></div></section>
-    <section className="section"><div className="container"><Reveal><SectionHead eyebrow="VISUAL INSPIRATION" title="Details worth noticing." text="A closer look at the materials and combinations that shape a finished space." action={<ArrowLink to="/projects">View the gallery</ArrowLink>}/></Reveal><div className="project-scroll">{Array.from({length:6},(_,i) => <Link to="/projects" className="project-tile" key={i}><Media slot={`project-0${i+1}`}/><span>EXPLORE PROJECTS ↗</span></Link>)}</div></div></section>
-    <section className="section section-soft"><div className="container colour-teaser"><div><Eyebrow>COLOUR-COATED STEEL</Eyebrow><h2>Find your<br/>finishing touch.</h2><p>From deep charcoal to warm bronze-inspired tones, our colour-coated finishes make it easier to create an exterior that feels entirely yours.</p><ArrowLink to="/colour-range">View all finishes</ArrowLink></div><div className="colour-bars" aria-label="Sample colour range">{colours.map(([name, colour]) => <span key={name} title={name} style={{'--swatch':colour} as React.CSSProperties}/>)}</div></div></section>
-    <section className="section"><div className="container"><SectionHead eyebrow="IN MOTION" title="Made to be seen."/><VideoSlot slot="video-featured"/></div></section><QuoteBand title="Ready to upgrade your roofline?"/>
-  </>;
+  const track = useRef<HTMLDivElement>(null);
+  const scrollTrack = (dir: 1 | -1) =>
+    track.current?.scrollBy({ left: dir * track.current.clientWidth * 0.8, behavior: "smooth" });
+
+  return (
+    <>
+      <section className="hero">
+        <Media slot="hero-home" className="hero-image" priority sizes="100vw" />
+        <div className="hero-overlay" />
+        <div className="container hero-content">
+          <Eyebrow>{site.tagline}</Eyebrow>
+          <h1>{home.h1}</h1>
+          <p>{home.sub}</p>
+          <div className="hero-actions">
+            <Button asChild variant="brand" size="large">
+              <Link to="/contact">
+                Get a Free Quote <ArrowUpRight />
+              </Link>
+            </Button>
+            <Button asChild variant="lightOutline" size="large">
+              <a href={site.whatsapp} target="_blank" rel="noopener noreferrer">
+                WhatsApp Us <ArrowUpRight />
+              </a>
+            </Button>
+          </div>
+          <ScrollCue />
+        </div>
+        <span className="hero-aside" aria-hidden="true">
+          {site.secondary}
+        </span>
+      </section>
+
+      <div className="trust-strip">
+        <div className="container trust-inner">
+          <span>{home.trustLabel}</span>
+          {home.trust.map((x) => (
+            <strong key={x}>{x}</strong>
+          ))}
+        </div>
+      </div>
+
+      <section className="section">
+        <div className="container">
+          <Reveal>
+            <SectionHead {...home.servicesHead} />
+          </Reveal>
+          <div className="services-grid">
+            {services.map((s, i) => (
+              <Reveal key={s.slug} className="service-cell">
+                <Link className="service-card" to="/services/$slug" params={{ slug: s.slug }}>
+                  <Media slot={s.image} />
+                  <span className="service-card-index">
+                    0{i + 1} / 0{services.length}
+                  </span>
+                  <div className="service-card-content">
+                    <div>
+                      <h3>{s.title}</h3>
+                      <p>{s.short}</p>
+                    </div>
+                    <span className="service-card-icon" aria-hidden="true">
+                      <ArrowUpRight size={19} />
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="feature" aria-labelledby="matched-title">
+        <div className="feature-copy">
+          <Eyebrow>{home.matched.eyebrow}</Eyebrow>
+          <h2 id="matched-title">{home.matched.title}</h2>
+          <p>{home.matched.text}</p>
+          <ul className="matched-list">
+            {home.matched.examples.map((x) => (
+              <li key={x}>{x}</li>
+            ))}
+          </ul>
+          <ArrowLink to="/colour-range">Explore the colour range</ArrowLink>
+        </div>
+        <div className="feature-images">
+          {home.matched.slots.map((m) => (
+            <figure key={m.slot}>
+              <Media slot={m.slot} />
+              <figcaption>{m.label}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="section section-soft">
+        <div className="container">
+          <Reveal>
+            <SectionHead {...home.benefitsHead} />
+          </Reveal>
+          <div className="benefits-grid">
+            {benefits.map((b) => {
+              const Icon = benefitIcons[b.icon];
+              return (
+                <Reveal key={b.title} className="benefit-cell">
+                  <article className="benefit">
+                    <span className="benefit-icon" aria-hidden="true">
+                      <Icon size={26} strokeWidth={1.8} />
+                    </span>
+                    <h3>{b.title}</h3>
+                    <p>{b.text}</p>
+                  </article>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" aria-roledescription="carousel" aria-label="Featured projects">
+        <div className="container">
+          <Reveal>
+            <SectionHead
+              {...home.projectsHead}
+              action={
+                <div className="carousel-controls">
+                  <button
+                    type="button"
+                    onClick={() => scrollTrack(-1)}
+                    aria-label="Previous projects"
+                  >
+                    <ChevronLeft />
+                  </button>
+                  <button type="button" onClick={() => scrollTrack(1)} aria-label="Next projects">
+                    <ChevronRight />
+                  </button>
+                  <ArrowLink to="/projects">View all projects</ArrowLink>
+                </div>
+              }
+            />
+          </Reveal>
+          <div className="project-scroll" ref={track}>
+            {featured.map((p) => (
+              <Link to="/projects" className="project-tile" key={p.slot}>
+                <Media slot={p.slot} />
+                <span>
+                  <small>{p.category}</small>
+                  {p.caption} ↗
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-soft">
+        <div className="container colour-teaser">
+          <div>
+            <Eyebrow>{home.colourTeaser.eyebrow}</Eyebrow>
+            <h2>{home.colourTeaser.title}</h2>
+            <p>{home.colourTeaser.text}</p>
+            <ArrowLink to="/colour-range">View all colours</ArrowLink>
+          </div>
+          <div
+            className="colour-bars"
+            role="img"
+            aria-label={`Colour range: ${colours.map(([n]) => n).join(", ")}`}
+          >
+            {colours.map(([name, colour]) => (
+              <span key={name} style={{ "--swatch": colour } as CSSProperties} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <SectionHead {...home.videoHead} />
+          <VideoSlot slot="video-featured" />
+        </div>
+      </section>
+
+      <QuoteBand title={home.cta.title} text={home.cta.text} />
+    </>
+  );
 }

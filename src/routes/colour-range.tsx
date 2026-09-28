@@ -1,6 +1,61 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { Eyebrow, Media, PageIntro, QuoteBand, SectionHead } from '@/components/site/site';
-import { colours } from '@/data/content';
-import { pageHead, breadcrumb } from '@/data/seo';
-export const Route = createFileRoute('/colour-range')({ head: () => pageHead('Colour Range', 'Explore colour-coated steel finishes for seamless gutters, fascia boards and a coordinated exterior.', '/colour-range', breadcrumb('Colour Range','/colour-range')), component: ColourRange });
-function ColourRange() { return <><PageIntro eyebrow="THE FINISHING TOUCH" title="Find your colour." text="A considered palette for gutters, fascia boards and the details that bring a building together." slot="bronze-home"/><section className="section"><div className="container"><SectionHead eyebrow="COLOUR-COATED STEEL" title="A shade for every vision." text="These swatches are a guide. Colours may appear different on your screen; ask us about current finish availability."/><div className="swatch-grid">{colours.map(([name,hex]) => <div className="swatch" key={name}><div className="swatch-color" style={{'--swatch':hex} as React.CSSProperties}/><p>{name}</p></div>)}</div></div></section><section className="section section-soft"><div className="container content-split"><Media slot="colour-range-chart"/><div><Eyebrow>THE ART OF COORDINATION</Eyebrow><h2>One finish.<br/>One complete look.</h2><p>Bring your gutters and fascia boards into the same visual language as your doors, windows and garage doors. From dark architectural tones to warm metallic-inspired finishes, we can help you find the right combination.</p></div></div></section><QuoteBand title="Have a colour in mind?"/></>; }
+import { createFileRoute } from "@tanstack/react-router";
+import type { CSSProperties } from "react";
+import { Eyebrow, Media, PageIntro, QuoteBand, SectionHead } from "@/components/site/site";
+import { colourPage as page, colours } from "@/data/content";
+import { breadcrumb, pageHead } from "@/data/seo";
+
+export const Route = createFileRoute("/colour-range")({
+  head: () =>
+    pageHead(
+      "Colour Range for Gutters & Fascia Boards",
+      page.metaDescription,
+      "/colour-range",
+      breadcrumb(["Colour Range", "/colour-range"]),
+      "colour-range-chart",
+    ),
+  component: ColourRange,
+});
+
+function ColourRange() {
+  return (
+    <>
+      <PageIntro {...page.intro} slot="fascia-bronze-01" crumbs={[{ label: "Colour Range" }]} />
+
+      <section className="section">
+        <div className="container">
+          <SectionHead {...page.swatchHead} />
+          <ul className="swatch-grid">
+            {colours.map(([name, hex]) => (
+              <li className="swatch" key={name}>
+                <div
+                  className="swatch-color"
+                  style={{ "--swatch": hex } as CSSProperties}
+                  aria-hidden="true"
+                />
+                <p>{name}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section section-soft">
+        <div className="container content-split">
+          <Media slot="colour-range-chart" />
+          <div>
+            <Eyebrow>{page.explain.eyebrow}</Eyebrow>
+            <h2>{page.explain.title}</h2>
+            {page.explain.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <QuoteBand
+        title="Have a colour in mind?"
+        text="Tell us the colour you like and we will confirm availability for your gutters and fascia boards."
+      />
+    </>
+  );
+}

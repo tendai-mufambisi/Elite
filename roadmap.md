@@ -1,3 +1,5 @@
 - [x] Build the branded multi-page site and dedicated service pages.
 - [x] Add editable content/media slots, contact flow, SEO, and sitemap.
-- [ ] Check desktop/mobile presentation and core interactions.
+- [x] Check desktop/mobile presentation and core interactions.
+- [ ] Swap in real project photography and videos (src/data/images.ts).
+- [ ] Fill CLIENT CONTENT blocks (advantages list, company story) in src/data/content.ts.
