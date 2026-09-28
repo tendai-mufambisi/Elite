@@ -44,7 +44,7 @@ export const businessSchema = {
   slogan: site.tagline,
   description: site.description,
   url: site.domain,
-  logo: `${site.domain}/logo.svg`,
+  logo: `${site.domain}/images/brand/logo-icon.png`,
   image: absolute(getImage("og-default").src),
   telephone: site.phone,
   email: site.email,

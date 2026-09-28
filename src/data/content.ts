@@ -8,6 +8,8 @@ const quoteText = "Hi Elite Gutters, I'd like a quote.";
 export const site = {
   name: "Elite Gutters and Aluminium Products",
   shortName: "Elite Gutters",
+  // Wordmark next to the logo icon (set in the brand font, Macondo).
+  logo: { name: "Elite Gutters", sub: "and Aluminium Products" },
   tagline: "Build | Protect | Enhance",
   secondary: "Quality Finishes Last Longer",
   description:

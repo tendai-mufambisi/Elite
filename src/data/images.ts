@@ -174,10 +174,10 @@ const aliases: Record<string, string> = {
 export const images: ImageSlot[] = [
   {
     slot: "logo-main",
-    src: "/logo.svg",
+    src: "/images/brand/logo-icon.png",
     alt: "Elite Gutters and Aluminium Products logo",
-    width: 340,
-    height: 92,
+    width: 256,
+    height: 256,
   },
   ...photos,
   ...illustrations,

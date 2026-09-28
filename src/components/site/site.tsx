@@ -81,6 +81,10 @@ export function Logo({ light = false }: { light?: boolean }) {
       className={`brand-lockup ${light ? "brand-light" : ""}`}
     >
       <img data-slot="logo-main" src={logo.src} alt="" width={logo.width} height={logo.height} />
+      <span className="wordmark">
+        <span className="wordmark-name">{site.logo.name}</span>
+        <span className="wordmark-sub">{site.logo.sub}</span>
+      </span>
     </Link>
   );
 }
