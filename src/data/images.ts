@@ -3,7 +3,15 @@
 // To replace a photo, drop the new file in place (or change `src`) and update `width`,
 // `height` and `alt` so they describe the new photo.
 
-export type ImageSlot = { slot: string; src: string; alt: string; width: number; height: number };
+export type ImageSlot = {
+  slot: string;
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  /** AI-generated illustration, not client work. Always shown with an "Illustration" label. */
+  illustrative?: boolean;
+};
 
 const img = (slot: string, src: string, width: number, height: number, alt: string): ImageSlot => ({
   slot,
@@ -137,10 +145,24 @@ const photos = [
   ),
 ];
 
+// AI-generated illustrations (used where no real photo exists yet; never in the Projects gallery).
+const illustrations: ImageSlot[] = [
+  {
+    ...img(
+      "gutter-closeup-illustration",
+      "illustrations/seamless-gutter-closeup-illustration.webp",
+      1200,
+      912,
+      "Illustration: close-up of a charcoal seamless gutter and matching fascia board on a modern roofline",
+    ),
+    illustrative: true,
+  },
+];
+
 // Named page slots that reuse a project photo.
 const aliases: Record<string, string> = {
-  "hero-home": "pillar-yellow-house-garage-doors",
-  "og-default": "pillar-yellow-house-garage-doors",
+  "hero-home": "fascia-bronze-double-storey",
+  "og-default": "fascia-bronze-double-storey",
   "matched-bronze-01": "fascia-bronze-double-storey",
   "matched-charcoal-01": "gutters-charcoal-fascia-double-storey",
   "matched-stainless-01": "pillar-stainless-fascia-two-garage-doors",
@@ -158,6 +180,7 @@ export const images: ImageSlot[] = [
     height: 92,
   },
   ...photos,
+  ...illustrations,
   ...Object.entries(aliases).map(([slot, target]) => ({
     ...photos.find((p) => p.slot === target)!,
     slot,

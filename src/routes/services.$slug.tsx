@@ -1,8 +1,8 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowUpRight, MessageCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 import {
   Eyebrow,
+  GutterProfiles,
   FaqList,
   Media,
   PageIntro,
@@ -10,9 +10,9 @@ import {
   SectionHead,
   VideoSlot,
 } from "@/components/site/site";
-import { GutterProfileDrawing, WindowGuardDrawing } from "@/components/site/illustrations";
+import { WindowGuardDrawing } from "@/components/site/illustrations";
 import { Reveal } from "@/components/site/Reveal";
-import { gutterProfiles, services, whatsappLink } from "@/data/content";
+import { services } from "@/data/content";
 import { getVideo } from "@/data/images";
 import { breadcrumb, faqSchema, pageHead, serviceSchema } from "@/data/seo";
 
@@ -135,44 +135,5 @@ function ServicePage() {
         text="Send us your details and a few photos. We will come back to you with a free quote."
       />
     </>
-  );
-}
-
-function GutterProfiles() {
-  return (
-    <section className="section" id="gutter-profiles">
-      <div className="container">
-        <Reveal>
-          <SectionHead eyebrow={gutterProfiles.eyebrow} title={gutterProfiles.title} />
-        </Reveal>
-        <div className="profile-grid">
-          {gutterProfiles.profiles.map((p) => (
-            <article key={p.kind} className={`profile-card profile-${p.kind}`}>
-              <GutterProfileDrawing kind={p.kind} />
-              <h3>
-                {p.label} <small>({p.for})</small>
-              </h3>
-              <ul className="check-list">
-                {p.points.map((point) => (
-                  <li key={point}>{point}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
-        </div>
-        <div className="profile-note">
-          <p>{gutterProfiles.note}</p>
-          <Button asChild variant="brand" size="large">
-            <a
-              href={whatsappLink(gutterProfiles.whatsappText)}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MessageCircle /> WhatsApp Us
-            </a>
-          </Button>
-        </div>
-      </div>
-    </section>
   );
 }

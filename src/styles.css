@@ -3476,3 +3476,194 @@ body {
 .section .content-split p.eyebrow {
   color: oklch(0.52 0.21 27);
 }
+
+/* ============================================================
+   Seamless-gutter focus
+   ============================================================ */
+.illus-tag {
+  display: inline-block;
+  padding: 5px 10px;
+  background: oklch(0.1 0.03 260 / 0.72);
+  color: var(--paper);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+.hero-illus-tag {
+  position: absolute;
+  z-index: 2;
+  top: 22px;
+  right: 24px;
+}
+.hero-content > p.hero-note {
+  margin: 16px 0 0;
+  font-size: 13px;
+  color: oklch(1 0 0 / 0.72);
+}
+.spotlight-media {
+  position: relative;
+  margin: 0;
+}
+.spotlight-media .illus-tag {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+}
+.spotlight-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px 28px;
+  margin-top: 8px;
+}
+.services-grid-others {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.services-grid-others > .service-cell:first-child {
+  grid-column: auto;
+}
+.services-grid-others .service-card {
+  min-height: 330px;
+}
+/* Reels: however many videos there are, centred side by side on desktop. */
+@media (min-width: 901px) {
+  .reels {
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 320px);
+  }
+  .reels > .reveal:nth-child(2) {
+    margin-top: 40px;
+  }
+}
+@media (max-width: 800px) {
+  .services-grid-others {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .services-grid-others {
+    grid-template-columns: 1fr;
+  }
+  .hero-illus-tag {
+    top: 14px;
+    right: 14px;
+  }
+  .spotlight-actions > * {
+    width: 100%;
+  }
+}
+
+/* Home: benefits of seamless gutters (bullets) */
+.benefit-bullets {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.4fr);
+  gap: clamp(30px, 6vw, 90px);
+  align-items: center;
+}
+.benefit-bullets h2 {
+  font-size: clamp(44px, 5vw, 78px);
+  margin: 15px 0 24px;
+}
+.bullet-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.bullet-grid li > .reveal {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 100%;
+  padding: 18px 20px;
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ink);
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+}
+.bullet-grid li > .reveal:hover {
+  transform: translateX(6px);
+  box-shadow: 0 12px 28px oklch(0.15 0.05 260 / 0.1);
+}
+.bullet-tick {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 15px;
+}
+
+/* Benefits page */
+.benefit-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px 44px;
+}
+.process-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+.check-list-light li {
+  color: var(--paper);
+  border-color: oklch(1 0 0 / 0.18);
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1.55;
+  align-items: flex-start;
+}
+.faq-layout .arrow-link {
+  margin-top: 10px;
+}
+@media (max-width: 900px) {
+  .benefit-bullets {
+    grid-template-columns: 1fr;
+  }
+  .benefit-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .bullet-grid,
+  .benefit-list {
+    grid-template-columns: 1fr;
+  }
+  .benefit-bullets h2 {
+    font-size: clamp(36px, 10.5vw, 46px);
+  }
+}
+
+/* Phones: the rotating phrase gets its own line so long phrases never wrap and clip. */
+@media (max-width: 600px) {
+  .rotator-window {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    padding: 0;
+    white-space: nowrap;
+  }
+  .rotator-window::after {
+    left: 0;
+    right: 0;
+  }
+}
+
+/* Phones: stacked hero / quote buttons keep their full height. */
+@media (max-width: 600px) {
+  .hero-actions > *,
+  .quote-actions > * {
+    flex: none;
+    min-height: 52px;
+  }
+}

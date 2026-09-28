@@ -104,29 +104,35 @@ export function HeroSlideshow({
       window.clearInterval(timer);
     };
   }, [slots.length, interval]);
+  const activeSlot = slots[active];
   return (
-    <div className="hero-slides" data-parallax="0.18">
-      {slots.map((slot, i) => {
-        if (i > 0 && !started) return null;
-        const image = getImage(slot);
-        return (
-          <img
-            key={slot}
-            data-slot={slot}
-            src={image.src}
-            alt={i === 0 ? image.alt : ""}
-            aria-hidden={i === 0 ? undefined : true}
-            width={image.width}
-            height={image.height}
-            loading={i === 0 ? "eager" : "lazy"}
-            fetchPriority={i === 0 ? "high" : "low"}
-            decoding={i === 0 ? "sync" : "async"}
-            sizes="100vw"
-            className={`hero-slide ${i === active ? "is-active" : ""}`}
-          />
-        );
-      })}
-    </div>
+    <>
+      {activeSlot && getImage(activeSlot).illustrative && (
+        <span className="illus-tag hero-illus-tag">Illustration</span>
+      )}
+      <div className="hero-slides" data-parallax="0.18">
+        {slots.map((slot, i) => {
+          if (i > 0 && !started) return null;
+          const image = getImage(slot);
+          return (
+            <img
+              key={slot}
+              data-slot={slot}
+              src={image.src}
+              alt={i === 0 ? image.alt : ""}
+              aria-hidden={i === 0 ? undefined : true}
+              width={image.width}
+              height={image.height}
+              loading={i === 0 ? "eager" : "lazy"}
+              fetchPriority={i === 0 ? "high" : "low"}
+              decoding={i === 0 ? "sync" : "async"}
+              sizes="100vw"
+              className={`hero-slide ${i === active ? "is-active" : ""}`}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 }
 

@@ -11,9 +11,9 @@ export const site = {
   tagline: "Build | Protect | Enhance",
   secondary: "Quality Finishes Last Longer",
   description:
-    "Seamless stainless steel and colour-coated gutters, fascia boards, pillar cladding, balustrades, aluminium doors and windows, and garage doors for residential, commercial and industrial buildings in South Africa.",
+    "Seamless gutter specialists: stainless steel and colour-coated seamless gutters and downpipes, formed on site for homes, schools, commercial and industrial buildings in South Africa. Also fascia boards, pillar cladding, balustrades, aluminium doors and garage doors.",
   footerBlurb:
-    "Seamless gutters, fascia boards and premium aluminium finishes for homes, schools and commercial buildings. Built to protect. Designed to match.",
+    "Seamless gutter specialists. Stainless steel and colour-coated seamless gutters, plus fascia boards and aluminium finishes to match. Built to protect.",
   phone: "+27 84 258 6400",
   phoneHref: "tel:+27842586400",
   whatsappNumber,
@@ -36,7 +36,8 @@ export const whatsappLink = (text: string) =>
   `https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(text)}`;
 
 export const nav = [
-  { label: "Why Seamless Gutters", to: "/why-seamless-gutters" },
+  { label: "Seamless Gutters", to: "/services/seamless-gutters" },
+  { label: "Why Seamless", to: "/why-seamless-gutters" },
   { label: "Commercial & Industrial", to: "/commercial-industrial" },
   { label: "Colour Range", to: "/colour-range" },
   { label: "Projects", to: "/projects" },
@@ -63,7 +64,12 @@ export const services = [
     ],
     finishes: ["Stainless steel", "Charcoal", "Bronze", "Black", "Colour-coated steel"],
     image: "fascia-bronze-double-storey",
-    gallery: ["fascia-bronze-double-storey", "gutters-charcoal-fascia-double-storey"],
+    gallery: [
+      "fascia-bronze-double-storey",
+      "pillar-stainless-fascia-two-garage-doors",
+      "gutters-charcoal-fascia-double-storey",
+      "colour-range-chart",
+    ],
     video: "gutters-charcoal-video",
     faqs: [
       [
@@ -344,26 +350,86 @@ export const gutterProfiles = {
 } as const;
 
 export const home = {
-  metaTitle: "Seamless Gutters & Premium Aluminium Finishes in South Africa",
+  metaTitle: "Seamless Gutters in South Africa | Stainless Steel & Colour-Coated",
   metaDescription:
-    "Stainless steel and colour-coated seamless gutters, fascia boards, pillar cladding, glass balustrades, aluminium folding doors and automated garage doors. Get a free quote.",
-  h1: "Seamless Gutters & Premium Aluminium Finishes in South Africa",
-  sub: "Stainless steel and colour-coated gutters, fascia boards, balustrades, aluminium doors and garage doors - built to last and designed to match.",
-  trustLabel: "Trusted on every kind of building",
+    "Seamless gutter specialists. Stainless steel and colour-coated seamless gutters and downpipes, formed on site to fit your roof: no joints, fewer leaks, faster water flow. Free quotes.",
+  h1: "Seamless Gutters in South Africa",
+  sub: "Stainless steel and colour-coated seamless gutters and downpipes, formed on site to fit your roof. No joints, far fewer leaks and faster water flow in heavy rain.",
+  heroNote: "Also fascia boards, pillar cladding, balustrades, aluminium doors and garage doors.",
+  trustLabel: "Seamless gutters for every building",
   trust: ["Residential", "Commercial", "Industrial", "Schools"],
-  servicesHead: {
-    eyebrow: "What we do",
-    title: "Every detail. One vision.",
-    text: "From the roofline to the front door, seven product ranges that work together.",
+  // Hero slideshow (slow zoom + crossfade). First slide is the LCP image.
+  heroSlides: [
+    "gutter-closeup-illustration",
+    "fascia-bronze-double-storey",
+    "pillar-stainless-fascia-two-garage-doors",
+    "colour-range-chart",
+  ],
+  rotatorLead: "Seamless gutters with",
+  rotator: [
+    "no joints",
+    "fewer leaks",
+    "faster water flow",
+    "rust-free stainless steel",
+    "colours to match your home",
+    "matching downpipes",
+  ],
+  spotlight: {
+    eyebrow: "Our speciality",
+    title: "Seamless gutters, formed on site.",
+    text: "Seamless gutters are what we do best. Each run is formed in one continuous length to fit your roofline, so there are no joints to leak, sag or rust.",
+    points: [
+      "One continuous length per run: no joints, far fewer leaks",
+      "Wider profiles move water off the roof faster in heavy storms",
+      "Rust-free stainless steel or colour-coated steel",
+      "Downpipes and fascia boards finished to match",
+    ],
+    slot: "gutter-closeup-illustration",
+  },
+  // Bullet summary on the home page, linking to /benefits-of-seamless-gutters.
+  benefitBullets: {
+    eyebrow: "Benefits of seamless gutters",
+    title: "Why seamless beats sectional.",
+    bullets: [
+      "Fewer leaks: no joints along the run",
+      "Low maintenance and less clogging",
+      "Faster water flow in heavy storms",
+      "Custom fit, formed on site",
+      "Protects walls and foundations from water damage",
+      "Durable, with a longer lifespan",
+      "Clean, continuous roofline",
+      "Colours to match your home",
+    ],
+    link: "Read all the benefits",
+  },
+  reelsHead: {
+    eyebrow: "Seamless gutters in motion",
+    title: "Watch our gutters.",
+    text: "Real seamless gutter installations filmed on site. Tap a video to watch it with sound controls.",
+  },
+  reels: [
+    { slot: "project-video-charcoal", label: "Charcoal seamless gutters & fascia" },
+    { slot: "project-video-gutters", label: "New gutters & downpipes" },
+  ],
+  profilesTeaser: true,
+  colourTeaser: {
+    eyebrow: "Gutter colours",
+    title: "Seamless gutters in your colour.",
+    text: "Colour-coated seamless gutters and downpipes in a wide range of colours, from charcoal and black to cream, brick red and forest green. Or choose rust-free stainless steel.",
+  },
+  benefitsHead: {
+    eyebrow: "Why our seamless gutters",
+    title: "Built to last. Made to match.",
+    text: "Every gutter we install is formed to fit, finished to match and built to keep water away from your walls and foundations.",
   },
   matched: {
     eyebrow: "Our signature",
-    title: "Matched finishes.",
-    text: "We match gutters, fascia boards, downpipes, windows and folding doors in the same finish, so your building looks designed, not assembled.",
+    title: "Gutters that match.",
+    text: "We match your seamless gutters and downpipes to your fascia boards, windows and doors, so your building looks designed, not assembled.",
     examples: [
-      "Bronze fascia boards + bronze aluminium folding doors",
-      "Charcoal gutters + charcoal fascia + charcoal garage doors",
-      "Stainless steel gutters + stainless steel pillar cladding + glass balustrades",
+      "Bronze downpipes + bronze fascia + bronze aluminium windows",
+      "Charcoal gutters + charcoal fascia + charcoal folding doors",
+      "Stainless steel gutters + stainless steel fascia + stainless pillar cladding",
     ],
     slots: [
       { slot: "matched-bronze-01", label: "Bronze" },
@@ -371,79 +437,42 @@ export const home = {
       { slot: "matched-stainless-01", label: "Stainless steel" },
     ],
   },
-  benefitsHead: {
-    eyebrow: "Benefits of our products",
-    title: "Built to last. Made to match.",
-    text: "Every product we install is chosen to protect your building and keep it looking new.",
+  servicesHead: {
+    eyebrow: "More than gutters",
+    title: "Everything else that finishes your roofline.",
+    text: "Seamless gutters come first. We also supply and install the products that complete the look.",
   },
-  projectsHead: {
-    eyebrow: "Featured projects",
-    title: "Details worth noticing.",
-    text: "A look at the finishes and combinations we install.",
-  },
-  colourTeaser: {
-    eyebrow: "Colour range",
-    title: "Find your finish.",
-    text: "Colour-coated steel gutters and fascia boards in a wide range of colours, from charcoal and black to cream, brick red and forest green.",
-  },
-  // Hero slideshow (slow zoom + crossfade). First slide is the LCP image.
-  heroSlides: [
-    "pillar-yellow-house-garage-doors",
-    "fascia-bronze-double-storey",
-    "balustrade-glass-staircase",
-    "aluminium-windows-glass-balustrades",
-    "garage-three-charcoal-glass",
-  ],
-  rotatorLead: "We install",
-  rotator: [
-    "seamless gutters",
-    "fascia boards",
-    "pillar cladding",
-    "glass balustrades",
-    "folding doors",
-    "garage doors",
-  ],
-  reelsHead: {
-    eyebrow: "Our work in motion",
-    title: "Watch the finish.",
-    text: "Real installations filmed on site. Tap a video to watch it with sound controls.",
-  },
-  reels: [
-    { slot: "project-video-garage", label: "Automated garage doors" },
-    { slot: "project-video-charcoal", label: "Charcoal gutters & fascia" },
-    { slot: "project-video-gutters", label: "Gutters & aluminium gate" },
-  ],
   mosaicHead: {
     eyebrow: "Recent projects",
     title: "Real homes. Real finishes.",
-    text: "Photos from our installations: fascia, pillar cladding, balustrades, folding doors and garage doors.",
+    text: "Gutters, fascia and downpipes first, plus the balustrades, folding doors and garage doors we fit alongside them.",
   },
   mosaic: [
     "fascia-bronze-double-storey",
-    "balustrade-glass-staircase",
-    "pillar-yellow-house-garage-doors",
-    "folding-doors-gazebo",
+    "pillar-stainless-fascia-two-garage-doors",
+    "colour-range-chart",
+    "gutters-charcoal-fascia-double-storey",
     "garage-three-charcoal-glass",
-    "pillar-stainless-veranda",
+    "balustrade-glass-staircase",
+    "folding-doors-gazebo",
     "aluminium-windows-glass-balustrades",
-    "balustrade-tinted-glass-commercial",
   ],
   // Full-width photo bands that scroll slower than the page (parallax).
   bands: [
     {
-      slot: "aluminium-commercial-complex",
-      eyebrow: "Build | Protect | Enhance",
-      title: "Quality finishes last longer.",
+      slot: "colour-range-chart",
+      eyebrow: "Seamless gutters",
+      title: "No joints. No leaks. Any colour.",
     },
     {
       slot: "fascia-bronze-double-storey",
-      eyebrow: "Matched finishes",
-      title: "From the roofline to the front door.",
+      eyebrow: "Build | Protect | Enhance",
+      title: "Quality gutters last longer.",
     },
   ],
   cta: {
-    title: "Ready to upgrade your roofline?",
-    text: "Send us your details and a few photos. We will come back to you with a free quote.",
+    title: "Ready for seamless gutters?",
+    text: "Send us your details and a few photos of your roofline. We will come back to you with a free quote.",
   },
 };
 
@@ -467,11 +496,11 @@ export const benefits = [
   {
     icon: "layers",
     title: "Matched finishes",
-    text: "Gutters, fascia, doors and windows in one look.",
+    text: "Gutters and downpipes to match your fascia, doors and windows.",
   },
-  { icon: "palette", title: "Wide colour range", text: "Colour-coated steel to suit any home." },
+  { icon: "palette", title: "Wide colour range", text: "Colour-coated gutters to suit any home." },
   { icon: "sparkles", title: "Low maintenance", text: "Built to stay looking new." },
-  { icon: "wrench", title: "Expert installation", text: "Done right the first time." },
+  { icon: "wrench", title: "Formed on site", text: "Measured and made to fit your roofline." },
   {
     icon: "building",
     title: "Residential to industrial",
@@ -605,6 +634,136 @@ export const whyPage = {
     [
       "Do seamless gutters need maintenance?",
       "Very little. Keep them clear of leaves and debris. With no joints along the run, there is nothing to reseal.",
+    ],
+  ] as readonly Faq[],
+};
+
+// /benefits-of-seamless-gutters. Written for South Africa: no invented statistics,
+// lifespans in years, measurements or products we don't supply.
+export const benefitsPage = {
+  metaTitle: "Benefits of Seamless Gutters: Fewer Leaks, Low Maintenance, Custom Fit",
+  metaDescription:
+    "The benefits of seamless gutters: fewer leaks, less maintenance, a custom fit, faster water flow and a cleaner roofline. How they compare with sectional gutters, and how to look after them.",
+  intro: {
+    eyebrow: "Benefits of seamless gutters",
+    title: "Fewer leaks. Less maintenance. A custom fit.",
+    text: "Why seamless gutters are the smarter choice for South African homes, schools and commercial buildings.",
+  },
+  what: {
+    eyebrow: "What are seamless gutters?",
+    title: "One continuous length, made to fit.",
+    paragraphs: [
+      "Seamless gutters are rain gutters made from one continuous length of material, cut to fit your building so there are no joints along the gutter run.",
+      "Sectional gutters are put together from shorter pieces joined every few lengths. Seamless gutters are formed on site with a gutter-forming machine, which gives a smooth, even finish and better performance.",
+      "Removing the joins removes the weak points where leaks, blockages and rust usually start. That's why seamless gutters are the choice for people who want durability, low maintenance and lasting protection against water damage.",
+    ],
+  },
+  benefitsHead: { eyebrow: "The benefits", title: "Why choose seamless gutters." },
+  benefits: [
+    {
+      title: "Fewer leaks",
+      text: "Joints are where gutters leak: sealant ages, debris collects and metal expands and contracts. A seamless gutter has no joints along the run, so there are far fewer places for water to escape and heavy rain is carried away from your foundations.",
+    },
+    {
+      title: "Fewer joints, fewer weak points",
+      text: "With no joins along the run, there is nothing to reseal, nothing to separate and far less chance of sagging or rust starting at a connection.",
+    },
+    {
+      title: "Low maintenance",
+      text: "Leaves, twigs and dirt tend to catch at the joins in sectional gutters. A continuous run gives debris fewer places to settle, so there is less cleaning and less chance of overflow or sagging sections.",
+    },
+    {
+      title: "Reduced clogging",
+      text: "Water moves along a smooth, uninterrupted channel and flushes smaller particles through to the downpipes, so blockages and standing water are less likely.",
+    },
+    {
+      title: "Better water flow",
+      text: "Joins create turbulence that slows water down. Without them, rainwater runs straight to the downpipes, which matters most in a summer thunderstorm. Our wider profiles move even more water on large roofs.",
+    },
+    {
+      title: "Protection from water damage",
+      text: "By carrying rainwater away from the building, seamless gutters help protect foundations, walls, paving, gardens, window frames and doors from damp, staining, erosion and rot.",
+    },
+    {
+      title: "Custom fit",
+      text: "We measure your roofline and form each gutter on site to its exact length. The result is a precise fit, correct fall towards the downpipes and a gutter that sits neatly against the fascia.",
+    },
+    {
+      title: "Durable",
+      text: "Fewer weak points mean fewer cracks, leaks and rust spots. Seamless gutters stand up better to heavy rain, hail and strong wind.",
+    },
+    {
+      title: "Longer lifespan",
+      text: "With less debris, less standing water and no joints to fail, a seamless gutter simply has less to go wrong. Choose stainless steel and there is no rust to worry about either.",
+    },
+    {
+      title: "Cost-effective over time",
+      text: "Seamless gutters can cost a little more to install than sectional systems, but fewer repairs, less maintenance and a longer life make them the better long-term investment.",
+    },
+    {
+      title: "Curb appeal",
+      text: "A smooth, continuous line along the roofline, with no visible joins or bulky connectors, gives the whole building a cleaner, more finished look.",
+    },
+    {
+      title: "Colours to match your home",
+      text: "Choose rust-free stainless steel or colour-coated steel in a wide range of colours, and match your gutters to your fascia boards, downpipes, windows and doors.",
+    },
+    {
+      title: "Adds to property value",
+      text: "Buyers notice a neat roofline and good drainage. Seamless gutters signal quality and fewer future maintenance worries, which helps a property stand out.",
+    },
+  ],
+  maintenance: {
+    eyebrow: "Looking after your gutters",
+    title: "How to maintain seamless gutters.",
+    points: [
+      "Clear leaves and debris at least once or twice a year, and before the rainy season. Homes under trees may need it more often.",
+      "Check that downpipes run freely and discharge water well away from the foundations.",
+      "Look along the run for sagging, loose brackets or overflow marks after a big storm.",
+      "Pay attention to corners and outlets: these are the only places a seamless gutter has joins.",
+      "Call us if you spot a problem. It is easier to fix early.",
+    ],
+  },
+  install: {
+    eyebrow: "How we install",
+    title: "Measured, formed and fitted on site.",
+    steps: [
+      { title: "Measure", text: "We measure every run of your roofline." },
+      {
+        title: "Form on site",
+        text: "Each gutter is formed in one continuous length with a gutter-forming machine.",
+      },
+      {
+        title: "Fit",
+        text: "Brackets go onto the fascia and the gutter is set with the right fall to the outlets.",
+      },
+      { title: "Downpipes", text: "Matching downpipes carry the water away from the building." },
+    ],
+  },
+  faqs: [
+    [
+      "Are seamless gutters worth it?",
+      "For most buildings, yes. They leak less, need less maintenance, last longer and look cleaner than sectional gutters, which saves on repairs over time.",
+    ],
+    [
+      "Do seamless gutters have any seams?",
+      "There are no seams along the main run. There are joins at corners and where the gutter meets the downpipe outlets.",
+    ],
+    [
+      "Do seamless gutters need cleaning?",
+      "Yes, but less often than sectional gutters, because there are no joints along the run for debris to catch on.",
+    ],
+    [
+      "Do seamless gutters come in different colours?",
+      "Yes. Choose stainless steel or colour-coated steel in a wide range of colours to match your home.",
+    ],
+    [
+      "What is the difference between seamless and sectional gutters?",
+      "Seamless gutters are formed in one continuous length to fit your roof. Sectional (regular) gutters come in pre-cut lengths joined together, and each join is a potential leak point.",
+    ],
+    [
+      "How long do seamless gutters last?",
+      "Properly installed and kept clear, seamless gutters last many years longer than sectional gutters. Stainless steel does not rust, and colour-coated steel is finished to stand up to the weather.",
     ],
   ] as readonly Faq[],
 };
@@ -873,7 +1032,7 @@ export const founder = {
 
 export const whatsappPopup = {
   greeting: "Hi there! 👋",
-  text: "Need a free quote? Send us a photo of your roofline on WhatsApp.",
+  text: "Need seamless gutters? Send us a photo of your roofline on WhatsApp for a free quote.",
   cta: "Chat on WhatsApp",
 };
 

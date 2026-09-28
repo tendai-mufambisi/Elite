@@ -42,7 +42,9 @@ function WhyPage() {
             {whyPage.what.paragraphs.map((p) => (
               <p key={p}>{p}</p>
             ))}
-            <ArrowLink to="/contact">Get a free quote</ArrowLink>
+            <ArrowLink to="/benefits-of-seamless-gutters">
+              All the benefits of seamless gutters
+            </ArrowLink>
           </div>
         </div>
       </section>

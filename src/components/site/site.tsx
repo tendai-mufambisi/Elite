@@ -11,7 +11,17 @@ import {
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import { founder, nav, notFoundPage, services, site } from "@/data/content";
+import {
+  founder,
+  gutterProfiles,
+  nav,
+  notFoundPage,
+  services,
+  site,
+  whatsappLink,
+} from "@/data/content";
+import { GutterProfileDrawing } from "@/components/site/illustrations";
+import { Reveal } from "@/components/site/Reveal";
 import { getImage, getVideo } from "@/data/images";
 import { ParallaxDriver, RouteProgress, WhatsAppWidget } from "@/components/site/motion";
 
@@ -83,6 +93,22 @@ export function FacebookIcon({ size = 18 }: { size?: number }) {
   );
 }
 
+/** Menu link; service pages go through the typed /services/$slug route. */
+function NavItemLink({ item }: { item: (typeof nav)[number] }) {
+  if (item.to.startsWith("/services/")) {
+    return (
+      <Link to="/services/$slug" params={{ slug: item.to.split("/")[2]! }}>
+        {item.label}
+      </Link>
+    );
+  }
+  return (
+    <Link to={item.to as Exclude<(typeof nav)[number]["to"], `/services/${string}`>}>
+      {item.label}
+    </Link>
+  );
+}
+
 export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -132,9 +158,7 @@ export function Header() {
             </div>
           </div>
           {nav.map((item) => (
-            <Link key={item.to} to={item.to}>
-              {item.label}
-            </Link>
+            <NavItemLink key={item.to} item={item} />
           ))}
         </nav>
         <div className="header-actions">
@@ -177,9 +201,7 @@ export function Header() {
           ))}
           <span>Explore</span>
           {nav.map((item) => (
-            <Link key={item.to} to={item.to}>
-              {item.label}
-            </Link>
+            <NavItemLink key={item.to} item={item} />
           ))}
           <Button asChild variant="brand" size="large" className="mt-5">
             <Link to="/contact">
@@ -215,10 +237,9 @@ export function Footer() {
           <h2>Quick links</h2>
           <Link to="/">Home</Link>
           {nav.map((item) => (
-            <Link key={item.to} to={item.to}>
-              {item.label}
-            </Link>
+            <NavItemLink key={item.to} item={item} />
           ))}
+          <Link to="/benefits-of-seamless-gutters">Benefits of Seamless Gutters</Link>
         </nav>
         <div>
           <h2>Get in touch</h2>
@@ -419,7 +440,12 @@ export function ArrowLink({
   children,
 }: {
   to:
-    "/projects" | "/colour-range" | "/contact" | "/why-seamless-gutters" | "/commercial-industrial";
+    | "/projects"
+    | "/colour-range"
+    | "/contact"
+    | "/why-seamless-gutters"
+    | "/commercial-industrial"
+    | "/benefits-of-seamless-gutters";
   children: ReactNode;
 }) {
   return (
@@ -525,6 +551,46 @@ export function FounderSection() {
           {founder.bio.map((p) => (
             <p key={p}>{p}</p>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/** Domestic & industrial gutter profiles (seamless gutters page and home). */
+export function GutterProfiles() {
+  return (
+    <section className="section" id="gutter-profiles">
+      <div className="container">
+        <Reveal>
+          <SectionHead eyebrow={gutterProfiles.eyebrow} title={gutterProfiles.title} />
+        </Reveal>
+        <div className="profile-grid">
+          {gutterProfiles.profiles.map((p) => (
+            <article key={p.kind} className={`profile-card profile-${p.kind}`}>
+              <GutterProfileDrawing kind={p.kind} />
+              <h3>
+                {p.label} <small>({p.for})</small>
+              </h3>
+              <ul className="check-list">
+                {p.points.map((point) => (
+                  <li key={point}>{point}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </div>
+        <div className="profile-note">
+          <p>{gutterProfiles.note}</p>
+          <Button asChild variant="brand" size="large">
+            <a
+              href={whatsappLink(gutterProfiles.whatsappText)}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle /> WhatsApp Us
+            </a>
+          </Button>
         </div>
       </div>
     </section>
