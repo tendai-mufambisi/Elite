@@ -51,10 +51,10 @@ type Faq = readonly [question: string, answer: string];
 
 // Seamless gutter project videos, shown as reels on the home page and the seamless gutters page.
 export const gutterReels = [
+  { slot: "video-commercial-building", label: "Commercial building gutters" },
   { slot: "video-gutters-double-storey", label: "Double-storey seamless gutters" },
   { slot: "video-gutters-single-storey", label: "Charcoal gutters, fitted on site" },
   { slot: "video-gutters-pillars", label: "Charcoal gutters & downpipes" },
-  { slot: "video-commercial-building", label: "Commercial building gutters" },
   { slot: "video-gutters-fence", label: "Gutters & downpipes, finished home" },
   { slot: "project-video-charcoal", label: "Charcoal seamless gutters & fascia" },
 ];
