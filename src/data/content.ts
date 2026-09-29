@@ -334,13 +334,8 @@ export const services = [
     ],
     finishes: ["Clear glass", "Stainless steel", "Glass with stainless steel"],
     image: "balustrade-glass-staircase",
-    banner: "balustrade-stainless-balconies",
-    gallery: [
-      "balustrade-glass-staircase",
-      "balustrade-tinted-glass-commercial",
-      "commercial-glass-balustrade-aluminium-windows",
-      "balustrade-stainless-balconies",
-    ],
+    banner: "balustrade-tinted-glass-commercial",
+    gallery: ["balustrade-glass-staircase", "balustrade-tinted-glass-commercial"],
     faqs: [
       [
         "Where can balustrades be installed?",
@@ -1129,16 +1124,6 @@ export const projects: {
     slot: "balustrade-tinted-glass-commercial",
     category: "Balustrades",
     caption: "Tinted glass balcony balustrade, commercial",
-  },
-  {
-    slot: "commercial-glass-balustrade-aluminium-windows",
-    category: "Balustrades",
-    caption: "Glass balcony balustrade, commercial",
-  },
-  {
-    slot: "balustrade-stainless-balconies",
-    category: "Balustrades",
-    caption: "Stainless steel balcony balustrades",
   },
   // Aluminium Doors & Windows
   {
