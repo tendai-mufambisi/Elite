@@ -155,7 +155,7 @@ const photos = [
     "balustrades/stainless-steel-balcony-balustrades-double-storey.webp",
     1280,
     576,
-    "Double-storey home with stainless steel balcony balustrades",
+    "Double-storey home with bronze fascia boards and downpipes, galvanised gutters and stainless steel balcony balustrades",
   ),
   img(
     "aluminium-windows-glass-balustrades",

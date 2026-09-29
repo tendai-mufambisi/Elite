@@ -162,6 +162,7 @@ export const services = [
       "pillar-stainless-fascia-two-garage-doors",
       "pillar-yellow-house-garage-doors",
       "fascia-bronze-double-storey",
+      "balustrade-stainless-balconies",
     ],
     faqs: [
       [
@@ -1104,6 +1105,11 @@ export const projects: {
   },
   {
     slot: "fascia-bronze-double-storey",
+    category: "Fascia",
+    caption: "Bronze fascia boards and downpipes, galvanised gutters",
+  },
+  {
+    slot: "balustrade-stainless-balconies",
     category: "Fascia",
     caption: "Bronze fascia boards and downpipes, galvanised gutters",
   },
