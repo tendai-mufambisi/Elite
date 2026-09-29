@@ -15,39 +15,45 @@ const water = {
   strokeLinecap: "round",
 } as const;
 
+// Ogee profiles traced from the client's profile sheet, drawn to the same scale so the
+// industrial gutter reads as the larger of the two. Shapes only: no sizes or labels.
+const ogeeProfiles = {
+  domestic: { width: 125, bottom: 85, back: 80, front: 85 },
+  industrial: { width: 155, bottom: 100, back: 100, front: 125 },
+};
+
+function ogeePath({ width, bottom, back, front }: (typeof ogeeProfiles)["domestic"]) {
+  const x0 = 20;
+  const base = 150;
+  const top = base - front;
+  const sx = x0 + bottom; // where the flat bottom meets the front
+  const sy = base - front * 0.18; // small step up before the curve
+  const ex = x0 + width - 10; // curve ends just inside the lip
+  const ey = top + 8;
+  const dx = ex - sx;
+  const dy = sy - ey;
+  return [
+    `M${x0} ${base - back} V${base} H${sx} V${sy}`,
+    // convex lower bulge, then the concave upper sweep of the ogee
+    `C${sx + 0.55 * dx} ${sy} ${sx + 0.62 * dx} ${sy - 0.25 * dy} ${sx + 0.55 * dx} ${sy - 0.5 * dy}`,
+    `C${sx + 0.48 * dx} ${sy - 0.75 * dy} ${sx + 0.55 * dx} ${ey} ${ex} ${ey}`,
+    // rolled lip on the front edge
+    `V${top} H${x0 + width} V${top + 9} H${x0 + width - 5}`,
+  ].join(" ");
+}
+
 export function GutterProfileDrawing({ kind }: { kind: "domestic" | "industrial" }) {
-  const label =
-    kind === "domestic"
-      ? "Line drawing of a domestic gutter profile with matching downpipe"
-      : "Line drawing of a wider industrial gutter profile with a larger downpipe";
+  const profile = ogeeProfiles[kind];
+  const waterY = 150 - profile.back * 0.35;
   return (
-    <svg viewBox="0 0 240 190" role="img" aria-label={label} className="profile-drawing">
-      {kind === "domestic" ? (
-        <>
-          {/* roof sheet and fascia board */}
-          <path d="M12 14 L86 52" {...stroke} />
-          <rect x="50" y="22" width="8" height="108" {...stroke} />
-          {/* ogee-style domestic gutter */}
-          <path
-            d="M58 62 V118 Q58 124 64 124 H114 Q126 124 128 112 Q130 102 138 98 Q145 94 141 84 L144 68 H136"
-            {...stroke}
-          />
-          <path d="M64 100 Q76 96 88 100 T112 100 T128 98" {...water} />
-          {/* downpipe */}
-          <path d="M80 124 V178 M96 124 V178" {...stroke} />
-        </>
-      ) : (
-        <>
-          <path d="M4 8 L74 50" {...stroke} />
-          <rect x="30" y="16" width="8" height="128" {...stroke} />
-          {/* wide box gutter with flared front */}
-          <path d="M38 52 V136 Q38 142 44 142 H198 Q204 142 205 136 L214 46 H204" {...stroke} />
-          <path d="M44 84 Q62 78 80 84 T116 84 T152 84 T188 84 T206 82" {...water} />
-          <path d="M44 106 Q62 100 80 106 T116 106 T152 106 T188 106 T204 104" {...water} />
-          {/* larger downpipe */}
-          <path d="M104 142 V186 M136 142 V186" {...stroke} />
-        </>
-      )}
+    <svg
+      viewBox="0 0 190 162"
+      role="img"
+      aria-label={`Line drawing of the ${kind} ogee gutter profile`}
+      className="profile-drawing"
+    >
+      <path d={ogeePath(profile)} {...stroke} />
+      <path d={`M26 ${waterY} H${20 + profile.bottom + 8}`} {...water} />
     </svg>
   );
 }
