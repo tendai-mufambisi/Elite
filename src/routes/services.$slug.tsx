@@ -11,6 +11,7 @@ import {
   VideoSlot,
 } from "@/components/site/site";
 import { ServiceDrawing } from "@/components/site/illustrations";
+import { Reel } from "@/components/site/motion";
 import { Reveal } from "@/components/site/Reveal";
 import { services } from "@/data/content";
 import { getVideo } from "@/data/images";
@@ -108,6 +109,27 @@ function ServicePage() {
                 <VideoSlot slot={s.video} />
               </div>
             )}
+          </div>
+        </section>
+      )}
+
+      {"reels" in s && (
+        <section className="section reels-section">
+          <div className="container">
+            <Reveal>
+              <SectionHead
+                eyebrow="Project videos"
+                title="Watch our seamless gutters go up."
+                text="Real installations filmed on site by our team."
+              />
+            </Reveal>
+            <div className="reels">
+              {s.reels.map((r, i) => (
+                <Reveal key={r.slot} variant="scale" delay={(i % 3) * 120}>
+                  <Reel slot={r.slot} label={r.label} />
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
       )}

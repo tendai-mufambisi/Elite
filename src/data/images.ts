@@ -23,6 +23,77 @@ const img = (slot: string, src: string, width: number, height: number, alt: stri
 
 // Project photos: one slot per photo.
 const photos = [
+  // Stills taken from the client's seamless gutter project videos.
+  img(
+    "charcoal-seamless-gutters-double-storey",
+    "seamless-gutters/charcoal-seamless-gutters-double-storey.webp",
+    1080,
+    1350,
+    "Double-storey home with new charcoal seamless gutters along the roofline and a ladder set up for the installation",
+  ),
+  img(
+    "charcoal-downpipe-double-storey",
+    "seamless-gutters/charcoal-downpipe-double-storey.webp",
+    720,
+    1200,
+    "Charcoal gutter and downpipe running down the corner of a double-storey home",
+  ),
+  img(
+    "charcoal-seamless-gutters-downpipes-single-storey",
+    "seamless-gutters/charcoal-seamless-gutters-downpipes-single-storey.webp",
+    478,
+    850,
+    "Single-storey home with charcoal seamless gutters and matching charcoal downpipes",
+  ),
+  img(
+    "seamless-gutter-installation-on-site",
+    "seamless-gutters/seamless-gutter-installation-on-site.webp",
+    478,
+    850,
+    "Elite Gutters installer on a ladder fitting a charcoal seamless gutter to a home",
+  ),
+  img(
+    "charcoal-gutters-corner-downpipes",
+    "seamless-gutters/charcoal-gutters-corner-downpipes.webp",
+    478,
+    850,
+    "Charcoal seamless gutters meeting at a roof corner with a pair of matching downpipes",
+  ),
+  img(
+    "charcoal-gutters-garage-frontage",
+    "seamless-gutters/charcoal-gutters-garage-frontage.webp",
+    478,
+    850,
+    "Charcoal seamless gutter running above a double garage door",
+  ),
+  img(
+    "charcoal-gutters-downpipes-pillars",
+    "seamless-gutters/charcoal-gutters-downpipes-pillars.webp",
+    478,
+    850,
+    "Charcoal gutter and downpipe beside charcoal pillars at a garage entrance",
+  ),
+  img(
+    "gutters-downpipes-home-with-fence",
+    "seamless-gutters/gutters-downpipes-home-with-fence.webp",
+    478,
+    850,
+    "Grey home with dark gutters and a downpipe behind a slatted boundary fence",
+  ),
+  img(
+    "commercial-building-gutters-downpipes",
+    "seamless-gutters/commercial-building-gutters-downpipes.webp",
+    1080,
+    1350,
+    "Double-storey commercial building with gutters, downpipes and aluminium windows",
+  ),
+  img(
+    "commercial-glass-balustrade-aluminium-windows",
+    "seamless-gutters/commercial-glass-balustrade-aluminium-windows.webp",
+    1080,
+    1350,
+    "Commercial building with a glass balcony balustrade and aluminium windows and doors",
+  ),
   img(
     "pillar-yellow-house-garage-doors",
     "seamless-gutters/stainless-steel-gutters-fascia-pillar-cladding-charcoal-garage-doors.webp",
@@ -167,7 +238,7 @@ const aliases: Record<string, string> = {
   "matched-charcoal-01": "gutters-charcoal-fascia-double-storey",
   "matched-stainless-01": "pillar-stainless-fascia-two-garage-doors",
   "commercial-hero": "aluminium-commercial-complex",
-  "commercial-key-01": "balustrade-tinted-glass-commercial",
+  "commercial-key-01": "commercial-building-gutters-downpipes",
   "about-01": "aluminium-windows-glass-balustrades",
 };
 
@@ -213,6 +284,39 @@ const video = (
 });
 
 export const videoSlots: VideoSlotData[] = [
+  // Square, muted loop behind the home page hero.
+  video(
+    "hero-video",
+    "hero-seamless-gutters",
+    "Charcoal seamless gutters on a double-storey home during installation",
+    960,
+    960,
+  ),
+  video(
+    "video-gutters-double-storey",
+    "seamless-gutters-double-storey-installation",
+    "Seamless gutters and downpipes being installed on a double-storey home",
+  ),
+  video(
+    "video-gutters-single-storey",
+    "charcoal-seamless-gutters-installation-single-storey",
+    "Charcoal seamless gutters being fitted to a single-storey home",
+  ),
+  video(
+    "video-gutters-pillars",
+    "charcoal-gutters-downpipes-pillars",
+    "Charcoal seamless gutters and downpipes on a finished home",
+  ),
+  video(
+    "video-gutters-fence",
+    "gutters-downpipes-home-with-fence",
+    "Walk-past of a finished home with gutters and downpipes",
+  ),
+  video(
+    "video-commercial-building",
+    "commercial-building-gutters-aluminium-glass",
+    "Commercial building with gutters, downpipes, aluminium windows and glass balustrades",
+  ),
   video(
     "video-featured",
     "charcoal-gutters-fascia-double-storey",

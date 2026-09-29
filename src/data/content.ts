@@ -49,6 +49,16 @@ export const nav = [
 
 type Faq = readonly [question: string, answer: string];
 
+// Seamless gutter project videos, shown as reels on the home page and the seamless gutters page.
+export const gutterReels = [
+  { slot: "video-gutters-double-storey", label: "Double-storey seamless gutters" },
+  { slot: "video-gutters-single-storey", label: "Charcoal gutters, fitted on site" },
+  { slot: "video-gutters-pillars", label: "Charcoal gutters & downpipes" },
+  { slot: "video-commercial-building", label: "Commercial building gutters" },
+  { slot: "video-gutters-fence", label: "Gutters & downpipes, finished home" },
+  { slot: "project-video-charcoal", label: "Charcoal seamless gutters & fascia" },
+];
+
 export const services = [
   {
     slug: "seamless-gutters",
@@ -65,14 +75,22 @@ export const services = [
       "Low maintenance, with fewer joints to check",
     ],
     finishes: ["Stainless steel", "Charcoal", "Bronze", "Black", "Colour-coated steel"],
-    image: "fascia-bronze-double-storey",
+    image: "charcoal-seamless-gutters-double-storey",
+    banner: "fascia-bronze-double-storey",
     gallery: [
+      "charcoal-seamless-gutters-downpipes-single-storey",
+      "seamless-gutter-installation-on-site",
+      "charcoal-gutters-corner-downpipes",
+      "charcoal-gutters-garage-frontage",
+      "charcoal-gutters-downpipes-pillars",
+      "charcoal-downpipe-double-storey",
+      "gutters-downpipes-home-with-fence",
       "fascia-bronze-double-storey",
       "pillar-stainless-fascia-two-garage-doors",
       "gutters-charcoal-fascia-double-storey",
       "colour-range-chart",
     ],
-    video: "gutters-charcoal-video",
+    reels: gutterReels,
     faqs: [
       [
         "What makes a gutter seamless?",
@@ -496,13 +514,8 @@ export const home = {
   heroNote: "Also fascia boards, pillar cladding, balustrades, aluminium doors and garage doors.",
   trustLabel: "Seamless gutters for every building",
   trust: ["Residential", "Commercial", "Industrial", "Schools"],
-  // Hero slideshow (slow zoom + crossfade). First slide is the LCP image.
-  heroSlides: [
-    "gutter-closeup-illustration",
-    "fascia-bronze-double-storey",
-    "pillar-stainless-fascia-two-garage-doors",
-    "colour-range-chart",
-  ],
+  // Muted looping video behind the hero; its poster is the LCP image.
+  heroVideo: "hero-video",
   rotatorLead: "Seamless gutters with",
   rotator: [
     "no joints",
@@ -522,7 +535,7 @@ export const home = {
       "Rust-free stainless steel or colour-coated steel",
       "Downpipes and fascia boards finished to match",
     ],
-    slot: "gutter-closeup-illustration",
+    slot: "charcoal-seamless-gutters-double-storey",
   },
   // Bullet summary on the home page, linking to /benefits-of-seamless-gutters.
   benefitBullets: {
@@ -545,10 +558,7 @@ export const home = {
     title: "Watch our gutters.",
     text: "Real seamless gutter installations filmed on site. Tap a video to watch it with sound controls.",
   },
-  reels: [
-    { slot: "project-video-charcoal", label: "Charcoal seamless gutters & fascia" },
-    { slot: "project-video-gutters", label: "New gutters & downpipes" },
-  ],
+  reels: gutterReels,
   profilesTeaser: true,
   colourTeaser: {
     eyebrow: "Gutter colours",
@@ -587,13 +597,13 @@ export const home = {
   },
   mosaic: [
     "fascia-bronze-double-storey",
-    "pillar-stainless-fascia-two-garage-doors",
+    "charcoal-seamless-gutters-double-storey",
+    "seamless-gutter-installation-on-site",
     "colour-range-chart",
     "gutters-charcoal-fascia-double-storey",
+    "charcoal-gutters-corner-downpipes",
+    "commercial-building-gutters-downpipes",
     "garage-three-charcoal-glass",
-    "balustrade-glass-staircase",
-    "folding-doors-gazebo",
-    "aluminium-windows-glass-balustrades",
   ],
   // Full-width photo bands that scroll slower than the page (parallax).
   bands: [
@@ -996,6 +1006,81 @@ export const projects: {
   video?: boolean;
 }[] = [
   {
+    slot: "video-gutters-double-storey",
+    category: "Gutters",
+    caption: "Seamless gutters on a double-storey home",
+    video: true,
+  },
+  {
+    slot: "charcoal-seamless-gutters-double-storey",
+    category: "Gutters",
+    caption: "Charcoal seamless gutters, double-storey",
+  },
+  {
+    slot: "video-gutters-single-storey",
+    category: "Gutters",
+    caption: "Charcoal seamless gutters fitted on site",
+    video: true,
+  },
+  {
+    slot: "charcoal-seamless-gutters-downpipes-single-storey",
+    category: "Gutters",
+    caption: "Charcoal gutters and matching downpipes",
+  },
+  {
+    slot: "seamless-gutter-installation-on-site",
+    category: "Gutters",
+    caption: "Fitting a seamless gutter on site",
+  },
+  {
+    slot: "charcoal-gutters-corner-downpipes",
+    category: "Gutters",
+    caption: "Corner run with paired downpipes",
+  },
+  {
+    slot: "video-gutters-pillars",
+    category: "Gutters",
+    caption: "Charcoal gutters and downpipes, finished home",
+    video: true,
+  },
+  {
+    slot: "charcoal-gutters-garage-frontage",
+    category: "Gutters",
+    caption: "Charcoal gutter above a double garage",
+  },
+  {
+    slot: "charcoal-gutters-downpipes-pillars",
+    category: "Gutters",
+    caption: "Charcoal downpipe beside charcoal pillars",
+  },
+  {
+    slot: "video-commercial-building",
+    category: "Gutters",
+    caption: "Gutters and downpipes on a commercial building",
+    video: true,
+  },
+  {
+    slot: "commercial-building-gutters-downpipes",
+    category: "Gutters",
+    caption: "Commercial building gutters and downpipes",
+  },
+  {
+    slot: "charcoal-downpipe-double-storey",
+    category: "Gutters",
+    caption: "Charcoal downpipe on a double-storey corner",
+  },
+  {
+    slot: "video-gutters-fence",
+    category: "Gutters",
+    caption: "Gutters and downpipes on a finished home",
+    video: true,
+  },
+  {
+    slot: "gutters-downpipes-home-with-fence",
+    category: "Gutters",
+    caption: "Gutters and downpipes, finished home",
+  },
+  {
     slot: "pillar-yellow-house-garage-doors",
     category: "Pillar Cladding",
     caption: "Stainless fascia, pillar cladding and charcoal garage doors",
@@ -1041,6 +1126,11 @@ export const projects: {
     slot: "balustrade-tinted-glass-commercial",
     category: "Balustrades",
     caption: "Tinted glass balcony balustrade, commercial",
+  },
+  {
+    slot: "commercial-glass-balustrade-aluminium-windows",
+    category: "Balustrades",
+    caption: "Glass balcony balustrade, commercial",
   },
   {
     slot: "balustrade-stainless-balconies",

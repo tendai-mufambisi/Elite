@@ -2387,6 +2387,15 @@ a:hover > svg.lucide-arrow-up-right,
   z-index: -2;
   will-change: transform;
 }
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 12%;
+  animation: heroReveal 1.5s ease-out both;
+}
 .hero-slide {
   position: absolute;
   inset: 0;
@@ -3537,8 +3546,14 @@ body {
     grid-auto-flow: column;
     grid-auto-columns: minmax(0, 320px);
   }
-  .reels > .reveal:nth-child(2) {
+  .reels > .reveal:nth-child(3n + 2) {
     margin-top: 40px;
+  }
+  /* Four or more videos wrap into rows of three. */
+  .reels:has(> :nth-child(4)) {
+    grid-template-columns: repeat(3, minmax(0, 320px));
+    grid-auto-flow: row;
+    row-gap: 56px;
   }
 }
 @media (max-width: 800px) {

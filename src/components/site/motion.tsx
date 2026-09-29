@@ -2,7 +2,7 @@ import { useRouter, useRouterState } from "@tanstack/react-router";
 import { MessageCircle, Play, Volume2, VolumeX, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { site, whatsappPopup } from "@/data/content";
-import { getImage, getVideo } from "@/data/images";
+import { getVideo } from "@/data/images";
 
 const reducedMotion = () =>
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -84,55 +84,30 @@ export function RouteProgress() {
   return <div className={`route-progress ${busy ? "is-busy" : ""}`} aria-hidden="true" />;
 }
 
-/** Crossfading, slowly zooming background photos. The first slide is server-rendered as the LCP image. */
-export function HeroSlideshow({
-  slots,
-  interval = 6000,
-}: {
-  slots: readonly string[];
-  interval?: number;
-}) {
-  const [active, setActive] = useState(0);
-  const [started, setStarted] = useState(false);
+/** Muted, looping project video behind the hero. Reduced-motion visitors see the poster only. */
+export function HeroVideo({ slot }: { slot: string }) {
+  const video = getVideo(slot);
+  const ref = useRef<HTMLVideoElement>(null);
   useEffect(() => {
-    if (reducedMotion() || slots.length < 2) return;
-    // Load the other slides only after the page is interactive, so they don't compete with the first.
-    const start = window.setTimeout(() => setStarted(true), 1200);
-    const timer = window.setInterval(() => setActive((i) => (i + 1) % slots.length), interval);
-    return () => {
-      window.clearTimeout(start);
-      window.clearInterval(timer);
-    };
-  }, [slots.length, interval]);
-  const activeSlot = slots[active];
+    if (!reducedMotion()) ref.current?.play().catch(() => {});
+  }, []);
   return (
-    <>
-      {activeSlot && getImage(activeSlot).illustrative && (
-        <span className="illus-tag hero-illus-tag">Illustration</span>
-      )}
-      <div className="hero-slides" data-parallax="0.18">
-        {slots.map((slot, i) => {
-          if (i > 0 && !started) return null;
-          const image = getImage(slot);
-          return (
-            <img
-              key={slot}
-              data-slot={slot}
-              src={image.src}
-              alt={i === 0 ? image.alt : ""}
-              aria-hidden={i === 0 ? undefined : true}
-              width={image.width}
-              height={image.height}
-              loading={i === 0 ? "eager" : "lazy"}
-              fetchPriority={i === 0 ? "high" : "low"}
-              decoding={i === 0 ? "sync" : "async"}
-              sizes="100vw"
-              className={`hero-slide ${i === active ? "is-active" : ""}`}
-            />
-          );
-        })}
-      </div>
-    </>
+    <div className="hero-slides" data-parallax="0.18">
+      <video
+        ref={ref}
+        data-slot={slot}
+        src={video.src}
+        poster={video.poster}
+        width={video.width}
+        height={video.height}
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-hidden="true"
+        className="hero-video"
+      />
+    </div>
   );
 }
 

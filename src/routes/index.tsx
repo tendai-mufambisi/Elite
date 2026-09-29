@@ -25,7 +25,7 @@ import {
   SectionHead,
 } from "@/components/site/site";
 import { ServiceDrawing } from "@/components/site/illustrations";
-import { HeroSlideshow, Reel, TextRotator } from "@/components/site/motion";
+import { HeroVideo, Reel, TextRotator } from "@/components/site/motion";
 import { Reveal } from "@/components/site/Reveal";
 import { benefits, colours, home, projects, services, site } from "@/data/content";
 import { getImage } from "@/data/images";
@@ -55,7 +55,7 @@ function Home() {
   return (
     <>
       <section className="hero">
-        <HeroSlideshow slots={home.heroSlides} />
+        <HeroVideo slot={home.heroVideo} />
         <div className="hero-overlay" />
         <div className="hero-shapes" aria-hidden="true">
           <span className="shape shape-1" data-parallax="-0.12" />
