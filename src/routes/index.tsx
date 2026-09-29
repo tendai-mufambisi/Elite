@@ -24,7 +24,7 @@ import {
   ScrollCue,
   SectionHead,
 } from "@/components/site/site";
-import { WindowGuardDrawing } from "@/components/site/illustrations";
+import { ServiceDrawing } from "@/components/site/illustrations";
 import { HeroSlideshow, Reel, TextRotator } from "@/components/site/motion";
 import { Reveal } from "@/components/site/Reveal";
 import { benefits, colours, home, projects, services, site } from "@/data/content";
@@ -289,7 +289,7 @@ function Home() {
                   {s.image ? (
                     <Media slot={s.image} />
                   ) : (
-                    <WindowGuardDrawing className="card-drawing" />
+                    "drawing" in s && <ServiceDrawing kind={s.drawing} className="card-drawing" />
                   )}
                   <div className="service-card-content">
                     <div>

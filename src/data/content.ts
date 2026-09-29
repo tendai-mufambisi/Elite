@@ -13,7 +13,7 @@ export const site = {
   tagline: "Build | Protect | Enhance",
   secondary: "Quality Finishes Last Longer",
   description:
-    "Seamless gutter specialists: stainless steel and colour-coated seamless gutters and downpipes, formed on site for homes, schools, commercial and industrial buildings in South Africa. Also fascia boards, pillar cladding, balustrades, aluminium doors and garage doors.",
+    "Seamless gutter specialists: stainless steel and colour-coated seamless gutters and downpipes, formed on site for homes, schools, commercial and industrial buildings in South Africa. Also industrial box gutters, rainwater harvesting, gutter repairs and cleaning, fascia boards and bargeboards, pillar cladding, balustrades, aluminium doors and garage doors.",
   footerBlurb:
     "Seamless gutter specialists. Stainless steel and colour-coated seamless gutters, plus fascia boards and aluminium finishes to match. Built to protect.",
   phone: "+27 84 258 6400",
@@ -93,15 +93,49 @@ export const services = [
     ] as readonly Faq[],
   },
   {
+    slug: "box-gutters",
+    title: "Industrial Box Gutters",
+    metaTitle: "Industrial & Commercial Box Gutters",
+    short: "Built for big roofs and heavy rain.",
+    intro:
+      "Heavy-duty box gutters for factories, warehouses and commercial buildings. Wide, deep profiles carry large volumes of rainwater off big roof areas and into downpipes sized to match, so water leaves the roof instead of backing up.",
+    benefits: [
+      "Wide, deep profiles for large roof areas",
+      "Made to handle heavy downpours",
+      "Downpipes and outlets sized to match",
+      "Suited to factories, warehouses and commercial buildings",
+    ],
+    finishes: [],
+    image: undefined,
+    drawing: "box-gutter",
+    gallery: [],
+    faqs: [
+      [
+        "What is a box gutter?",
+        "A box gutter is a wide, square-sided gutter, often set between two roof slopes or behind a parapet wall. Its size lets it carry the large volumes of water that run off industrial and commercial roofs.",
+      ],
+      [
+        "Which buildings need box gutters?",
+        "Factories, warehouses, workshops, schools and other commercial buildings with large roof areas, where ordinary domestic gutters would overflow.",
+      ],
+      [
+        "Can you replace an old, leaking box gutter?",
+        "Yes. Send us photos of the roof and the existing gutter via WhatsApp and we will advise on a replacement.",
+      ],
+    ] as readonly Faq[],
+  },
+  {
     slug: "fascia-boards",
-    title: "Fascia Boards",
-    metaTitle: "Stainless Steel & Colour-Coated Fascia Boards",
+    title: "Fascia Boards & Bargeboards",
+    metaTitle: "Stainless Steel & Colour-Coated Fascia Boards & Bargeboards",
     short: "The finish that frames it all.",
     intro:
-      "Stainless steel, bronze and charcoal fascia boards give your roofline a crisp architectural edge while protecting the timber behind it. They are rust-free, low maintenance and made to match your gutters for one clean, continuous look.",
+      "Stainless steel, bronze and charcoal fascia boards and bargeboards give your roofline a crisp architectural edge while protecting the roof timber behind them. They also give your gutters a solid base, and are rust-free, low maintenance and made to match your gutters for one clean, continuous look.",
     benefits: [
+      "Installation and replacement of fascias and bargeboards",
       "Rust-free stainless steel and colour-coated options",
       "Protects roof timbers from the weather",
+      "A solid base for your gutters",
       "Made to match your gutters and downpipes",
       "No painting or regular upkeep needed",
     ],
@@ -127,8 +161,109 @@ export const services = [
         "Stainless steel fascia boards are rust-free, and colour-coated steel is finished to stand up to the weather.",
       ],
       [
+        "What is the difference between a fascia and a bargeboard?",
+        "A fascia board runs along the bottom edge of the roof, where the gutters are fixed. A bargeboard finishes the sloping edge of a gable end. We fit both in matching finishes.",
+      ],
+      [
         "Can you replace old timber fascia boards?",
         "Yes. Send us photos of your existing roofline and we will advise on the best replacement.",
+      ],
+    ] as readonly Faq[],
+  },
+  {
+    slug: "water-harvesting",
+    title: "Water Harvesting Systems",
+    metaTitle: "Rainwater Harvesting Gutters & Downpipes",
+    short: "Catch the rain. Use it later.",
+    intro:
+      "We set up the downpipes and connections that carry rainwater from your gutters into rainwater harvesting tanks. It is an eco-friendly way to save water and reduce your utility bills.",
+    benefits: [
+      "Downpipes routed to your rainwater tanks",
+      "Connections for new or existing tanks",
+      "Less reliance on municipal water",
+      "Lower water bills",
+      "Pairs well with new seamless gutters",
+    ],
+    finishes: [],
+    image: undefined,
+    drawing: "water-tank",
+    gallery: [],
+    faqs: [
+      [
+        "Can you connect my existing tank?",
+        "Yes. Send us photos of the tank and your roofline via WhatsApp and we will advise on the best way to route the downpipes.",
+      ],
+      [
+        "Do I need new gutters for rainwater harvesting?",
+        "Not always. If your gutters are in good condition we can connect to them. If they leak or overflow, new seamless gutters will catch more of the rain.",
+      ],
+      [
+        "What can harvested rainwater be used for?",
+        "Watering the garden, washing cars and paving, and topping up the pool are common uses.",
+      ],
+    ] as readonly Faq[],
+  },
+  {
+    slug: "gutter-repairs",
+    title: "Repairs & Maintenance",
+    metaTitle: "Gutter Repairs & Maintenance",
+    short: "Fix the leak before it spreads.",
+    intro:
+      "Repair services for existing gutters. We fix leaks, re-align sagging gutters and replace damaged sections so your gutters work properly again and send water to the downpipes, not down your walls.",
+    benefits: [
+      "Leaking joints and sections sealed",
+      "Sagging gutters re-aligned and re-supported",
+      "Damaged sections and downpipes replaced",
+      "Water carried away from walls and foundations",
+    ],
+    finishes: [],
+    image: undefined,
+    drawing: "repair",
+    gallery: [],
+    faqs: [
+      [
+        "Why are my gutters sagging?",
+        "Sagging usually comes from loose or missing brackets, or from the weight of water and debris sitting in a blocked gutter. Re-aligning and re-supporting the run lets water flow to the downpipes again.",
+      ],
+      [
+        "Can you repair gutters you did not install?",
+        "Yes. Send us photos of the problem via WhatsApp and we will advise whether a repair or a replacement makes more sense.",
+      ],
+      [
+        "When is replacement better than repair?",
+        "If an old sectional gutter leaks at many joints, replacing it with a seamless gutter is often the better long-term option.",
+      ],
+    ] as readonly Faq[],
+  },
+  {
+    slug: "gutter-cleaning",
+    title: "Gutter Cleaning",
+    metaTitle: "Gutter Cleaning & Blockage Removal",
+    short: "Clear gutters. Free-flowing water.",
+    intro:
+      "Professional gutter cleaning to remove leaves, debris and blockages. Regular cleaning prevents water damage and extends the life of your gutters.",
+    benefits: [
+      "Leaves, debris and blockages removed",
+      "Downpipes cleared so water can drain",
+      "Helps prevent overflow and water damage",
+      "Extends the life of your gutters",
+    ],
+    finishes: [],
+    image: undefined,
+    drawing: "cleaning",
+    gallery: [],
+    faqs: [
+      [
+        "How often should gutters be cleaned?",
+        "Most homes benefit from a clean at least once a year, and more often if trees overhang the roof. Just before the rainy season is a good time.",
+      ],
+      [
+        "What happens if gutters are not cleaned?",
+        "Blocked gutters overflow, which can damage fascia boards, walls and foundations. The extra weight of wet debris can also make gutters sag.",
+      ],
+      [
+        "Do seamless gutters need less cleaning?",
+        "Yes. With no joints along the run, debris has fewer places to catch, but they still need an occasional clean.",
       ],
     ] as readonly Faq[],
   },
@@ -300,6 +435,7 @@ export const services = [
     ],
     finishes: ["Clear glass", "Aluminium", "Charcoal", "Bronze"],
     image: undefined,
+    drawing: "window-guard",
     gallery: [],
     faqs: [
       [
@@ -441,8 +577,8 @@ export const home = {
   },
   servicesHead: {
     eyebrow: "More than gutters",
-    title: "Everything else that finishes your roofline.",
-    text: "Seamless gutters come first. We also supply and install the products that complete the look.",
+    title: "Everything else your roofline needs.",
+    text: "Seamless gutters come first. We also install box gutters and rainwater harvesting systems, repair and clean existing gutters, and supply the products that complete the look.",
   },
   mosaicHead: {
     eyebrow: "Recent projects",

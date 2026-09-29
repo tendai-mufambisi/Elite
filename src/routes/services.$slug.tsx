@@ -10,7 +10,7 @@ import {
   SectionHead,
   VideoSlot,
 } from "@/components/site/site";
-import { WindowGuardDrawing } from "@/components/site/illustrations";
+import { ServiceDrawing } from "@/components/site/illustrations";
 import { Reveal } from "@/components/site/Reveal";
 import { services } from "@/data/content";
 import { getVideo } from "@/data/images";
@@ -67,16 +67,24 @@ function ServicePage() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <h3 className="sub-heading">Available finishes</h3>
-            <ul className="chip-list">
-              {s.finishes.map((item) => (
-                <li key={item} className="chip">
-                  {item}
-                </li>
-              ))}
-            </ul>
+            {s.finishes.length > 0 && (
+              <>
+                <h3 className="sub-heading">Available finishes</h3>
+                <ul className="chip-list">
+                  {s.finishes.map((item) => (
+                    <li key={item} className="chip">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
-          {s.image ? <Media slot={s.image} /> : <WindowGuardDrawing className="split-drawing" />}
+          {s.image ? (
+            <Media slot={s.image} />
+          ) : (
+            "drawing" in s && <ServiceDrawing kind={s.drawing} className="split-drawing" />
+          )}
         </div>
       </section>
 
