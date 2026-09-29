@@ -84,9 +84,7 @@ export const services = [
       "charcoal-seamless-gutters-downpipes-single-storey",
       "seamless-gutter-installation-on-site",
       "charcoal-gutters-corner-downpipes",
-      "charcoal-gutters-garage-frontage",
       "charcoal-gutters-downpipes-pillars",
-      "charcoal-downpipe-double-storey",
       "gutters-downpipes-home-with-fence",
       "commercial-building-gutters-downpipes",
       "gutters-charcoal-fascia-double-storey",
@@ -640,7 +638,7 @@ export const home = {
   mosaic: [
     "charcoal-seamless-gutters-double-storey",
     "seamless-gutter-installation-on-site",
-    "charcoal-gutters-garage-frontage",
+    "charcoal-seamless-gutters-downpipes-single-storey",
     "colour-range-chart",
     "gutters-charcoal-fascia-double-storey",
     "charcoal-gutters-corner-downpipes",
@@ -1087,11 +1085,6 @@ export const projects: {
     video: true,
   },
   {
-    slot: "charcoal-gutters-garage-frontage",
-    category: "Gutters",
-    caption: "Charcoal seamless gutter above a double garage",
-  },
-  {
     slot: "charcoal-gutters-downpipes-pillars",
     category: "Gutters",
     caption: "Charcoal seamless gutter and downpipe beside charcoal pillars",
@@ -1106,11 +1099,6 @@ export const projects: {
     slot: "commercial-building-gutters-downpipes",
     category: "Gutters",
     caption: "Commercial building gutters and downpipes",
-  },
-  {
-    slot: "charcoal-downpipe-double-storey",
-    category: "Gutters",
-    caption: "Charcoal downpipe on a double-storey corner",
   },
   {
     slot: "video-gutters-fence",
