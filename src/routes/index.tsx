@@ -25,7 +25,7 @@ import {
   SectionHead,
 } from "@/components/site/site";
 import { ServiceDrawing } from "@/components/site/illustrations";
-import { HeroVideo, Reel, TextRotator } from "@/components/site/motion";
+import { CardSlider, HeroVideo, Reel, TextRotator } from "@/components/site/motion";
 import { Reveal } from "@/components/site/Reveal";
 import { benefits, colours, home, projects, services, site } from "@/data/content";
 import { getImage } from "@/data/images";
@@ -291,7 +291,8 @@ function Home() {
               <Reveal key={s.slug} className="service-cell" delay={(i % 3) * 90}>
                 <Link className="service-card" to="/services/$slug" params={{ slug: s.slug }}>
                   {s.image ? (
-                    <Media slot={s.image} />
+                    // The card's own photo first, then the rest of that service's gallery.
+                    <CardSlider slots={[...new Set([s.image, ...s.gallery])]} delay={i * 700} />
                   ) : (
                     "drawing" in s && <ServiceDrawing kind={s.drawing} className="card-drawing" />
                   )}

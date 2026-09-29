@@ -2,7 +2,7 @@ import { useRouter, useRouterState } from "@tanstack/react-router";
 import { MessageCircle, Play, Volume2, VolumeX, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { site, whatsappPopup } from "@/data/content";
-import { getVideo } from "@/data/images";
+import { getImage, getVideo } from "@/data/images";
 
 const reducedMotion = () =>
   typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -133,6 +133,105 @@ export function TextRotator({ lead, words }: { lead: string; words: readonly str
         </span>
       </span>
     </p>
+  );
+}
+
+/**
+ * Photos of one service that slide sideways every few seconds, looping smoothly back to the
+ * first. Moves only while on screen and not hovered; reduced-motion visitors see the first photo.
+ */
+export function CardSlider({
+  slots,
+  delay = 0,
+  interval = 4200,
+}: {
+  slots: readonly string[];
+  delay?: number;
+  interval?: number;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [index, setIndex] = useState(0);
+  const [animate, setAnimate] = useState(true);
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || slots.length < 2 || reducedMotion()) return;
+    let visible = false;
+    let hovered = false;
+    let timer = 0;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        visible = !!entry?.isIntersecting;
+        // Fetch the other photos only once the card is close to the screen.
+        if (visible) setLoaded(true);
+      },
+      { rootMargin: "200px" },
+    );
+    obs.observe(el);
+    const card = el.closest("a") ?? el;
+    const enter = () => (hovered = true);
+    const leave = () => (hovered = false);
+    card.addEventListener("mouseenter", enter);
+    card.addEventListener("mouseleave", leave);
+    const start = window.setTimeout(() => {
+      timer = window.setInterval(() => {
+        if (visible && !hovered) {
+          setAnimate(true);
+          setIndex((i) => i + 1);
+        }
+      }, interval);
+    }, delay);
+    return () => {
+      obs.disconnect();
+      window.clearTimeout(start);
+      window.clearInterval(timer);
+      card.removeEventListener("mouseenter", enter);
+      card.removeEventListener("mouseleave", leave);
+    };
+  }, [slots.length, delay, interval]);
+  // A copy of the first photo sits at the end; once it slides in, jump back to the real first.
+  const slides = slots.length > 1 ? [...slots, slots[0]!] : slots;
+  const onTransitionEnd = () => {
+    if (index >= slots.length) {
+      setAnimate(false);
+      setIndex(0);
+    }
+  };
+  const active = index % slots.length;
+  return (
+    <div ref={ref} className="card-slider">
+      <div
+        className={`card-slider-track ${animate ? "" : "no-anim"}`}
+        style={{ transform: `translateX(-${index * 100}%)` }}
+        onTransitionEnd={onTransitionEnd}
+      >
+        {slides.map((slot, i) => {
+          if (i > 0 && !loaded) return <div key={`${slot}-${i}`} className="card-slide" />;
+          const image = getImage(slot);
+          return (
+            <div key={`${slot}-${i}`} className="card-slide">
+              <img
+                data-slot={slot}
+                src={image.src}
+                alt={i === 0 ? image.alt : ""}
+                aria-hidden={i === 0 ? undefined : true}
+                width={image.width}
+                height={image.height}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          );
+        })}
+      </div>
+      {slots.length > 1 && (
+        <span className="card-dots" aria-hidden="true">
+          {slots.map((slot, i) => (
+            <i key={slot} className={i === active ? "is-active" : undefined} />
+          ))}
+        </span>
+      )}
+    </div>
   );
 }
 
