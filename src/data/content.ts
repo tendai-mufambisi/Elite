@@ -303,6 +303,7 @@ export const services = [
     video: "video-pillar-cladding-garage-doors",
     gallery: [
       "pillar-stainless-veranda",
+      "balustrade-stainless-pillar-covering",
       "pillar-stainless-fascia-two-garage-doors",
       "pillar-yellow-house-garage-doors",
     ],
@@ -337,7 +338,11 @@ export const services = [
     finishes: ["Clear glass", "Stainless steel", "Glass with stainless steel"],
     image: "balustrade-glass-staircase",
     banner: "balustrade-tinted-glass-commercial",
-    gallery: ["balustrade-glass-staircase", "balustrade-tinted-glass-commercial"],
+    gallery: [
+      "balustrade-stainless-pillar-covering",
+      "balustrade-glass-staircase",
+      "balustrade-tinted-glass-commercial",
+    ],
     faqs: [
       [
         "Where can balustrades be installed?",
@@ -1132,12 +1137,22 @@ export const projects: {
     caption: "Stainless steel pillar cladding on a veranda",
   },
   {
+    slot: "balustrade-stainless-pillar-covering",
+    category: "Pillar Cladding",
+    caption: "Stainless steel pillar covering and balustrades",
+  },
+  {
     slot: "video-pillar-cladding-garage-doors",
     category: "Pillar Cladding",
     caption: "Stainless steel pillar cladding and aluminium garage doors",
     video: true,
   },
   // Balustrades
+  {
+    slot: "balustrade-stainless-pillar-covering",
+    category: "Balustrades",
+    caption: "Stainless steel balustrades and pillar covering",
+  },
   {
     slot: "balustrade-glass-staircase",
     category: "Balustrades",

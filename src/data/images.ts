@@ -137,6 +137,13 @@ const photos = [
     "Row of veranda pillars covered in polished stainless steel cladding",
   ),
   img(
+    "balustrade-stainless-pillar-covering",
+    "balustrades/stainless-steel-balustrades-pillar-covering-double-storey.webp",
+    714,
+    1218,
+    "Double-storey home with curved stainless steel balcony balustrades and stainless steel pillar covering, behind a garden",
+  ),
+  img(
     "balustrade-glass-staircase",
     "balustrades/glass-staircase-balustrade-double-volume.webp",
     1200,
