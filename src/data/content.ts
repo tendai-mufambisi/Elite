@@ -54,7 +54,7 @@ export const gutterReels = [
   { slot: "video-commercial-building", label: "Commercial building gutters" },
   { slot: "video-gutters-double-storey", label: "Double-storey seamless gutters" },
   { slot: "video-gutters-single-storey", label: "Charcoal gutters, fitted on site" },
-  { slot: "video-gutters-pillars", label: "Charcoal gutters & downpipes" },
+  { slot: "video-gutters-pillars", label: "Charcoal seamless gutters & downpipes" },
   { slot: "video-gutters-fence", label: "Gutters & downpipes, finished home" },
   { slot: "project-video-charcoal", label: "Charcoal seamless gutters & fascia" },
 ];
@@ -1039,18 +1039,18 @@ export const projects: {
   {
     slot: "video-gutters-pillars",
     category: "Gutters",
-    caption: "Charcoal gutters and downpipes, finished home",
+    caption: "Charcoal seamless gutters and downpipes, finished home",
     video: true,
   },
   {
     slot: "charcoal-gutters-garage-frontage",
     category: "Gutters",
-    caption: "Charcoal gutter above a double garage",
+    caption: "Charcoal seamless gutter above a double garage",
   },
   {
     slot: "charcoal-gutters-downpipes-pillars",
     category: "Gutters",
-    caption: "Charcoal downpipe beside charcoal pillars",
+    caption: "Charcoal seamless gutter and downpipe beside charcoal pillars",
   },
   {
     slot: "video-commercial-building",

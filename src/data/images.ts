@@ -78,7 +78,7 @@ const photos = [
     "seamless-gutters/charcoal-gutters-downpipes-pillars.webp",
     478,
     850,
-    "Charcoal gutter and downpipe beside charcoal pillars at a garage entrance",
+    "Charcoal seamless gutter and downpipe beside charcoal pillars at a garage entrance",
   ),
   img(
     "gutters-downpipes-home-with-fence",
