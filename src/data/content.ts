@@ -790,6 +790,32 @@ export const home = {
     title: "Everything else your roofline needs.",
     text: "Seamless gutters come first. We also install box gutters and rainwater harvesting systems, repair and clean existing gutters, and supply the products that complete the look.",
   },
+  // Waterproofing and roof painting get their own home page section, linking to their pages.
+  roofCare: {
+    head: {
+      eyebrow: "Roof protection",
+      title: "Waterproofing and roof painting.",
+      text: "Leaking flat roof or faded roof tiles? We seal roofs with torch-on waterproofing and rubberiser, and repaint tiled roofs, metal sheet roofs and walls.",
+    },
+    items: [
+      {
+        slug: "waterproofing",
+        video: "video-waterproofing-flat-roof",
+        label: "Torch-on waterproofing",
+        points: [
+          "Torch-on membrane for flat roofs",
+          "Rubberiser for edges and joints",
+          "Parapets, balconies and box gutters",
+        ],
+      },
+      {
+        slug: "roof-wall-painting",
+        video: "video-roof-painting",
+        label: "Roof & wall painting",
+        points: ["Tiled roofs", "Metal sheet roofs", "Exterior walls"],
+      },
+    ],
+  },
   mosaicHead: {
     eyebrow: "Recent projects",
     title: "Real homes. Real finishes.",

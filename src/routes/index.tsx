@@ -248,6 +248,38 @@ function Home() {
         </div>
       </section>
 
+      <section className="section section-soft roof-care">
+        <div className="container">
+          <Reveal>
+            <SectionHead {...home.roofCare.head} />
+          </Reveal>
+          <div className="roof-care-grid">
+            {home.roofCare.items.map((item, i) => {
+              const s = services.find((x) => x.slug === item.slug)!;
+              return (
+                <Reveal key={item.slug} delay={i * 120} className="roof-care-card">
+                  <Reel slot={item.video} label={item.label} />
+                  <div>
+                    <h3>{s.title}</h3>
+                    <p>{s.short}</p>
+                    <ul className="check-list">
+                      {item.points.map((x) => (
+                        <li key={x}>{x}</li>
+                      ))}
+                    </ul>
+                    <Button asChild variant="brand">
+                      <Link to="/services/$slug" params={{ slug: s.slug }}>
+                        {s.title} <ArrowUpRight />
+                      </Link>
+                    </Button>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       <section className="section">
         <div className="container">
           <Reveal>
