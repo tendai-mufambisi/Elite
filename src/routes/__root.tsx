@@ -70,6 +70,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon-48.png", type: "image/png", sizes: "48x48" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
+      // The page loader shows this logo first, so fetch it ahead of everything else.
+      {
+        rel: "preload",
+        as: "image",
+        href: "/images/brand/logo-full.webp",
+        type: "image/webp",
+        fetchPriority: "high",
+      },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {

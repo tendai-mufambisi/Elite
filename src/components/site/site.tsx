@@ -23,7 +23,12 @@ import {
 import { GutterProfileDrawing } from "@/components/site/illustrations";
 import { Reveal } from "@/components/site/Reveal";
 import { getImage, getVideo } from "@/data/images";
-import { ParallaxDriver, RouteProgress, WhatsAppWidget } from "@/components/site/motion";
+import {
+  PageLoader,
+  ParallaxDriver,
+  RouteProgress,
+  WhatsAppWidget,
+} from "@/components/site/motion";
 
 export function Media({
   slot,
@@ -301,6 +306,7 @@ export function Footer() {
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <>
+      <PageLoader />
       <RouteProgress />
       <Header />
       <main id="main" tabIndex={-1}>

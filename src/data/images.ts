@@ -250,6 +250,14 @@ export const images: ImageSlot[] = [
     width: 256,
     height: 256,
   },
+  // Full logo with the company name, shown on the page loader.
+  {
+    slot: "logo-full",
+    src: "/images/brand/logo-full.webp",
+    alt: "Elite Gutters and Aluminium Products",
+    width: 480,
+    height: 480,
+  },
   ...photos,
   ...illustrations,
   ...Object.entries(aliases).map(([slot, target]) => ({

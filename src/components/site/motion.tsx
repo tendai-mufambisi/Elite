@@ -68,6 +68,41 @@ export function ParallaxDriver() {
   return null;
 }
 
+/**
+ * Full-screen logo shown on the first visit until the page has loaded, then faded away.
+ * Rendered on the server so it appears instantly; route changes never show it again.
+ * A CSS fallback hides it after a few seconds even if scripts fail.
+ */
+export function PageLoader() {
+  const [done, setDone] = useState(false);
+  const [gone, setGone] = useState(false);
+  useEffect(() => {
+    let hide = 0;
+    // Keep the logo up long enough to register, but never hold the page back.
+    const finish = () => (hide = window.setTimeout(() => setDone(true), 450));
+    if (document.readyState === "complete") finish();
+    else window.addEventListener("load", finish, { once: true });
+    const cap = window.setTimeout(() => setDone(true), 3500);
+    return () => {
+      window.removeEventListener("load", finish);
+      window.clearTimeout(hide);
+      window.clearTimeout(cap);
+    };
+  }, []);
+  if (gone) return null;
+  const logo = getImage("logo-full");
+  return (
+    <div
+      className={`page-loader ${done ? "is-done" : ""}`}
+      aria-hidden="true"
+      onTransitionEnd={() => done && setGone(true)}
+    >
+      <img src={logo.src} alt="" width={logo.width} height={logo.height} decoding="sync" />
+      <span className="page-loader-bar" />
+    </div>
+  );
+}
+
 /** Thin bar across the top while the router is loading the next page. */
 export function RouteProgress() {
   // Driven by navigation events (client only), so the server and first client render agree.
