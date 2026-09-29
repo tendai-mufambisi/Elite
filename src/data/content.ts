@@ -377,10 +377,8 @@ export const services = [
       "Frames matched to your fascia and gutters",
     ],
     finishes: ["Bronze", "Charcoal", "Black", "Silver"],
-    image: "folding-doors-gazebo",
+    image: "aluminium-windows-glass-balustrades",
     gallery: [
-      "folding-doors-gazebo",
-      "folding-doors-interior",
       "aluminium-windows-glass-balustrades",
       "aluminium-commercial-complex",
       "aluminium-new-build",
@@ -1141,16 +1139,6 @@ export const projects: {
     slot: "aluminium-windows-glass-balustrades",
     category: "Balustrades",
     caption: "Glass balustrades and aluminium windows",
-  },
-  {
-    slot: "folding-doors-gazebo",
-    category: "Aluminium Doors & Windows",
-    caption: "Aluminium folding doors on a thatched gazebo",
-  },
-  {
-    slot: "folding-doors-interior",
-    category: "Aluminium Doors & Windows",
-    caption: "Five-panel aluminium folding doors",
   },
   {
     slot: "aluminium-commercial-complex",

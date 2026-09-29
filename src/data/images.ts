@@ -179,20 +179,6 @@ const photos = [
     "New double-storey build with aluminium windows and folding doors fitted",
   ),
   img(
-    "folding-doors-gazebo",
-    "folding-doors/aluminium-folding-doors-thatched-gazebo.webp",
-    1600,
-    655,
-    "Aluminium folding doors being installed around a thatched gazebo",
-  ),
-  img(
-    "folding-doors-interior",
-    "folding-doors/aluminium-folding-doors-interior.webp",
-    714,
-    1600,
-    "Five-panel aluminium folding doors inside a living area",
-  ),
-  img(
     "garage-three-charcoal-glass",
     "garage-doors/three-charcoal-aluminium-glass-garage-doors.webp",
     1600,
