@@ -89,6 +89,25 @@ function ServicePage() {
         </div>
       </section>
 
+      {"methods" in s && (
+        <section className="section">
+          <div className="container">
+            <Reveal>
+              <SectionHead eyebrow={s.methods.eyebrow} title={s.methods.title} />
+            </Reveal>
+            <div className="benefits-grid">
+              {s.methods.items.map((m, i) => (
+                <article className="benefit" key={m.title}>
+                  <span className="num">{String(i + 1).padStart(2, "0")}</span>
+                  <h3>{m.title}</h3>
+                  <p>{m.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {s.gallery.length > 0 && (
         <section className="section section-soft">
           <div className="container">
@@ -118,9 +137,13 @@ function ServicePage() {
           <div className="container">
             <Reveal>
               <SectionHead
-                eyebrow="Project videos"
-                title="Watch our seamless gutters go up."
-                text="Real installations filmed on site by our team."
+                {...("reelsHead" in s
+                  ? s.reelsHead
+                  : {
+                      eyebrow: "Project videos",
+                      title: "Watch our seamless gutters go up.",
+                      text: "Real installations filmed on site by our team.",
+                    })}
               />
             </Reveal>
             <div className="reels">

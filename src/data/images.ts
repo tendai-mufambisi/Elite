@@ -199,6 +199,91 @@ const photos = [
     1040,
     "Charcoal aluminium windows with retractable burglar proofing fitted behind the glass on a face-brick home",
   ),
+  // Stills taken from the client's waterproofing and roof painting videos.
+  img(
+    "waterproofing-flat-roof-parapet",
+    "waterproofing/torch-on-waterproofing-flat-roof-parapet.webp",
+    478,
+    850,
+    "Flat roof and parapet step sealed with torch-on waterproofing, beside a timber deck",
+  ),
+  img(
+    "waterproofing-banner",
+    "waterproofing/torch-on-waterproofing-flat-roof-banner.webp",
+    478,
+    208,
+    "Flat roof and parapet sealed with torch-on waterproofing",
+  ),
+  img(
+    "roof-painting-banner",
+    "roof-painting/painted-tile-roof-banner.webp",
+    478,
+    208,
+    "Freshly painted grey roof tiles below a painted gable",
+  ),
+  img(
+    "waterproofing-flat-roof-finished",
+    "waterproofing/torch-on-waterproofing-flat-roof-finished.webp",
+    478,
+    850,
+    "Flat concrete roof finished with torch-on waterproofing, beside a double-storey home",
+  ),
+  img(
+    "waterproofing-roof-edges",
+    "waterproofing/torch-on-waterproofing-roof-edges.webp",
+    478,
+    850,
+    "Torch-on waterproofing taken up and over the parapet edges of a flat roof",
+  ),
+  img(
+    "waterproofing-team-on-roof",
+    "waterproofing/waterproofing-team-on-roof.webp",
+    478,
+    850,
+    "Waterproofing team member working on a roof with solar panels, above newly waterproofed parapets",
+  ),
+  img(
+    "waterproofing-membrane-rolls",
+    "waterproofing/torch-on-membrane-rolls-delivered.webp",
+    478,
+    850,
+    "Rolls of torch-on waterproofing membrane being offloaded from a bakkie on site",
+  ),
+  img(
+    "roof-painting-tile-roof",
+    "roof-painting/painted-tile-roof-grey.webp",
+    478,
+    850,
+    "Concrete tiled roof freshly painted grey, with painted gable and ridge",
+  ),
+  img(
+    "roof-painting-tiles-close-up",
+    "roof-painting/painted-roof-tiles-close-up.webp",
+    478,
+    850,
+    "Close-up of freshly painted grey concrete roof tiles and ridge capping",
+  ),
+  img(
+    "roof-painting-ridge",
+    "roof-painting/painted-tile-roof-ridge.webp",
+    478,
+    850,
+    "Painted grey tiled roof along the ridge line",
+  ),
+  img(
+    "roof-painting-metal-sheet",
+    "roof-painting/painted-metal-sheet-roof.webp",
+    478,
+    850,
+    "Metal sheet roof freshly painted grey",
+  ),
+  img(
+    "roof-painting-metal-roof-house",
+    "roof-painting/painted-metal-roof-and-house.webp",
+    478,
+    850,
+    "Painted grey metal sheet roof on a house, with a gutter along the edge",
+  ),
   // Sample picture until the client supplies a real photo of the founder.
   img(
     "founder",
@@ -372,6 +457,21 @@ export const videoSlots: VideoSlotData[] = [
     "Walk-around of a yellow home with bronze fascia boards and downpipes and galvanised gutters",
     476,
     848,
+  ),
+  video(
+    "video-waterproofing-flat-roof",
+    "torch-on-waterproofing-flat-roof",
+    "Flat roof and parapets sealed with torch-on waterproofing",
+  ),
+  video(
+    "video-waterproofing-membrane",
+    "torch-on-membrane-delivery",
+    "Torch-on membrane rolls delivered and carried to site",
+  ),
+  video(
+    "video-roof-painting",
+    "roof-painting-walkaround",
+    "Walk across freshly painted tiled and metal sheet roofs",
   ),
 ];
 
