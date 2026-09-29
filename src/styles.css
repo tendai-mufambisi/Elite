@@ -523,7 +523,8 @@
 .feature-images figure.feature-full:hover img {
   transform: none;
 }
-.feature-images .feature-full figcaption {
+/* Long captions (the client's product descriptions) wrap inside the card. */
+.feature-images figcaption {
   right: 16px;
   width: fit-content;
   line-height: 1.5;

@@ -106,7 +106,7 @@ const photos = [
     "seamless-gutters/stainless-steel-gutters-fascia-pillar-cladding-charcoal-garage-doors.webp",
     1280,
     576,
-    "Yellow single-storey home with stainless steel fascia, stainless steel pillar cladding and three charcoal aluminium glass garage doors",
+    "Yellow single-storey home with stainless steel fascia boards and downpipes, galvanised gutters, stainless steel pillar cladding and three charcoal aluminium glass garage doors",
   ),
   img(
     "gutters-charcoal-fascia-double-storey",
@@ -127,7 +127,7 @@ const photos = [
     "pillar-cladding/stainless-steel-fascia-pillar-cladding-two-garage-doors.webp",
     1600,
     714,
-    "Home with stainless steel fascia boards and gutters, stainless steel pillar coverings and two single aluminium garage doors",
+    "Home with stainless steel fascia boards and downpipes, galvanised gutters, stainless steel pillar coverings and two single aluminium garage doors",
   ),
   img(
     "pillar-stainless-veranda",
@@ -338,7 +338,7 @@ export const videoSlots: VideoSlotData[] = [
   video(
     "project-video-gutters",
     "gutters-aluminium-gate-walkthrough",
-    "Walk-around of a home with new gutters, downpipes and an aluminium sliding gate",
+    "Walk-around of a yellow home with bronze fascia boards and downpipes and galvanised gutters",
     476,
     848,
   ),

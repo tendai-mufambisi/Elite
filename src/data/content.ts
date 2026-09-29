@@ -576,7 +576,10 @@ export const home = {
         full: true,
       },
       { slot: "matched-charcoal-01", label: "Charcoal" },
-      { slot: "matched-stainless-01", label: "Stainless steel" },
+      {
+        slot: "matched-stainless-01",
+        label: "Stainless steel fascia boards and downpipes, galvanised gutters",
+      },
     ],
   },
   servicesHead: {
@@ -1082,12 +1085,6 @@ export const projects: {
     video: true,
   },
   {
-    slot: "project-video-gutters",
-    category: "Gutters",
-    caption: "New gutters, downpipes and sliding gate",
-    video: true,
-  },
-  {
     slot: "gutters-charcoal-fascia-double-storey",
     category: "Gutters",
     caption: "Charcoal gutters and fascia with charcoal folding doors",
@@ -1096,17 +1093,25 @@ export const projects: {
   {
     slot: "pillar-stainless-fascia-two-garage-doors",
     category: "Fascia",
-    caption: "Stainless steel fascia boards and gutters",
+    caption:
+      "Stainless steel fascia boards and downpipes, galvanised gutters, aluminium garage doors",
   },
   {
     slot: "pillar-yellow-house-garage-doors",
     category: "Fascia",
-    caption: "Stainless steel fascia boards with pillar cladding",
+    caption:
+      "Stainless steel fascia boards and downpipes, galvanised gutters, aluminium garage doors",
   },
   {
     slot: "fascia-bronze-double-storey",
     category: "Fascia",
     caption: "Bronze fascia boards and downpipes, galvanised gutters",
+  },
+  {
+    slot: "project-video-gutters",
+    category: "Fascia",
+    caption: "Bronze fascia boards and downpipes, galvanised gutters",
+    video: true,
   },
   // Pillar Cladding
   {
