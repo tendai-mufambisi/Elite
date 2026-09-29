@@ -228,6 +228,17 @@ const illustrations: ImageSlot[] = [
     ),
     illustrative: true,
   },
+  // Supplied by the client as an example look; not one of their own jobs.
+  {
+    ...img(
+      "gutter-downpipe-example",
+      "illustrations/black-seamless-gutter-downpipe-example.webp",
+      328,
+      491,
+      "Example of a black seamless gutter with a matching black downpipe at the corner of a brick home",
+    ),
+    illustrative: true,
+  },
 ];
 
 // Named page slots that reuse a project photo.

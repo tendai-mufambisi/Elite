@@ -75,9 +75,12 @@ export const services = [
       "Low maintenance, with fewer joints to check",
     ],
     finishes: ["Stainless steel", "Charcoal", "Bronze", "Black", "Colour-coated steel"],
-    image: "charcoal-seamless-gutters-double-storey",
-    banner: "commercial-building-gutters-downpipes",
+    // The colour sample board leads, so visitors see the colour choice straight away.
+    image: "colour-range-chart",
+    banner: "colour-range-chart",
     gallery: [
+      "colour-range-chart",
+      "charcoal-seamless-gutters-double-storey",
       "charcoal-seamless-gutters-downpipes-single-storey",
       "seamless-gutter-installation-on-site",
       "charcoal-gutters-corner-downpipes",
@@ -87,7 +90,6 @@ export const services = [
       "gutters-downpipes-home-with-fence",
       "commercial-building-gutters-downpipes",
       "gutters-charcoal-fascia-double-storey",
-      "colour-range-chart",
     ],
     reels: gutterReels,
     faqs: [
@@ -536,7 +538,7 @@ export const home = {
       "Rust-free stainless steel or colour-coated steel",
       "Downpipes and fascia boards finished to match",
     ],
-    slot: "charcoal-seamless-gutters-garage-pillars",
+    slot: "gutter-downpipe-example",
   },
   // Bullet summary on the home page, linking to /benefits-of-seamless-gutters.
   benefitBullets: {
