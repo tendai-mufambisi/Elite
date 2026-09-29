@@ -468,24 +468,33 @@ export const services = [
   {
     slug: "burglar-proofing",
     title: "Burglar Proofing",
-    metaTitle: "Glass & Aluminium Burglar Proofing",
+    metaTitle: "Retractable, Glass & Aluminium Burglar Proofing",
     short: "Security without compromise.",
     intro:
-      "Glass and aluminium burglar proofing that keeps your home secure without spoiling the view. A modern alternative to traditional bars, finished to suit your windows and doors.",
+      "Retractable, glass and aluminium burglar proofing that keeps your home secure without spoiling the view. Retractable burglar proofing folds away to the side when you want the opening clear, and closes across windows and doors when you need it. Finished to suit your frames.",
     benefits: [
+      "Retractable burglar proofing that folds away to the side",
       "Security with a modern look",
       "Glass and aluminium options",
       "Keeps natural light and views",
       "Finished to match your window frames",
     ],
     finishes: ["Clear glass", "Aluminium", "Charcoal", "Bronze"],
-    image: undefined,
+    image: "burglar-proofing-folding-doors",
     drawing: "window-guard",
-    gallery: [],
+    gallery: ["burglar-proofing-folding-doors", "burglar-proofing-windows"],
+    photoLabels: {
+      "burglar-proofing-folding-doors": "Retractable burglar proofing",
+      "burglar-proofing-windows": "Retractable burglar proofing",
+    },
     faqs: [
       [
         "What materials do you use?",
-        "We offer glass and aluminium burglar proofing, designed to be secure and good-looking.",
+        "We offer retractable, glass and aluminium burglar proofing, designed to be secure and good-looking.",
+      ],
+      [
+        "Do you do retractable burglar proofing?",
+        "Yes. Retractable burglar proofing closes across windows, doors and wide openings, and folds away to the side when you want it open.",
       ],
       [
         "Will it suit a modern home?",
@@ -1035,6 +1044,7 @@ export const projectCategories = [
   "Balustrades",
   "Aluminium Doors & Windows",
   "Garage Doors",
+  "Burglar Proofing",
 ] as const;
 export type ProjectCategory = Exclude<(typeof projectCategories)[number], "All">;
 
@@ -1222,6 +1232,17 @@ export const projects: {
     category: "Garage Doors",
     caption: "Aluminium glass garage doors and stainless steel pillar cladding",
     video: true,
+  },
+  // Burglar Proofing
+  {
+    slot: "burglar-proofing-folding-doors",
+    category: "Burglar Proofing",
+    caption: "Bronze retractable burglar proofing",
+  },
+  {
+    slot: "burglar-proofing-windows",
+    category: "Burglar Proofing",
+    caption: "Retractable burglar proofing behind charcoal windows",
   },
 ];
 

@@ -185,6 +185,20 @@ const photos = [
     576,
     "Two arched aluminium and glass garage doors with a matching aluminium sliding gate",
   ),
+  img(
+    "burglar-proofing-folding-doors",
+    "burglar-proofing/bronze-retractable-burglar-proofing-folding-doors.webp",
+    780,
+    1040,
+    "Bronze retractable burglar proofing closed across a wide opening beside an open aluminium folding door",
+  ),
+  img(
+    "burglar-proofing-windows",
+    "burglar-proofing/charcoal-retractable-burglar-proofing-windows.webp",
+    780,
+    1040,
+    "Charcoal aluminium windows with retractable burglar proofing fitted behind the glass on a face-brick home",
+  ),
   // Sample picture until the client supplies a real photo of the founder.
   img(
     "founder",
