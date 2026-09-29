@@ -25,6 +25,13 @@ const img = (slot: string, src: string, width: number, height: number, alt: stri
 const photos = [
   // Stills taken from the client's seamless gutter project videos.
   img(
+    "charcoal-seamless-gutters-garage-pillars",
+    "seamless-gutters/charcoal-seamless-gutters-garage-pillars.webp",
+    569,
+    744,
+    "Charcoal seamless gutter along a tiled roofline with a matching downpipe beside charcoal pillars at a garage",
+  ),
+  img(
     "charcoal-seamless-gutters-double-storey",
     "seamless-gutters/charcoal-seamless-gutters-double-storey.webp",
     1080,

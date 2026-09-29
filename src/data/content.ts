@@ -535,7 +535,7 @@ export const home = {
       "Rust-free stainless steel or colour-coated steel",
       "Downpipes and fascia boards finished to match",
     ],
-    slot: "charcoal-seamless-gutters-double-storey",
+    slot: "charcoal-seamless-gutters-garage-pillars",
   },
   // Bullet summary on the home page, linking to /benefits-of-seamless-gutters.
   benefitBullets: {
