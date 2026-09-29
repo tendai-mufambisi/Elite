@@ -292,7 +292,11 @@ function Home() {
                 <Link className="service-card" to="/services/$slug" params={{ slug: s.slug }}>
                   {s.image ? (
                     // The card's own photo first, then the rest of that service's gallery.
-                    <CardSlider slots={[...new Set([s.image, ...s.gallery])]} delay={i * 700} />
+                    <CardSlider
+                      slots={[...new Set([s.image, ...s.gallery])]}
+                      labels={"photoLabels" in s ? s.photoLabels : undefined}
+                      delay={i * 700}
+                    />
                   ) : (
                     "drawing" in s && <ServiceDrawing kind={s.drawing} className="card-drawing" />
                   )}

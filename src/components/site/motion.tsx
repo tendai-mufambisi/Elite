@@ -179,10 +179,13 @@ export function CardSlider({
   slots,
   delay = 0,
   interval = 4200,
+  labels,
 }: {
   slots: readonly string[];
   delay?: number;
   interval?: number;
+  /** Optional finish name per slot, shown on its photo. */
+  labels?: Readonly<Record<string, string>> | undefined;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
@@ -255,6 +258,11 @@ export function CardSlider({
                 loading="lazy"
                 decoding="async"
               />
+              {labels?.[slot] && (
+                <span className="card-slide-label" aria-hidden={i === 0 ? undefined : true}>
+                  {labels[slot]}
+                </span>
+              )}
             </div>
           );
         })}

@@ -165,7 +165,16 @@ export const services = [
       "pillar-yellow-house-garage-doors",
       "fascia-bronze-double-storey",
       "balustrade-stainless-balconies",
+      "gutters-charcoal-fascia-double-storey",
     ],
+    // Finish names shown on each photo as the home page card slides through them.
+    photoLabels: {
+      "pillar-stainless-fascia-two-garage-doors": "Stainless steel fascia boards",
+      "pillar-yellow-house-garage-doors": "Stainless steel fascia boards",
+      "fascia-bronze-double-storey": "Bronze fascia boards",
+      "balustrade-stainless-balconies": "Bronze fascia boards",
+      "gutters-charcoal-fascia-double-storey": "Charcoal fascia boards",
+    },
     faqs: [
       [
         "Can fascia boards match my gutters?",
@@ -309,6 +318,12 @@ export const services = [
       "pillar-stainless-fascia-two-garage-doors",
       "pillar-yellow-house-garage-doors",
     ],
+    photoLabels: {
+      "pillar-stainless-veranda": "Stainless steel pillar cladding",
+      "balustrade-stainless-pillar-covering": "Stainless steel pillar covering",
+      "pillar-stainless-fascia-two-garage-doors": "Stainless steel pillar cladding",
+      "pillar-yellow-house-garage-doors": "Stainless steel pillar cladding",
+    },
     faqs: [
       [
         "What is pillar cladding?",
@@ -345,6 +360,11 @@ export const services = [
       "balustrade-glass-staircase",
       "balustrade-tinted-glass-commercial",
     ],
+    photoLabels: {
+      "balustrade-glass-staircase": "Frameless glass balustrade",
+      "balustrade-stainless-pillar-covering": "Stainless steel balustrades",
+      "balustrade-tinted-glass-commercial": "Tinted glass balustrades",
+    },
     faqs: [
       [
         "Where can balustrades be installed?",
@@ -384,6 +404,11 @@ export const services = [
       "aluminium-commercial-complex",
       "aluminium-new-build",
     ],
+    photoLabels: {
+      "aluminium-windows-glass-balustrades": "Aluminium windows",
+      "aluminium-commercial-complex": "Aluminium windows, office complex",
+      "aluminium-new-build": "Aluminium windows and doors",
+    },
     faqs: [
       [
         "Do you install aluminium folding doors?",
@@ -420,6 +445,12 @@ export const services = [
       "pillar-stainless-fascia-two-garage-doors",
       "pillar-yellow-house-garage-doors",
     ],
+    photoLabels: {
+      "garage-three-charcoal-glass": "Charcoal aluminium garage doors",
+      "garage-arched-glass-gate": "Arched glass garage doors",
+      "pillar-stainless-fascia-two-garage-doors": "Aluminium garage doors",
+      "pillar-yellow-house-garage-doors": "Aluminium garage doors",
+    },
     video: "garage-doors-video",
     faqs: [
       [
