@@ -76,7 +76,7 @@ export const services = [
     ],
     finishes: ["Stainless steel", "Charcoal", "Bronze", "Black", "Colour-coated steel"],
     image: "charcoal-seamless-gutters-double-storey",
-    banner: "fascia-bronze-double-storey",
+    banner: "commercial-building-gutters-downpipes",
     gallery: [
       "charcoal-seamless-gutters-downpipes-single-storey",
       "seamless-gutter-installation-on-site",
@@ -85,8 +85,7 @@ export const services = [
       "charcoal-gutters-downpipes-pillars",
       "charcoal-downpipe-double-storey",
       "gutters-downpipes-home-with-fence",
-      "fascia-bronze-double-storey",
-      "pillar-stainless-fascia-two-garage-doors",
+      "commercial-building-gutters-downpipes",
       "gutters-charcoal-fascia-double-storey",
       "colour-range-chart",
     ],
@@ -161,9 +160,8 @@ export const services = [
     image: "pillar-stainless-fascia-two-garage-doors",
     gallery: [
       "pillar-stainless-fascia-two-garage-doors",
-      "fascia-bronze-double-storey",
       "pillar-yellow-house-garage-doors",
-      "gutters-charcoal-fascia-double-storey",
+      "fascia-bronze-double-storey",
     ],
     faqs: [
       [
@@ -340,9 +338,8 @@ export const services = [
     gallery: [
       "balustrade-glass-staircase",
       "balustrade-tinted-glass-commercial",
+      "commercial-glass-balustrade-aluminium-windows",
       "balustrade-stainless-balconies",
-      "aluminium-windows-glass-balustrades",
-      "fascia-bronze-double-storey",
     ],
     faqs: [
       [
@@ -382,7 +379,6 @@ export const services = [
       "aluminium-windows-glass-balustrades",
       "aluminium-commercial-complex",
       "aluminium-new-build",
-      "fascia-bronze-double-storey",
     ],
     faqs: [
       [
@@ -1008,6 +1004,7 @@ export const projects: {
   caption: string;
   video?: boolean;
 }[] = [
+  // Gutters
   {
     slot: "video-gutters-double-storey",
     category: "Gutters",
@@ -1084,11 +1081,6 @@ export const projects: {
     caption: "Gutters and downpipes, finished home",
   },
   {
-    slot: "pillar-yellow-house-garage-doors",
-    category: "Pillar Cladding",
-    caption: "Stainless fascia, pillar cladding and charcoal garage doors",
-  },
-  {
     slot: "project-video-charcoal",
     category: "Gutters",
     caption: "Charcoal gutters and fascia boards",
@@ -1101,20 +1093,33 @@ export const projects: {
     video: true,
   },
   {
+    slot: "gutters-charcoal-fascia-double-storey",
+    category: "Gutters",
+    caption: "Charcoal gutters and fascia with charcoal folding doors",
+  },
+  // Fascia
+  {
     slot: "pillar-stainless-fascia-two-garage-doors",
     category: "Fascia",
     caption: "Stainless steel fascia boards and gutters",
   },
   {
-    slot: "gutters-charcoal-fascia-double-storey",
-    category: "Gutters",
-    caption: "Charcoal gutters and fascia with charcoal folding doors",
+    slot: "pillar-yellow-house-garage-doors",
+    category: "Fascia",
+    caption: "Stainless steel fascia boards with pillar cladding",
   },
+  {
+    slot: "fascia-bronze-double-storey",
+    category: "Fascia",
+    caption: "Bronze fascia boards and downpipes, galvanised gutters",
+  },
+  // Pillar Cladding
   {
     slot: "pillar-stainless-veranda",
     category: "Pillar Cladding",
     caption: "Stainless steel pillar cladding on a veranda",
   },
+  // Balustrades
   {
     slot: "balustrade-glass-staircase",
     category: "Balustrades",
@@ -1135,10 +1140,11 @@ export const projects: {
     category: "Balustrades",
     caption: "Stainless steel balcony balustrades",
   },
+  // Aluminium Doors & Windows
   {
     slot: "aluminium-windows-glass-balustrades",
-    category: "Balustrades",
-    caption: "Glass balustrades and aluminium windows",
+    category: "Aluminium Doors & Windows",
+    caption: "Aluminium windows and glass balustrades, double-storey",
   },
   {
     slot: "aluminium-commercial-complex",
@@ -1148,8 +1154,9 @@ export const projects: {
   {
     slot: "aluminium-new-build",
     category: "Aluminium Doors & Windows",
-    caption: "Aluminium windows and folding doors, new build",
+    caption: "Aluminium windows and doors, new build",
   },
+  // Garage Doors
   {
     slot: "garage-three-charcoal-glass",
     category: "Garage Doors",
