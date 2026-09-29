@@ -300,6 +300,7 @@ export const services = [
     finishes: ["Brushed stainless steel", "Polished stainless steel"],
     image: "pillar-stainless-veranda",
     banner: "pillar-stainless-fascia-two-garage-doors",
+    video: "video-pillar-cladding-garage-doors",
     gallery: [
       "pillar-stainless-veranda",
       "pillar-stainless-fascia-two-garage-doors",
@@ -1130,6 +1131,12 @@ export const projects: {
     category: "Pillar Cladding",
     caption: "Stainless steel pillar cladding on a veranda",
   },
+  {
+    slot: "video-pillar-cladding-garage-doors",
+    category: "Pillar Cladding",
+    caption: "Stainless steel pillar cladding and aluminium garage doors",
+    video: true,
+  },
   // Balustrades
   {
     slot: "balustrade-glass-staircase",
@@ -1172,6 +1179,12 @@ export const projects: {
     slot: "project-video-garage",
     category: "Garage Doors",
     caption: "Automated garage doors by remote control",
+    video: true,
+  },
+  {
+    slot: "video-pillar-cladding-garage-doors",
+    category: "Garage Doors",
+    caption: "Aluminium glass garage doors and stainless steel pillar cladding",
     video: true,
   },
 ];

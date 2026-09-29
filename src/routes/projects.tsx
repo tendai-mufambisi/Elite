@@ -78,7 +78,7 @@ function Projects() {
           </p>
           <ul className="project-grid">
             {visible.map((item, i) => (
-              <li key={item.slot}>
+              <li key={`${item.category}-${item.slot}`}>
                 <button
                   type="button"
                   className="project-item"

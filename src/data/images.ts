@@ -286,6 +286,11 @@ export const videoSlots: VideoSlotData[] = [
     960,
   ),
   video(
+    "video-pillar-cladding-garage-doors",
+    "stainless-pillar-cladding-aluminium-garage-doors",
+    "Yellow home with stainless steel pillar cladding and aluminium glass garage doors",
+  ),
+  video(
     "video-gutters-double-storey",
     "seamless-gutters-double-storey-installation",
     "Seamless gutters and downpipes being installed on a double-storey home",
