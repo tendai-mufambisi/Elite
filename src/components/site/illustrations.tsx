@@ -1,4 +1,4 @@
-// Simple line drawings (navy stroke). Deliberately no measurements or dimension labels.
+// Simple line drawings (navy stroke).
 
 const stroke = {
   fill: "none",
@@ -15,45 +15,93 @@ const water = {
   strokeLinecap: "round",
 } as const;
 
-// Ogee profiles traced from the client's profile sheet, drawn to the same scale so the
-// industrial gutter reads as the larger of the two. Shapes only: no sizes or labels.
-const ogeeProfiles = {
-  domestic: { width: 125, bottom: 85, back: 80, front: 85 },
-  industrial: { width: 155, bottom: 100, back: 100, front: 125 },
-};
+// Ogee gutter profiles traced from the client's profile sheet. One unit is one millimetre,
+// so the industrial gutter draws larger than the domestic one.
+export type OgeeSize = { width: number; bottom: number; back: number; front: number };
 
-function ogeePath({ width, bottom, back, front }: (typeof ogeeProfiles)["domestic"]) {
-  const x0 = 20;
-  const base = 150;
-  const top = base - front;
-  const sx = x0 + bottom; // where the flat bottom meets the front
-  const sy = base - front * 0.18; // small step up before the curve
-  const ex = x0 + width - 10; // curve ends just inside the lip
+const X0 = 38; // back wall of the gutter
+const BASE = 172; // gutter floor
+
+function ogeePath({ width, bottom, back, front }: OgeeSize) {
+  const top = BASE - front;
+  const sx = X0 + bottom; // where the flat bottom meets the front
+  const sy = BASE - front * 0.18; // small step up before the curve
+  const ex = X0 + width - 10; // curve ends just inside the lip
   const ey = top + 8;
   const dx = ex - sx;
   const dy = sy - ey;
   return [
-    `M${x0} ${base - back} V${base} H${sx} V${sy}`,
+    `M${X0} ${BASE - back} V${BASE} H${sx} V${sy}`,
     // convex lower bulge, then the concave upper sweep of the ogee
     `C${sx + 0.55 * dx} ${sy} ${sx + 0.62 * dx} ${sy - 0.25 * dy} ${sx + 0.55 * dx} ${sy - 0.5 * dy}`,
     `C${sx + 0.48 * dx} ${sy - 0.75 * dy} ${sx + 0.55 * dx} ${ey} ${ex} ${ey}`,
     // rolled lip on the front edge
-    `V${top} H${x0 + width} V${top + 9} H${x0 + width - 5}`,
+    `V${top} H${X0 + width} V${top + 9} H${X0 + width - 5}`,
   ].join(" ");
 }
 
-export function GutterProfileDrawing({ kind }: { kind: "domestic" | "industrial" }) {
-  const profile = ogeeProfiles[kind];
-  const waterY = 150 - profile.back * 0.35;
+const dim = {
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: 1,
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+  opacity: 0.6,
+} as const;
+
+/** A dimension line with arrowheads at both ends and its size in millimetres. */
+function Dimension({
+  x1,
+  y1,
+  x2,
+  y2,
+  mm,
+}: {
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  mm: number;
+}) {
+  const vertical = x1 === x2;
+  const head = 4;
+  const arrows = vertical
+    ? `M${x1 - head / 2} ${y1 + head} L${x1} ${y1} L${x1 + head / 2} ${y1 + head} M${x2 - head / 2} ${y2 - head} L${x2} ${y2} L${x2 + head / 2} ${y2 - head}`
+    : `M${x1 + head} ${y1 - head / 2} L${x1} ${y1} L${x1 + head} ${y1 + head / 2} M${x2 - head} ${y2 - head / 2} L${x2} ${y2} L${x2 - head} ${y2 + head / 2}`;
+  const cx = (x1 + x2) / 2;
+  const cy = (y1 + y2) / 2;
+  return (
+    <g>
+      <path d={`M${x1} ${y1} L${x2} ${y2} ${arrows}`} {...dim} />
+      <text
+        x={vertical ? cx - 6 : cx}
+        y={vertical ? cy : cy - 5}
+        transform={vertical ? `rotate(-90 ${cx - 6} ${cy})` : undefined}
+        textAnchor="middle"
+        className="profile-dim"
+      >
+        {mm}mm
+      </text>
+    </g>
+  );
+}
+
+export function GutterProfileDrawing({ kind, size }: { kind: string; size: OgeeSize }) {
+  const top = BASE - size.front;
+  const right = X0 + size.width;
   return (
     <svg
-      viewBox="0 0 190 162"
+      viewBox="0 0 240 204"
       role="img"
-      aria-label={`Line drawing of the ${kind} ogee gutter profile`}
+      aria-label={`Line drawing of the ${kind} ogee gutter profile: ${size.width}mm wide, ${size.bottom}mm across the bottom, ${size.back}mm at the back and ${size.front}mm at the front`}
       className="profile-drawing"
     >
-      <path d={ogeePath(profile)} {...stroke} />
-      <path d={`M26 ${waterY} H${20 + profile.bottom + 8}`} {...water} />
+      <path d={ogeePath(size)} {...stroke} />
+      <path d={`M${X0 + 6} ${BASE - size.back * 0.35} H${X0 + size.bottom + 8}`} {...water} />
+      <Dimension x1={X0} y1={top - 14} x2={right} y2={top - 14} mm={size.width} />
+      <Dimension x1={X0} y1={BASE + 16} x2={X0 + size.bottom} y2={BASE + 16} mm={size.bottom} />
+      <Dimension x1={22} y1={BASE - size.back} x2={22} y2={BASE} mm={size.back} />
+      <Dimension x1={right + 22} y1={top} x2={right + 22} y2={BASE} mm={size.front} />
     </svg>
   );
 }

@@ -464,7 +464,8 @@ export const services = [
 
 export type Service = (typeof services)[number];
 
-// Shown on /services/seamless-gutters (#gutter-profiles). No measurements anywhere on the site.
+// Shown on /services/seamless-gutters (#gutter-profiles). Sizes in millimetres, from the
+// client's ogee profile sheet: overall width, bottom width, back height and front height.
 export const gutterProfiles = {
   eyebrow: "Gutter profiles",
   title: "Domestic & Industrial Gutter Profiles",
@@ -473,6 +474,8 @@ export const gutterProfiles = {
       kind: "domestic",
       label: "Domestic",
       for: "Homes",
+      size: { width: 125, bottom: 85, back: 80, front: 85 },
+      downpipe: "75mm x 50mm (2″ x 3″)",
       points: [
         "Standard domestic profile, sized for residential roofs",
         "Ideal for: houses, townhouses, residential estates",
@@ -483,6 +486,8 @@ export const gutterProfiles = {
       kind: "industrial",
       label: "Industrial",
       for: "Commercial, Schools, Factories",
+      size: { width: 155, bottom: 100, back: 100, front: 125 },
+      downpipe: "100mm x 75mm (3″ x 4″)",
       points: [
         "Wider industrial profile for large roof areas",
         "Wider opening moves more water, faster - reduces overflow in heavy storms",

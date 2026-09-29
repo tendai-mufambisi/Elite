@@ -2128,6 +2128,26 @@ main:focus {
   font-size: clamp(30px, 3vw, 42px);
   margin: 0;
 }
+/* Millimetre labels on the profile drawings. */
+.profile-dim {
+  fill: currentColor;
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-weight: 600;
+}
+.profile-downpipe {
+  width: fit-content;
+  margin: 0 auto 22px;
+  padding: 10px 16px;
+  border: 2px solid var(--ink);
+  font-size: 14px;
+  text-align: center;
+  color: var(--ink);
+}
+/* Keep the size itself on one line; the label wraps above it on narrow screens. */
+.profile-downpipe strong {
+  white-space: nowrap;
+}
 .profile-card h3 small {
   font-family: var(--font-sans);
   font-size: 13px;

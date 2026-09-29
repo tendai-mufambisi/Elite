@@ -572,7 +572,10 @@ export function GutterProfiles() {
         <div className="profile-grid">
           {gutterProfiles.profiles.map((p) => (
             <article key={p.kind} className={`profile-card profile-${p.kind}`}>
-              <GutterProfileDrawing kind={p.kind} />
+              <GutterProfileDrawing kind={p.label.toLowerCase()} size={p.size} />
+              <p className="profile-downpipe">
+                Downpipe size: <strong>{p.downpipe}</strong>
+              </p>
               <h3>
                 {p.label} <small>({p.for})</small>
               </h3>
