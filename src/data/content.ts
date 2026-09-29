@@ -580,7 +580,12 @@ export const home = {
       "Stainless steel gutters + stainless steel fascia + stainless pillar cladding",
     ],
     slots: [
-      { slot: "matched-bronze-01", label: "Bronze" },
+      // Shown uncropped across the top, as the client asked.
+      {
+        slot: "matched-bronze-01",
+        label: "Bronze fascia boards and downpipes, galvanised gutters",
+        full: true,
+      },
       { slot: "matched-charcoal-01", label: "Charcoal" },
       { slot: "matched-stainless-01", label: "Stainless steel" },
     ],
@@ -596,9 +601,9 @@ export const home = {
     text: "Gutters, fascia and downpipes first, plus the balustrades, folding doors and garage doors we fit alongside them.",
   },
   mosaic: [
-    "fascia-bronze-double-storey",
     "charcoal-seamless-gutters-double-storey",
     "seamless-gutter-installation-on-site",
+    "charcoal-gutters-garage-frontage",
     "colour-range-chart",
     "gutters-charcoal-fascia-double-storey",
     "charcoal-gutters-corner-downpipes",
@@ -1096,11 +1101,6 @@ export const projects: {
     category: "Gutters",
     caption: "New gutters, downpipes and sliding gate",
     video: true,
-  },
-  {
-    slot: "fascia-bronze-double-storey",
-    category: "Fascia",
-    caption: "Bronze fascia and downpipes matched to bronze windows",
   },
   {
     slot: "pillar-stainless-fascia-two-garage-doors",

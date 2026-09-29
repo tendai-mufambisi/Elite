@@ -509,6 +509,25 @@
 .feature-images figure:first-child {
   grid-row: span 2;
 }
+/* A photo shown whole (never cropped) across the top row. */
+.feature-images figure.feature-full {
+  grid-column: span 2;
+  grid-row: auto;
+  background: var(--ink);
+}
+.feature-images .feature-full img {
+  position: absolute;
+  inset: 0;
+  object-fit: contain;
+}
+.feature-images figure.feature-full:hover img {
+  transform: none;
+}
+.feature-images .feature-full figcaption {
+  right: 16px;
+  width: fit-content;
+  line-height: 1.5;
+}
 .feature-images img {
   width: 100%;
   height: 100%;
@@ -3264,8 +3283,10 @@ a:hover > svg.lucide-arrow-up-right,
     scrollbar-width: none;
   }
   .feature-images figure,
-  .feature-images figure:first-child {
+  .feature-images figure:first-child,
+  .feature-images figure.feature-full {
     grid-row: auto;
+    grid-column: auto;
     scroll-snap-align: center;
   }
   .mosaic {

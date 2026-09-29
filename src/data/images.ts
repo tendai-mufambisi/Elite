@@ -120,7 +120,7 @@ const photos = [
     "fascia-boards/bronze-fascia-downpipes-aluminium-windows-double-storey.webp",
     1600,
     714,
-    "Double-storey home with bronze fascia boards and downpipes matched to bronze aluminium windows and a stainless steel balcony balustrade",
+    "Double-storey home with bronze fascia boards and downpipes, galvanised gutters, bronze aluminium windows and a stainless steel balcony balustrade",
   ),
   img(
     "pillar-stainless-fascia-two-garage-doors",

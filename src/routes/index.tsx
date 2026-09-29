@@ -233,11 +233,15 @@ function Home() {
         </div>
         <div className="feature-images">
           {home.matched.slots.map((m, i) => (
-            <figure key={m.slot}>
-              {/* Each photo drifts at its own speed. */}
-              <div className="feature-media" data-parallax={["0.12", "-0.08", "0.05"][i]}>
+            <figure key={m.slot} className={"full" in m ? "feature-full" : undefined}>
+              {"full" in m ? (
                 <Media slot={m.slot} />
-              </div>
+              ) : (
+                // Each cropped photo drifts at its own speed.
+                <div className="feature-media" data-parallax={["0.12", "-0.08", "0.05"][i]}>
+                  <Media slot={m.slot} />
+                </div>
+              )}
               <figcaption>{m.label}</figcaption>
             </figure>
           ))}
