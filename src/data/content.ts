@@ -819,13 +819,15 @@ export const home = {
     title: "Real homes. Real finishes.",
     text: "Gutters, fascia and downpipes first, plus the balustrades, folding doors and garage doors we fit alongside them.",
   },
+  // Order matters: slot 1 is the large tile, 2 and 3 are tall, 4 is wide,
+  // 5 and 6 are small. Match each photo's shape to its slot.
   mosaic: [
     "commercial-building-gutters-downpipes",
-    "charcoal-seamless-gutters-double-storey",
     "seamless-gutter-installation-on-site",
     "colour-range-chart",
-    "gutters-charcoal-fascia-double-storey",
     "garage-three-charcoal-glass",
+    "gutters-charcoal-fascia-double-storey",
+    "charcoal-seamless-gutters-double-storey",
   ],
   // Full-width photo bands that scroll slower than the page (parallax).
   bands: [

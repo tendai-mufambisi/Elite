@@ -2966,14 +2966,12 @@ a:hover > svg.lucide-arrow-up-right,
   grid-column: span 2;
   grid-row: span 2;
 }
-.mosaic-2 {
+.mosaic-2,
+.mosaic-3 {
   grid-row: span 2;
 }
-.mosaic-5 {
+.mosaic-4 {
   grid-column: span 2;
-}
-.mosaic-6 {
-  grid-row: span 2;
 }
 .mosaic-link {
   position: relative;
@@ -3322,7 +3320,7 @@ a:hover > svg.lucide-arrow-up-right,
     grid-template-columns: repeat(2, 1fr);
   }
   .mosaic-1,
-  .mosaic-5 {
+  .mosaic-4 {
     grid-column: span 2;
   }
 }
@@ -3498,17 +3496,12 @@ a:hover > svg.lucide-arrow-up-right,
   .mosaic-item,
   .mosaic-1,
   .mosaic-2,
-  .mosaic-5,
-  .mosaic-6 {
+  .mosaic-3,
+  .mosaic-4 {
     grid-column: auto;
     grid-row: auto;
   }
   .mosaic-link {
-    aspect-ratio: 4/3;
-  }
-  .mosaic-1 .mosaic-link,
-  .mosaic-2 .mosaic-link,
-  .mosaic-6 .mosaic-link {
     aspect-ratio: 4/5;
   }
   .mosaic-caption {
