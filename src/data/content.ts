@@ -82,7 +82,6 @@ export const services = [
       "colour-range-chart",
       "charcoal-seamless-gutters-double-storey",
       "seamless-gutter-installation-on-site",
-      "charcoal-gutters-corner-downpipes",
       "charcoal-gutters-downpipes-pillars",
       "gutters-downpipes-home-with-fence",
       "commercial-building-gutters-downpipes",
@@ -825,7 +824,6 @@ export const home = {
     "seamless-gutter-installation-on-site",
     "colour-range-chart",
     "gutters-charcoal-fascia-double-storey",
-    "charcoal-gutters-corner-downpipes",
     "commercial-building-gutters-downpipes",
     "garage-three-charcoal-glass",
   ],
@@ -1254,11 +1252,6 @@ export const projects: {
     slot: "seamless-gutter-installation-on-site",
     category: "Gutters",
     caption: "Fitting a seamless gutter on site",
-  },
-  {
-    slot: "charcoal-gutters-corner-downpipes",
-    category: "Gutters",
-    caption: "Corner run with paired downpipes",
   },
   {
     slot: "video-gutters-pillars",

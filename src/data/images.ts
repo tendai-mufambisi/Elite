@@ -46,13 +46,6 @@ const photos = [
     "Elite Gutters installer on a ladder fitting a charcoal seamless gutter to a home",
   ),
   img(
-    "charcoal-gutters-corner-downpipes",
-    "seamless-gutters/charcoal-gutters-corner-downpipes.webp",
-    478,
-    850,
-    "Charcoal seamless gutters meeting at a roof corner with a pair of matching downpipes",
-  ),
-  img(
     "charcoal-gutters-downpipes-pillars",
     "seamless-gutters/charcoal-gutters-downpipes-pillars.webp",
     478,
