@@ -820,11 +820,11 @@ export const home = {
     text: "Gutters, fascia and downpipes first, plus the balustrades, folding doors and garage doors we fit alongside them.",
   },
   mosaic: [
+    "commercial-building-gutters-downpipes",
     "charcoal-seamless-gutters-double-storey",
     "seamless-gutter-installation-on-site",
     "colour-range-chart",
     "gutters-charcoal-fascia-double-storey",
-    "commercial-building-gutters-downpipes",
     "garage-three-charcoal-glass",
   ],
   // Full-width photo bands that scroll slower than the page (parallax).

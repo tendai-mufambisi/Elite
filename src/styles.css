@@ -3506,6 +3506,7 @@ a:hover > svg.lucide-arrow-up-right,
   .mosaic-link {
     aspect-ratio: 4/3;
   }
+  .mosaic-1 .mosaic-link,
   .mosaic-2 .mosaic-link,
   .mosaic-6 .mosaic-link {
     aspect-ratio: 4/5;
