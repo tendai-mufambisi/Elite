@@ -39,13 +39,6 @@ const photos = [
     "Double-storey home with new charcoal seamless gutters along the roofline and a ladder set up for the installation",
   ),
   img(
-    "charcoal-seamless-gutters-downpipes-single-storey",
-    "seamless-gutters/charcoal-seamless-gutters-downpipes-single-storey.webp",
-    478,
-    850,
-    "Single-storey home with charcoal seamless gutters and matching charcoal downpipes",
-  ),
-  img(
     "seamless-gutter-installation-on-site",
     "seamless-gutters/seamless-gutter-installation-on-site.webp",
     478,

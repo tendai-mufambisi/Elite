@@ -81,7 +81,6 @@ export const services = [
     gallery: [
       "colour-range-chart",
       "charcoal-seamless-gutters-double-storey",
-      "charcoal-seamless-gutters-downpipes-single-storey",
       "seamless-gutter-installation-on-site",
       "charcoal-gutters-corner-downpipes",
       "charcoal-gutters-downpipes-pillars",
@@ -824,7 +823,6 @@ export const home = {
   mosaic: [
     "charcoal-seamless-gutters-double-storey",
     "seamless-gutter-installation-on-site",
-    "charcoal-seamless-gutters-downpipes-single-storey",
     "colour-range-chart",
     "gutters-charcoal-fascia-double-storey",
     "charcoal-gutters-corner-downpipes",
@@ -1251,11 +1249,6 @@ export const projects: {
     category: "Gutters",
     caption: "Charcoal seamless gutters fitted on site",
     video: true,
-  },
-  {
-    slot: "charcoal-seamless-gutters-downpipes-single-storey",
-    category: "Gutters",
-    caption: "Charcoal gutters and matching downpipes",
   },
   {
     slot: "seamless-gutter-installation-on-site",
