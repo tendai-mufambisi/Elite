@@ -8,7 +8,8 @@ import {
   SectionHead,
 } from "@/components/site/site";
 import { Reveal } from "@/components/site/Reveal";
-import { aboutPage as page } from "@/data/content";
+import { Stats } from "@/components/site/stats";
+import { aboutPage as page, stats } from "@/data/content";
 import { breadcrumb, pageHead } from "@/data/seo";
 
 export const Route = createFileRoute("/about")({
@@ -33,6 +34,7 @@ function About() {
             {page.story.paragraphs.map((p) => (
               <p key={p}>{p}</p>
             ))}
+            <Stats items={stats} />
           </div>
           <Media slot="about-01" />
         </div>

@@ -25,9 +25,21 @@ import {
   SectionHead,
 } from "@/components/site/site";
 import { ServiceDrawing } from "@/components/site/illustrations";
+import { CoverageMap } from "@/components/site/coverage";
 import { CardSlider, HeroVideo, Reel, TextRotator } from "@/components/site/motion";
 import { Reveal } from "@/components/site/Reveal";
-import { benefits, colours, home, projects, services, site } from "@/data/content";
+import { Stats } from "@/components/site/stats";
+import {
+  benefits,
+  colours,
+  coverage,
+  home,
+  projects,
+  services,
+  site,
+  stats,
+  whatsappLink,
+} from "@/data/content";
 import { getImage } from "@/data/images";
 import { pageHead } from "@/data/seo";
 
@@ -149,6 +161,38 @@ function Home() {
         </div>
       </section>
 
+      <section className="section lifespan" aria-labelledby="lifespan-title">
+        <div className="container">
+          <div className="lifespan-head">
+            <Reveal variant="left">
+              <Eyebrow>{home.lifespan.eyebrow}</Eyebrow>
+              <h2 id="lifespan-title">{home.lifespan.title}</h2>
+              <p>{home.lifespan.text}</p>
+            </Reveal>
+            <Reveal variant="right" className="lifespan-figure">
+              <span className="lifespan-num">{home.lifespan.years}</span>
+              <span className="lifespan-unit">
+                year
+                <br />
+                lifespan
+              </span>
+            </Reveal>
+          </div>
+          {/* A seamless gutter drawn as a timeline: one unbroken run from install to year 20. */}
+          <Reveal className="lifespan-track" variant="wipe">
+            <div className="lifespan-gutter" aria-hidden="true">
+              <span className="lifespan-water" />
+              <span className="lifespan-downpipe" />
+            </div>
+            <ol className="lifespan-marks">
+              {home.lifespan.marks.map((m) => (
+                <li key={m}>{m}</li>
+              ))}
+            </ol>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="section reels-section">
         <div className="container">
           <Reveal>
@@ -164,6 +208,30 @@ function Home() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="section section-soft workmanship" aria-labelledby="workmanship-title">
+        <div className="container workmanship-inner">
+          <Reveal variant="left" className="workmanship-copy">
+            <Eyebrow>{home.workmanship.eyebrow}</Eyebrow>
+            <h2 id="workmanship-title">{home.workmanship.title}</h2>
+            <p>{home.workmanship.text}</p>
+            <Stats items={stats} />
+          </Reveal>
+          <ol className="workmanship-points">
+            {home.workmanship.points.map((p, i) => (
+              <li key={p.title}>
+                <Reveal delay={(i % 2) * 90 + Math.floor(i / 2) * 60}>
+                  <span className="num" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3>{p.title}</h3>
+                  <p>{p.text}</p>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
         </div>
       </section>
 
@@ -318,35 +386,23 @@ function Home() {
 
       <FounderSection />
 
-      <section className="section section-soft roof-care">
-        <div className="container">
-          <Reveal>
-            <SectionHead {...home.roofCare.head} />
+      <section className="section coverage" aria-labelledby="coverage-title">
+        <div className="container coverage-inner">
+          <Reveal className="coverage-copy">
+            <Eyebrow>{coverage.eyebrow}</Eyebrow>
+            <h2 id="coverage-title">{coverage.title}</h2>
+            <p>{coverage.text}</p>
+            <Button asChild variant="brand" size="large">
+              <a
+                href={whatsappLink(coverage.whatsappText)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp your area <ArrowUpRight />
+              </a>
+            </Button>
           </Reveal>
-          <div className="roof-care-grid">
-            {home.roofCare.items.map((item, i) => {
-              const s = services.find((x) => x.slug === item.slug)!;
-              return (
-                <Reveal key={item.slug} delay={i * 120} className="roof-care-card">
-                  <Reel slot={item.video} label={item.label} />
-                  <div>
-                    <h3>{s.title}</h3>
-                    <p>{s.short}</p>
-                    <ul className="check-list">
-                      {item.points.map((x) => (
-                        <li key={x}>{x}</li>
-                      ))}
-                    </ul>
-                    <Button asChild variant="brand">
-                      <Link to="/services/$slug" params={{ slug: s.slug }}>
-                        {s.title} <ArrowUpRight />
-                      </Link>
-                    </Button>
-                  </div>
-                </Reveal>
-              );
-            })}
-          </div>
+          <CoverageMap provinces={coverage.provinces} />
         </div>
       </section>
 

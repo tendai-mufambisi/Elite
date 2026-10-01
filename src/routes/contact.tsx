@@ -46,6 +46,7 @@ function Contact() {
             <Eyebrow>{page.aside.eyebrow}</Eyebrow>
             <h2>{page.aside.title}</h2>
             <p>{page.aside.text}</p>
+            <p className="contact-areas">{page.aside.areas}</p>
             <div className="contact-method">
               <small>
                 <Phone size={13} aria-hidden="true" /> Call

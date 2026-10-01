@@ -1,4 +1,4 @@
-import { site, type Service } from "./content";
+import { coverage, site, type Service } from "./content";
 import { getImage } from "./images";
 
 const absolute = (path: string) => (path.startsWith("http") ? path : `${site.domain}${path}`);
@@ -49,6 +49,7 @@ export const businessSchema = {
   telephone: site.phone,
   email: site.email,
   sameAs: [site.facebook],
+  areaServed: coverage.provinces.map((name) => ({ "@type": "State", name })),
 };
 
 /** Crumbs after Home, e.g. breadcrumb(['Fascia Boards', '/services/fascia-boards']). */

@@ -2803,53 +2803,6 @@ a:hover > svg.lucide-arrow-up-right,
 .reels-section {
   background: radial-gradient(120% 80% at 50% 0%, oklch(0.97 0.004 260), var(--background));
 }
-/* Home page: waterproofing and roof painting, a video beside each service's points. */
-.roof-care-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(24px, 4vw, 56px);
-}
-.roof-care-card {
-  display: grid;
-  grid-template-columns: minmax(0, 210px) minmax(0, 1fr);
-  align-items: center;
-  gap: 28px;
-  padding: 24px;
-  background: var(--background);
-  border: 1px solid var(--border);
-}
-.roof-care-card .reel figcaption {
-  font-size: 15px;
-}
-.roof-care-card h3 {
-  font-size: 28px;
-  margin: 0 0 6px;
-}
-.roof-care-card p {
-  margin: 0;
-  color: var(--muted-foreground);
-}
-.roof-care-card .check-list {
-  margin: 14px 0 22px;
-}
-.roof-care-card .check-list li {
-  padding: 10px 0;
-}
-@media (max-width: 1100px) {
-  .roof-care-grid {
-    grid-template-columns: 1fr;
-  }
-}
-@media (max-width: 560px) {
-  .roof-care-card {
-    grid-template-columns: 1fr;
-    padding: 20px 16px;
-  }
-  .roof-care-card .reel {
-    width: min(240px, 100%);
-    margin: 0 auto;
-  }
-}
 .reels {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 320px));
@@ -4047,4 +4000,510 @@ h3 {
 .footer-grid h2 {
   text-transform: uppercase;
   -webkit-text-stroke: 0;
+}
+
+/* ============================================================
+   Service galleries with only one or two photos
+   ============================================================ */
+.gallery-grid:has(> :only-child) {
+  grid-template-columns: minmax(0, 560px);
+  justify-content: center;
+}
+.gallery-grid:has(> :nth-child(2):last-child) {
+  grid-template-columns: repeat(2, minmax(0, 480px));
+  justify-content: center;
+}
+.gallery-grid:has(> :only-child) img:first-child,
+.gallery-grid:has(> :nth-child(2):last-child) img {
+  grid-column: auto;
+  aspect-ratio: 4 / 5;
+}
+
+/* ============================================================
+   Headline figures (count up on scroll)
+   ============================================================ */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 36px 0 0;
+  border-top: 1px solid var(--border);
+}
+.stat {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 22px 18px 0 0;
+}
+.stat + .stat {
+  padding-left: 18px;
+  border-left: 1px solid var(--border);
+}
+.stat dd {
+  margin: 0;
+}
+.stat dt {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.stat-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(32px, 2.8vw, 44px);
+  line-height: 1;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.stat-suffix {
+  color: var(--accent);
+}
+
+/* ============================================================
+   Gutter lifespan: a seamless gutter drawn as a 20-year timeline
+   ============================================================ */
+.lifespan {
+  overflow: hidden;
+}
+.lifespan-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) auto;
+  align-items: end;
+  gap: 40px;
+}
+.lifespan-head h2 {
+  font-size: clamp(44px, 5.5vw, 82px);
+  margin: 16px 0 20px;
+  max-width: 760px;
+}
+.lifespan-head p {
+  max-width: 620px;
+  color: var(--muted-foreground);
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+}
+.lifespan-figure {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+/* Numeral half filled in red, like a gutter catching rain. */
+.lifespan-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(120px, 15vw, 230px);
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: transparent;
+  background: linear-gradient(to top, var(--accent) 0 46%, var(--ink) 46%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.lifespan-unit {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.lifespan-track {
+  margin-top: 70px;
+  padding-right: 34px;
+}
+.lifespan-gutter {
+  position: relative;
+  height: 26px;
+  background: linear-gradient(var(--ink), oklch(0.32 0.05 260));
+  border-radius: 2px 2px 14px 14px;
+  box-shadow: inset 0 3px 0 oklch(1 0 0 / 0.14);
+  transform-origin: left center;
+  transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-pending:not(.revealed) .lifespan-gutter {
+  transform: scaleX(0);
+}
+/* Rainwater running the full length of the run, towards the downpipe. */
+.lifespan-water {
+  position: absolute;
+  inset: 5px 6px 7px;
+  border-radius: 0 0 9px 9px;
+  background: repeating-linear-gradient(
+    90deg,
+    oklch(0.72 0.11 235 / 0.85) 0 26px,
+    oklch(0.84 0.07 230 / 0.85) 26px 52px
+  );
+  animation: lifespan-flow 1.6s linear infinite;
+}
+@keyframes lifespan-flow {
+  to {
+    background-position: 52px 0;
+  }
+}
+.lifespan-downpipe {
+  position: absolute;
+  right: -2px;
+  top: 14px;
+  width: 30px;
+  height: 64px;
+  background: linear-gradient(90deg, var(--ink), oklch(0.32 0.05 260));
+  border-radius: 0 0 4px 4px;
+}
+.lifespan-marks {
+  list-style: none;
+  padding: 0;
+  /* Keep the last label clear of the downpipe. */
+  margin: 22px 46px 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+.lifespan-marks li {
+  position: relative;
+  padding-top: 18px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.lifespan-marks li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 12px;
+  background: var(--border);
+}
+.lifespan-marks li:last-child {
+  color: var(--accent);
+}
+.lifespan-marks li:last-child::before {
+  left: auto;
+  right: 0;
+  background: var(--accent);
+}
+
+/* ============================================================
+   Workmanship: what we do on every job, with headline figures
+   ============================================================ */
+.workmanship-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(40px, 6vw, 100px);
+  align-items: start;
+}
+.workmanship-copy {
+  position: sticky;
+  top: 120px;
+}
+.workmanship-copy h2 {
+  font-size: clamp(44px, 5vw, 76px);
+  margin: 16px 0 22px;
+}
+.workmanship-copy > p {
+  color: var(--muted-foreground);
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0;
+}
+.workmanship-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+.workmanship-points li {
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--background);
+  transition: background 0.3s;
+}
+.workmanship-points li:hover {
+  background: var(--paper);
+}
+.workmanship-points li > .reveal {
+  padding: 30px 28px 34px;
+  height: 100%;
+}
+.workmanship-points .num {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+}
+.workmanship-points h3 {
+  font-size: 24px;
+  line-height: 1.05;
+  margin: 22px 0 10px;
+}
+.workmanship-points p {
+  margin: 0;
+  color: var(--muted-foreground);
+  line-height: 1.6;
+}
+
+/* ============================================================
+   Coverage map
+   ============================================================ */
+.coverage {
+  background: radial-gradient(70% 90% at 85% 20%, oklch(0.3 0.08 260), transparent 70%), var(--ink);
+  color: var(--paper);
+  overflow: hidden;
+}
+.coverage-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(40px, 5vw, 80px);
+  align-items: center;
+}
+.coverage-copy h2 {
+  font-size: clamp(44px, 4.2vw, 64px);
+  margin: 16px 0 22px;
+}
+.coverage-copy p {
+  color: oklch(1 0 0 / 0.75);
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 0 30px;
+}
+.coverage-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 32px;
+}
+.coverage-map {
+  margin: 0;
+}
+.coverage-map svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.cov-prov {
+  fill: oklch(1 0 0 / 0.07);
+  stroke: oklch(1 0 0 / 0.22);
+  stroke-width: 1;
+  stroke-linejoin: round;
+  transition: fill 0.6s ease calc(var(--i, 0) * 180ms);
+}
+.cov-prov.is-covered {
+  fill: var(--accent);
+  stroke: oklch(1 0 0 / 0.55);
+  cursor: pointer;
+}
+.cov-prov.is-covered.is-active {
+  fill: oklch(0.66 0.21 28);
+  transition-delay: 0s;
+}
+.reveal-pending:not(.revealed) .cov-prov.is-covered {
+  fill: oklch(1 0 0 / 0.07);
+}
+.cov-pin {
+  pointer-events: none;
+  transition: opacity 0.5s ease calc(var(--i, 0) * 180ms + 400ms);
+}
+.reveal-pending:not(.revealed) .cov-pin {
+  opacity: 0;
+}
+.cov-dot {
+  fill: var(--paper);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+.cov-pin text {
+  fill: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 13px;
+  text-anchor: middle;
+}
+.cov-pulse {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: cov-pulse 2.4s ease-out infinite;
+  animation-delay: calc(var(--i, 0) * 600ms);
+}
+.cov-pin.is-active .cov-dot {
+  fill: var(--accent);
+  stroke: var(--paper);
+}
+.cov-pin.is-active text {
+  fill: var(--paper);
+}
+@keyframes cov-pulse {
+  from {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+.coverage-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 4px;
+  min-width: 210px;
+}
+.coverage-list li {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-left: 2px solid oklch(1 0 0 / 0.15);
+  transition:
+    background 0.25s,
+    border-color 0.25s,
+    opacity 0.5s ease calc(var(--i, 0) * 180ms + 300ms),
+    transform 0.5s ease calc(var(--i, 0) * 180ms + 300ms);
+}
+.reveal-pending:not(.revealed) .coverage-list li {
+  opacity: 0;
+  transform: translateX(16px);
+}
+.coverage-list li.is-active {
+  background: oklch(1 0 0 / 0.07);
+  border-color: var(--accent);
+}
+.coverage-num {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 12px;
+}
+.coverage-list strong {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.contact-areas {
+  font-weight: 600;
+}
+
+@media (max-width: 1240px) {
+  .coverage-inner {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 900px) {
+  .workmanship-inner {
+    grid-template-columns: 1fr;
+  }
+  .workmanship-copy {
+    position: static;
+  }
+  .lifespan-head {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+@media (max-width: 600px) {
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .stat {
+    padding-right: 8px;
+  }
+  .stat + .stat {
+    padding-left: 10px;
+  }
+  .stat dt {
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+  }
+  .stat-value {
+    font-size: 26px;
+  }
+  .lifespan-head h2,
+  .workmanship-copy h2,
+  .coverage-copy h2 {
+    font-size: clamp(36px, 10.5vw, 46px);
+  }
+  .lifespan-head p,
+  .workmanship-copy > p,
+  .coverage-copy p {
+    font-size: 16px;
+  }
+  .lifespan-track {
+    margin-top: 48px;
+    padding-right: 24px;
+  }
+  .lifespan-marks {
+    margin-right: 30px;
+  }
+  .lifespan-gutter {
+    height: 20px;
+  }
+  .lifespan-downpipe {
+    width: 22px;
+    height: 48px;
+    top: 10px;
+  }
+  /* Only the start, middle and end marks fit on a phone. */
+  .lifespan-marks li:nth-child(2),
+  .lifespan-marks li:nth-child(4) {
+    visibility: hidden;
+    width: 0;
+    padding: 0;
+  }
+  .lifespan-marks li {
+    font-size: 10.5px;
+  }
+  .workmanship-points {
+    grid-template-columns: 1fr;
+  }
+  .workmanship-points li > .reveal {
+    padding: 24px 20px 26px;
+  }
+  .workmanship-points h3 {
+    margin-top: 14px;
+  }
+  .coverage-body {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .coverage-list {
+    grid-template-columns: 1fr 1fr;
+    min-width: 0;
+  }
+  .coverage-list li {
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .coverage-list strong {
+    font-size: 15px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lifespan-water,
+  .cov-pulse {
+    animation: none;
+  }
+  .cov-pulse {
+    opacity: 0;
+  }
 }
