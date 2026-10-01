@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import type { CSSProperties } from "react";
 import { Eyebrow, Media, PageIntro, QuoteBand, SectionHead } from "@/components/site/site";
 import { colourPage as page, colours } from "@/data/content";
+import { useLive } from "@/data/live";
 import { breadcrumb, pageHead } from "@/data/seo";
 
 export const Route = createFileRoute("/colour-range")({
@@ -17,11 +18,12 @@ export const Route = createFileRoute("/colour-range")({
 });
 
 function ColourRange() {
+  const { photo } = useLive();
   return (
     <>
       <PageIntro
         {...page.intro}
-        slot="fascia-bronze-double-storey"
+        slot={photo("colour-banner")}
         crumbs={[{ label: "Colour Range" }]}
       />
 
@@ -45,7 +47,7 @@ function ColourRange() {
 
       <section className="section section-soft">
         <div className="container content-split">
-          <Media slot="colour-range-chart" />
+          <Media slot={photo("colour-chart")} />
           <div>
             <Eyebrow>{page.explain.eyebrow}</Eyebrow>
             <h2>{page.explain.title}</h2>

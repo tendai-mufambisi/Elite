@@ -1,7 +1,7 @@
 import { useRouter, useRouterState } from "@tanstack/react-router";
 import { MessageCircle, Play, Volume2, VolumeX, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { site, whatsappPopup } from "@/data/content";
+import { useLive } from "@/data/live";
 import { getImage, getVideo } from "@/data/images";
 
 const reducedMotion = () =>
@@ -352,6 +352,7 @@ export function Reel({ slot, label }: { slot: string; label: string }) {
  * after a few seconds. The bubble is small, sits above the button and can be dismissed.
  */
 export function WhatsAppWidget() {
+  const { site, whatsappPopup } = useLive();
   const [stage, setStage] = useState<"hidden" | "typing" | "open">("hidden");
   const [dismissed, setDismissed] = useState(true);
   useEffect(() => {

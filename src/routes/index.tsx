@@ -29,18 +29,9 @@ import { CoverageMap } from "@/components/site/coverage";
 import { CardSlider, HeroVideo, Reel, TextRotator } from "@/components/site/motion";
 import { Reveal } from "@/components/site/Reveal";
 import { Stats } from "@/components/site/stats";
-import {
-  benefits,
-  colours,
-  coverage,
-  home,
-  projects,
-  services,
-  site,
-  stats,
-  whatsappLink,
-} from "@/data/content";
+import { benefits, colours, coverage, home } from "@/data/content";
 import { getImage } from "@/data/images";
+import { useLive } from "@/data/live";
 import { pageHead } from "@/data/seo";
 
 export const Route = createFileRoute("/")({
@@ -59,11 +50,12 @@ const benefitIcons: Record<(typeof benefits)[number]["icon"], LucideIcon> = {
   building: Building2,
 };
 
-const captionFor = (slot: string) => projects.find((p) => p.slot === slot);
-// Seamless gutters is the lead product; the rest follow in "More than gutters".
-const [gutterService, ...otherServices] = services;
-
 function Home() {
+  const { site, stats, whatsappLink, photo, projects, services } = useLive();
+  // Seamless gutters is the lead product; the rest follow in "More than gutters".
+  const otherServices = services.filter((s) => s.slug !== "seamless-gutters");
+  const captionFor = (slot: string) => projects.find((p) => p.images.includes(slot));
+  const spotlight = photo("home-spotlight");
   return (
     <>
       <section className="hero">
@@ -112,8 +104,8 @@ function Home() {
         <div className="container content-split">
           <Reveal variant="left">
             <figure className="spotlight-media">
-              <Media slot={home.spotlight.slot} />
-              {getImage(home.spotlight.slot).illustrative && (
+              <Media slot={spotlight} />
+              {getImage(spotlight).illustrative && (
                 <figcaption className="illus-tag">Illustration</figcaption>
               )}
             </figure>
@@ -129,7 +121,7 @@ function Home() {
             </ul>
             <div className="spotlight-actions">
               <Button asChild variant="brand" size="large">
-                <Link to="/services/$slug" params={{ slug: gutterService!.slug }}>
+                <Link to="/services/$slug" params={{ slug: "seamless-gutters" }}>
                   Seamless gutters <ArrowUpRight />
                 </Link>
               </Button>
@@ -237,7 +229,7 @@ function Home() {
 
       <GutterProfiles />
 
-      <ParallaxBand {...home.bands[0]!} />
+      <ParallaxBand {...home.bands[0]!} slot={photo("home-band-1")} />
 
       <section className="section">
         <div className="container colour-teaser">
@@ -303,11 +295,11 @@ function Home() {
           {home.matched.slots.map((m, i) => (
             <figure key={m.slot} className={"full" in m ? "feature-full" : undefined}>
               {"full" in m ? (
-                <Media slot={m.slot} />
+                <Media slot={photo(`home-matched-${i + 1}`)} />
               ) : (
                 // Each cropped photo drifts at its own speed.
                 <div className="feature-media" data-parallax={["0.12", "-0.08", "0.05"][i]}>
-                  <Media slot={m.slot} />
+                  <Media slot={photo(`home-matched-${i + 1}`)} />
                 </div>
               )}
               <figcaption>{m.label}</figcaption>
@@ -325,10 +317,11 @@ function Home() {
             />
           </Reveal>
           <ul className="mosaic">
-            {home.mosaic.map((slot, i) => {
+            {home.mosaic.map((_, i) => {
+              const slot = photo(`home-mosaic-${i + 1}`);
               const info = captionFor(slot);
               return (
-                <li key={slot} className={`mosaic-item mosaic-${i + 1}`}>
+                <li key={i} className={`mosaic-item mosaic-${i + 1}`}>
                   <Reveal variant="wipe" delay={(i % 4) * 80}>
                     <Link to="/projects" className="mosaic-link">
                       <Media slot={slot} />
@@ -347,7 +340,7 @@ function Home() {
         </div>
       </section>
 
-      <ParallaxBand {...home.bands[1]!} />
+      <ParallaxBand {...home.bands[1]!} slot={photo("home-band-2")} />
 
       <section className="section section-soft">
         <div className="container">

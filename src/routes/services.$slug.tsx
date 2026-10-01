@@ -15,6 +15,7 @@ import { Reel } from "@/components/site/motion";
 import { Reveal } from "@/components/site/Reveal";
 import { services } from "@/data/content";
 import { getVideo } from "@/data/images";
+import { useLive, type ResolvedService } from "@/data/live";
 import { breadcrumb, faqSchema, pageHead, serviceSchema } from "@/data/seo";
 
 export const Route = createFileRoute("/services/$slug")({
@@ -41,7 +42,11 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServicePage() {
-  const s = Route.useLoaderData();
+  const base = Route.useLoaderData();
+  const { services: liveServices } = useLive();
+  // The owner's text and photos from the dashboard, falling back to the built-in service.
+  const s = liveServices.find((item) => item.slug === base.slug) ?? (base as ResolvedService);
+  const services = liveServices;
   const index = services.findIndex((item) => item.slug === s.slug);
   // The next three services in menu order, wrapping around.
   const related = [1, 2, 3].map((n) => services[(index + n) % services.length]!);

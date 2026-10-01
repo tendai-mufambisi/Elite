@@ -1,0 +1,25 @@
+{
+  // Single source of truth for the Worker name and its Cloudflare bindings.
+  // The build (nitro, cloudflare-module preset) merges this into the generated
+  // .output/server/wrangler.json, adding `main`, `assets` and compatibility settings.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "elite-gutters",
+
+  // Owner dashboard content: projects, services, page photos and settings.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "elite-gutters",
+      "database_id": "7663a5d5-9468-4a90-8ffa-7f2dd8b05631",
+      "migrations_dir": "migrations",
+    },
+  ],
+
+  // Photos and PDFs uploaded from the dashboard, served at /media/<key>.
+  "r2_buckets": [
+    {
+      "binding": "MEDIA",
+      "bucket_name": "elite-gutters-media",
+    },
+  ],
+}

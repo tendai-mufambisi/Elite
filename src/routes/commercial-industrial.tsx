@@ -3,6 +3,7 @@ import { ArrowUpRight, CloudRain } from "lucide-react";
 import { Eyebrow, Media, PageIntro, QuoteBand, SectionHead } from "@/components/site/site";
 import { Reveal } from "@/components/site/Reveal";
 import { commercialPage as page } from "@/data/content";
+import { useLive } from "@/data/live";
 import { breadcrumb, pageHead } from "@/data/seo";
 
 export const Route = createFileRoute("/commercial-industrial")({
@@ -18,11 +19,12 @@ export const Route = createFileRoute("/commercial-industrial")({
 });
 
 function Commercial() {
+  const { photo } = useLive();
   return (
     <>
       <PageIntro
         {...page.intro}
-        slot="commercial-hero"
+        slot={photo("commercial-banner")}
         crumbs={[{ label: "Commercial & Industrial" }]}
       />
 
@@ -38,7 +40,7 @@ function Commercial() {
               ))}
             </ul>
           </div>
-          <Media slot="commercial-key-01" />
+          <Media slot={photo("commercial-photo")} />
         </div>
         <div className="container">
           <aside className="callout" aria-label={page.callout.title}>

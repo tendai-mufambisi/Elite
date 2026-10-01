@@ -11,6 +11,7 @@ import {
 } from "@/components/site/site";
 import { Reveal } from "@/components/site/Reveal";
 import { benefitsPage as page, whyPage } from "@/data/content";
+import { useLive } from "@/data/live";
 import { breadcrumb, faqSchema, pageHead } from "@/data/seo";
 
 export const Route = createFileRoute("/benefits-of-seamless-gutters")({
@@ -29,11 +30,12 @@ export const Route = createFileRoute("/benefits-of-seamless-gutters")({
 });
 
 function BenefitsPage() {
+  const { photo } = useLive();
   return (
     <>
       <PageIntro
         {...page.intro}
-        slot="fascia-bronze-double-storey"
+        slot={photo("benefits-banner")}
         crumbs={[{ label: "Benefits of Seamless Gutters" }]}
       />
 
@@ -48,7 +50,7 @@ function BenefitsPage() {
             <ArrowLink to="/contact">Get a free gutter quote</ArrowLink>
           </div>
           <figure className="spotlight-media">
-            <Media slot="gutter-closeup-illustration" />
+            <Media slot={photo("benefits-photo-1")} />
             <figcaption className="illus-tag">Illustration</figcaption>
           </figure>
         </div>
@@ -137,7 +139,7 @@ function BenefitsPage() {
               ))}
             </ul>
           </div>
-          <Media slot="gutters-charcoal-fascia-double-storey" />
+          <Media slot={photo("benefits-photo-2")} />
         </div>
       </section>
 

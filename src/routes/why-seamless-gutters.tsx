@@ -10,6 +10,7 @@ import {
 } from "@/components/site/site";
 import { Reveal } from "@/components/site/Reveal";
 import { whyPage } from "@/data/content";
+import { useLive } from "@/data/live";
 import { breadcrumb, faqSchema, pageHead } from "@/data/seo";
 
 export const Route = createFileRoute("/why-seamless-gutters")({
@@ -25,17 +26,18 @@ export const Route = createFileRoute("/why-seamless-gutters")({
 });
 
 function WhyPage() {
+  const { photo } = useLive();
   return (
     <>
       <PageIntro
         {...whyPage.intro}
-        slot="pillar-stainless-fascia-two-garage-doors"
+        slot={photo("why-banner")}
         crumbs={[{ label: "Why Seamless Gutters" }]}
       />
 
       <section className="section">
         <div className="container content-split">
-          <Media slot="fascia-bronze-double-storey" />
+          <Media slot={photo("why-photo-1")} />
           <div>
             <Eyebrow>{whyPage.what.eyebrow}</Eyebrow>
             <h2>{whyPage.what.title}</h2>
@@ -112,7 +114,7 @@ function WhyPage() {
               <p key={p}>{p}</p>
             ))}
           </div>
-          <Media slot="pillar-stainless-veranda" />
+          <Media slot={photo("why-photo-2")} />
         </div>
       </section>
 

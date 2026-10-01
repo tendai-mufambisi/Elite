@@ -9,7 +9,8 @@ import {
 } from "@/components/site/site";
 import { Reveal } from "@/components/site/Reveal";
 import { Stats } from "@/components/site/stats";
-import { aboutPage as page, stats } from "@/data/content";
+import { aboutPage as page } from "@/data/content";
+import { useLive } from "@/data/live";
 import { breadcrumb, pageHead } from "@/data/seo";
 
 export const Route = createFileRoute("/about")({
@@ -18,13 +19,10 @@ export const Route = createFileRoute("/about")({
 });
 
 function About() {
+  const { stats, photo } = useLive();
   return (
     <>
-      <PageIntro
-        {...page.intro}
-        slot="balustrade-stainless-balconies"
-        crumbs={[{ label: "About" }]}
-      />
+      <PageIntro {...page.intro} slot={photo("about-banner")} crumbs={[{ label: "About" }]} />
 
       <section className="section">
         <div className="container content-split">
@@ -36,7 +34,7 @@ function About() {
             ))}
             <Stats items={stats} />
           </div>
-          <Media slot="about-01" />
+          <Media slot={photo("about-photo")} />
         </div>
       </section>
 

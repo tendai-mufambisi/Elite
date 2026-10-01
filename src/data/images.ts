@@ -468,7 +468,23 @@ export const videoSlots: VideoSlotData[] = [
   ),
 ];
 
+// Photos uploaded from the owner dashboard (R2, served at /media/...). Filled from the
+// live site data on every render, so getImage() resolves uploaded slots like built-in ones.
+const uploads = new Map<string, ImageSlot>();
+
+export function registerUploads(entries: readonly ImageSlot[]) {
+  for (const entry of entries) uploads.set(entry.slot, entry);
+}
+
+export const hasImage = (slot: string) =>
+  uploads.has(slot) || images.some((image) => image.slot === slot);
+export const isVideoSlot = (slot: string) => videoSlots.some((v) => v.slot === slot);
+/** Built-in photos the dashboard can pick from (no illustrations, logos or aliases). */
+export const libraryImages = () => photos;
+
 export function getImage(slot: string) {
+  const upload = uploads.get(slot);
+  if (upload) return upload;
   const entry = images.find((image) => image.slot === slot);
   if (!entry) throw new Error(`Unknown image slot "${slot}". Add it to src/data/images.ts.`);
   return entry;

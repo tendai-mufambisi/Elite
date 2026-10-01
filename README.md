@@ -36,9 +36,16 @@ Pushing to GitHub does not deploy. The live site is updated by hand with Wrangle
 
 ```sh
 rm -rf .output && bun run build
-npx wrangler deploy --config .output/server/wrangler.json --name elite-gutters
+npx wrangler deploy --config .output/server/wrangler.json
 ```
 
-Always build from a clean `.output`, then load the live page to confirm the change.
+The Worker name and its D1/R2 bindings come from `wrangler.jsonc`. Always build from a clean
+`.output`, then load the live page to confirm the change.
+
+## Owner dashboard
+
+Project photos, service pages, page photos and contact details are edited by the owner at
+`/admin` (the © in the footer links there) and stored in Cloudflare D1 and R2, with the
+content in `content.ts` as the fallback. See [docs/admin-access.md](docs/admin-access.md).
 
 Pages are file routes in `src/routes/`. Service pages are generated from `services` in `content.ts` via `src/routes/services.$slug.tsx`. If you add a service, also add its URL to `public/sitemap.xml`.

@@ -1,9 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { type FormEvent, useState } from "react";
-import { ArrowUpRight, Mail, MessageCircle, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Eyebrow, FacebookIcon, PageIntro } from "@/components/site/site";
-import { contactPage as page, services, site, whatsappLink } from "@/data/content";
+import { contactPage as page, services } from "@/data/content";
+import { useLive } from "@/data/live";
 import { breadcrumb, pageHead } from "@/data/seo";
 
 export const Route = createFileRoute("/contact")({
@@ -13,6 +14,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function Contact() {
+  const { site, whatsappLink, photo } = useLive();
   const [photoName, setPhotoName] = useState("");
 
   function submit(e: FormEvent<HTMLFormElement>) {
@@ -35,11 +37,7 @@ function Contact() {
 
   return (
     <>
-      <PageIntro
-        {...page.intro}
-        slot="aluminium-windows-glass-balustrades"
-        crumbs={[{ label: "Contact" }]}
-      />
+      <PageIntro {...page.intro} slot={photo("contact-banner")} crumbs={[{ label: "Contact" }]} />
       <section className="section section-soft">
         <div className="container contact-grid">
           <div>
@@ -75,6 +73,14 @@ function Contact() {
                 Find us on Facebook ↗
               </a>
             </div>
+            {site.address && (
+              <div className="contact-method">
+                <small>
+                  <MapPin size={13} aria-hidden="true" /> Address
+                </small>
+                <p className="contact-address">{site.address}</p>
+              </div>
+            )}
           </div>
 
           <form className="quote-form" onSubmit={submit}>
@@ -153,6 +159,17 @@ function Contact() {
           </form>
         </div>
       </section>
+      {/* Shown only once the owner adds a Google Maps embed link in the dashboard. */}
+      {site.mapsEmbedUrl.startsWith("https://www.google.com/maps/embed") && (
+        <section className="contact-map" aria-label="Map">
+          <iframe
+            src={site.mapsEmbedUrl}
+            title={`Map: ${site.name}`}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </section>
+      )}
     </>
   );
 }

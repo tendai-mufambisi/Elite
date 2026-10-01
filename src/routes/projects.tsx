@@ -2,8 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight, Play, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Media, PageIntro, QuoteBand, SectionHead, VideoSlot } from "@/components/site/site";
-import { projectCategories, projects, projectsPage as page } from "@/data/content";
-import { getVideo } from "@/data/images";
+import { projectCategories, projectsPage as page } from "@/data/content";
+import { getVideo, isVideoSlot } from "@/data/images";
+import { useLive } from "@/data/live";
 import { breadcrumb, pageHead } from "@/data/seo";
 
 export const Route = createFileRoute("/projects")({
@@ -23,15 +24,20 @@ function Projects() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const opener = useRef<HTMLElement | null>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
+  const { projects, photo } = useLive();
   const visible = projects.filter((item) => filter === "All" || item.category === filter);
-  const active = activeIndex === null ? null : visible[activeIndex];
+  // The lightbox steps through every photo of every visible project, in order.
+  const slides = visible.flatMap((p) =>
+    p.images.map((slot, part) => ({ ...p, slot, part, video: isVideoSlot(slot) })),
+  );
+  const active = activeIndex === null ? null : slides[activeIndex];
 
   const close = () => {
     setActiveIndex(null);
     opener.current?.focus();
   };
   const step = (dir: 1 | -1) =>
-    setActiveIndex((i) => (i === null ? i : (i + dir + visible.length) % visible.length));
+    setActiveIndex((i) => (i === null ? i : (i + dir + slides.length) % slides.length));
 
   useEffect(() => {
     if (activeIndex === null) return;
@@ -52,11 +58,7 @@ function Projects() {
 
   return (
     <>
-      <PageIntro
-        {...page.intro}
-        slot="aluminium-commercial-complex"
-        crumbs={[{ label: "Projects" }]}
-      />
+      <PageIntro {...page.intro} slot={photo("projects-banner")} crumbs={[{ label: "Projects" }]} />
       <section className="section">
         <div className="container">
           <SectionHead {...page.head} />
@@ -77,14 +79,14 @@ function Projects() {
             {visible.length} items shown
           </p>
           <ul className="project-grid">
-            {visible.map((item, i) => (
-              <li key={`${item.category}-${item.slot}`}>
+            {visible.map((item) => (
+              <li key={item.id}>
                 <button
                   type="button"
                   className="project-item"
                   onClick={(e) => {
                     opener.current = e.currentTarget;
-                    setActiveIndex(i);
+                    setActiveIndex(slides.findIndex((s) => s.id === item.id));
                   }}
                   aria-label={`Open ${item.video ? "video" : "image"}: ${item.caption}`}
                 >
@@ -111,6 +113,7 @@ function Projects() {
                   <small>
                     {item.category}
                     {item.video ? " · Video" : ""}
+                    {item.images.length > 1 ? ` · ${item.images.length} photos` : ""}
                   </small>
                 </button>
               </li>
@@ -153,7 +156,7 @@ function Projects() {
             <figcaption>
               {active.caption} · {active.category}{" "}
               <span>
-                {(activeIndex ?? 0) + 1} / {visible.length}
+                {(activeIndex ?? 0) + 1} / {slides.length}
               </span>
             </figcaption>
           </figure>

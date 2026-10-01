@@ -36,7 +36,10 @@ export function pageHead(
   };
 }
 
-export const businessSchema = {
+/** Contact details default to content.ts; the root route passes the owner's live values. */
+export const businessSchema = (
+  contact: { phone: string; email: string; facebook: string } = site,
+) => ({
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
   "@id": `${site.domain}/#business`,
@@ -46,11 +49,11 @@ export const businessSchema = {
   url: site.domain,
   logo: `${site.domain}/images/brand/logo-icon.png`,
   image: absolute(getImage("og-default").src),
-  telephone: site.phone,
-  email: site.email,
-  sameAs: [site.facebook],
+  telephone: contact.phone,
+  email: contact.email,
+  sameAs: [contact.facebook],
   areaServed: coverage.provinces.map((name) => ({ "@type": "State", name })),
-};
+});
 
 /** Crumbs after Home, e.g. breadcrumb(['Fascia Boards', '/services/fascia-boards']). */
 export function breadcrumb(...crumbs: [name: string, path: string][]) {

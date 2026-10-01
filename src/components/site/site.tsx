@@ -3,7 +3,9 @@ import {
   ArrowDown,
   ArrowUpRight,
   ChevronDown,
+  FileText,
   Mail,
+  MapPin,
   Menu,
   MessageCircle,
   Phone,
@@ -11,15 +13,8 @@ import {
 } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  founder,
-  gutterProfiles,
-  nav,
-  notFoundPage,
-  services,
-  site,
-  whatsappLink,
-} from "@/data/content";
+import { gutterProfiles, nav, notFoundPage, site } from "@/data/content";
+import { useLive } from "@/data/live";
 import { GutterProfileDrawing } from "@/components/site/illustrations";
 import { Reveal } from "@/components/site/Reveal";
 import { getImage, getVideo } from "@/data/images";
@@ -122,6 +117,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const { site, services } = useLive();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 25);
@@ -224,6 +220,7 @@ export function Header() {
 }
 
 export function Footer() {
+  const { site, services } = useLive();
   return (
     <footer className="footer">
       <div className="container footer-grid">
@@ -261,6 +258,16 @@ export function Footer() {
           <a href={`mailto:${site.email}`}>
             <Mail size={15} aria-hidden="true" /> {site.email}
           </a>
+          {site.address && (
+            <p className="footer-address">
+              <MapPin size={15} aria-hidden="true" /> {site.address}
+            </p>
+          )}
+          {site.companyProfile && (
+            <a href={site.companyProfile} target="_blank" rel="noopener">
+              <FileText size={15} aria-hidden="true" /> Company profile (PDF)
+            </a>
+          )}
           <a
             href={site.facebook}
             target="_blank"
@@ -279,7 +286,11 @@ export function Footer() {
       </div>
       <div className="container footer-bottom">
         <span>
-          © {new Date().getFullYear()} {site.name}
+          {/* The © is the owner's way into the dashboard; it looks like plain text. */}
+          <a href="/admin/login" aria-label="Owner area" className="owner-link">
+            ©
+          </a>{" "}
+          {new Date().getFullYear()} {site.name}
         </span>
         <span>
           {site.tagline} · {site.secondary}
@@ -402,17 +413,23 @@ export function PageIntro({
 export function QuoteBand({
   title = "Ready to upgrade your roofline?",
   text = "Tell us what you have in mind. We will help you find a finish that fits.",
-  slot = "garage-three-charcoal-glass",
+  slot,
 }: {
   title?: string;
   text?: string;
-  /** Background photo that scrolls slower than the page. */
+  /** Background photo that scrolls slower than the page. Defaults to the owner's choice. */
   slot?: string;
 }) {
+  const { site, photo } = useLive();
   return (
     <section className="quote-band">
       <div className="band-media" data-parallax="0.3" aria-hidden="true">
-        <img src={getImage(slot).src} alt="" loading="lazy" decoding="async" />
+        <img
+          src={getImage(slot ?? photo("quote-band")).src}
+          alt=""
+          loading="lazy"
+          decoding="async"
+        />
       </div>
       <div className="container quote-inner">
         <div>
@@ -480,6 +497,7 @@ export function FaqList({ faqs }: { faqs: readonly (readonly [string, string])[]
 }
 
 export function NotFound() {
+  const { services } = useLive();
   return (
     <section className="not-found">
       <div className="container">
@@ -549,11 +567,12 @@ export function ParallaxBand({
 
 /** "Meet the founder". Renders nothing until the client details are filled in content.ts. */
 export function FounderSection() {
+  const { founder, photo } = useLive();
   if (!founder.name) return null;
   return (
     <section className="section founder">
       <div className="container content-split">
-        {founder.photoSlot && <Media slot={founder.photoSlot} className="founder-photo" />}
+        <Media slot={photo("founder-photo")} className="founder-photo" />
         <div>
           <Eyebrow>Meet the founder</Eyebrow>
           <h2>{founder.name}</h2>
@@ -569,6 +588,7 @@ export function FounderSection() {
 
 /** Domestic & industrial gutter profiles (seamless gutters page and home). */
 export function GutterProfiles() {
+  const { whatsappLink } = useLive();
   return (
     <section className="section" id="gutter-profiles">
       <div className="container">

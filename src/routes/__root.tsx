@@ -3,6 +3,7 @@ import {
   Outlet,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -11,6 +12,8 @@ import type { ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { NotFound, SiteLayout } from "@/components/site/site";
 import { site } from "@/data/content";
+import { resolveLive, type LiveData } from "@/data/live";
+import { getLiveData } from "@/data/live-fns";
 import { businessSchema } from "@/data/seo";
 
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
@@ -49,7 +52,12 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
+  // Owner-editable content from D1 (null = fallback). Loaded once per visit: rendered on the
+  // server with the first page, then kept for client-side navigation.
+  loader: () => getLiveData(),
+  staleTime: Infinity,
+  shouldReload: false,
+  head: ({ loaderData }) => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -81,7 +89,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Macondo&family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap",
       },
     ],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify(businessSchema) }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          businessSchema(resolveLive((loaderData as LiveData | undefined) ?? null).site),
+        ),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -105,13 +120,19 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  // The owner dashboard has its own layout, without the public header and footer.
+  const isAdmin = useRouterState({ select: (s) => s.location.pathname.startsWith("/admin") });
 
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <SiteLayout>
+      {isAdmin ? (
         <Outlet />
-      </SiteLayout>
+      ) : (
+        <SiteLayout>
+          <Outlet />
+        </SiteLayout>
+      )}
     </QueryClientProvider>
   );
 }

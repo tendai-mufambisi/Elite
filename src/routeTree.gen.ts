@@ -17,7 +17,18 @@ import { Route as CommercialIndustrialRouteImport } from './routes/commercial-in
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as WhySeamlessGuttersRouteImport } from './routes/why-seamless-gutters'
+import { Route as AdminDashRouteImport } from './routes/admin/_dash'
+import { Route as AdminLoginRouteImport } from './routes/admin/login'
+import { Route as ApiSplatRouteImport } from './routes/api/$'
+import { Route as MediaSplatRouteImport } from './routes/media/$'
 import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
+import { Route as AdminDashIndexRouteImport } from './routes/admin/_dash/index'
+import { Route as AdminDashPhotosRouteImport } from './routes/admin/_dash/photos'
+import { Route as AdminDashSettingsRouteImport } from './routes/admin/_dash/settings'
+import { Route as AdminDashProjectsIndexRouteImport } from './routes/admin/_dash/projects.index'
+import { Route as AdminDashProjectsIdRouteImport } from './routes/admin/_dash/projects.$id'
+import { Route as AdminDashServicesIndexRouteImport } from './routes/admin/_dash/services.index'
+import { Route as AdminDashServicesIdRouteImport } from './routes/admin/_dash/services.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -60,10 +71,65 @@ const WhySeamlessGuttersRoute = WhySeamlessGuttersRouteImport.update({
   path: '/why-seamless-gutters',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminDashRoute = AdminDashRouteImport.update({
+  id: '/admin/_dash',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiSplatRoute = ApiSplatRouteImport.update({
+  id: '/api/$',
+  path: '/api/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MediaSplatRoute = MediaSplatRouteImport.update({
+  id: '/media/$',
+  path: '/media/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesSlugRoute = ServicesSlugRouteImport.update({
   id: '/services/$slug',
   path: '/services/$slug',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashIndexRoute = AdminDashIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminDashRoute,
+} as any)
+const AdminDashPhotosRoute = AdminDashPhotosRouteImport.update({
+  id: '/photos',
+  path: '/photos',
+  getParentRoute: () => AdminDashRoute,
+} as any)
+const AdminDashSettingsRoute = AdminDashSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AdminDashRoute,
+} as any)
+const AdminDashProjectsIndexRoute = AdminDashProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => AdminDashRoute,
+} as any)
+const AdminDashProjectsIdRoute = AdminDashProjectsIdRouteImport.update({
+  id: '/projects/$id',
+  path: '/projects/$id',
+  getParentRoute: () => AdminDashRoute,
+} as any)
+const AdminDashServicesIndexRoute = AdminDashServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => AdminDashRoute,
+} as any)
+const AdminDashServicesIdRoute = AdminDashServicesIdRouteImport.update({
+  id: '/services/$id',
+  path: '/services/$id',
+  getParentRoute: () => AdminDashRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -75,7 +141,18 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
   '/why-seamless-gutters': typeof WhySeamlessGuttersRoute
+  '/admin': typeof AdminDashRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/api/$': typeof ApiSplatRoute
+  '/media/$': typeof MediaSplatRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/admin/photos': typeof AdminDashPhotosRoute
+  '/admin/settings': typeof AdminDashSettingsRoute
+  '/admin/': typeof AdminDashIndexRoute
+  '/admin/projects/$id': typeof AdminDashProjectsIdRoute
+  '/admin/services/$id': typeof AdminDashServicesIdRoute
+  '/admin/projects/': typeof AdminDashProjectsIndexRoute
+  '/admin/services/': typeof AdminDashServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,7 +163,17 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
   '/why-seamless-gutters': typeof WhySeamlessGuttersRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/api/$': typeof ApiSplatRoute
+  '/media/$': typeof MediaSplatRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/admin/photos': typeof AdminDashPhotosRoute
+  '/admin/settings': typeof AdminDashSettingsRoute
+  '/admin': typeof AdminDashIndexRoute
+  '/admin/projects/$id': typeof AdminDashProjectsIdRoute
+  '/admin/services/$id': typeof AdminDashServicesIdRoute
+  '/admin/projects': typeof AdminDashProjectsIndexRoute
+  '/admin/services': typeof AdminDashServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -98,7 +185,18 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/projects': typeof ProjectsRoute
   '/why-seamless-gutters': typeof WhySeamlessGuttersRoute
+  '/admin/_dash': typeof AdminDashRouteWithChildren
+  '/admin/login': typeof AdminLoginRoute
+  '/api/$': typeof ApiSplatRoute
+  '/media/$': typeof MediaSplatRoute
   '/services/$slug': typeof ServicesSlugRoute
+  '/admin/_dash/photos': typeof AdminDashPhotosRoute
+  '/admin/_dash/settings': typeof AdminDashSettingsRoute
+  '/admin/_dash/': typeof AdminDashIndexRoute
+  '/admin/_dash/projects/$id': typeof AdminDashProjectsIdRoute
+  '/admin/_dash/services/$id': typeof AdminDashServicesIdRoute
+  '/admin/_dash/projects/': typeof AdminDashProjectsIndexRoute
+  '/admin/_dash/services/': typeof AdminDashServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -111,7 +209,18 @@ export interface FileRouteTypes {
     | '/contact'
     | '/projects'
     | '/why-seamless-gutters'
+    | '/admin'
+    | '/admin/login'
+    | '/api/$'
+    | '/media/$'
     | '/services/$slug'
+    | '/admin/photos'
+    | '/admin/settings'
+    | '/admin/'
+    | '/admin/projects/$id'
+    | '/admin/services/$id'
+    | '/admin/projects/'
+    | '/admin/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,7 +231,17 @@ export interface FileRouteTypes {
     | '/contact'
     | '/projects'
     | '/why-seamless-gutters'
+    | '/admin/login'
+    | '/api/$'
+    | '/media/$'
     | '/services/$slug'
+    | '/admin/photos'
+    | '/admin/settings'
+    | '/admin'
+    | '/admin/projects/$id'
+    | '/admin/services/$id'
+    | '/admin/projects'
+    | '/admin/services'
   id:
     | '__root__'
     | '/'
@@ -133,7 +252,18 @@ export interface FileRouteTypes {
     | '/contact'
     | '/projects'
     | '/why-seamless-gutters'
+    | '/admin/_dash'
+    | '/admin/login'
+    | '/api/$'
+    | '/media/$'
     | '/services/$slug'
+    | '/admin/_dash/photos'
+    | '/admin/_dash/settings'
+    | '/admin/_dash/'
+    | '/admin/_dash/projects/$id'
+    | '/admin/_dash/services/$id'
+    | '/admin/_dash/projects/'
+    | '/admin/_dash/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -145,6 +275,10 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   ProjectsRoute: typeof ProjectsRoute
   WhySeamlessGuttersRoute: typeof WhySeamlessGuttersRoute
+  AdminDashRoute: typeof AdminDashRouteWithChildren
+  AdminLoginRoute: typeof AdminLoginRoute
+  ApiSplatRoute: typeof ApiSplatRoute
+  MediaSplatRoute: typeof MediaSplatRoute
   ServicesSlugRoute: typeof ServicesSlugRoute
 }
 
@@ -206,6 +340,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WhySeamlessGuttersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/_dash': {
+      id: '/admin/_dash'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminDashRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/$': {
+      id: '/api/$'
+      path: '/api/$'
+      fullPath: '/api/$'
+      preLoaderRoute: typeof ApiSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/media/$': {
+      id: '/media/$'
+      path: '/media/$'
+      fullPath: '/media/$'
+      preLoaderRoute: typeof MediaSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/$slug': {
       id: '/services/$slug'
       path: '/services/$slug'
@@ -213,8 +375,81 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/_dash/': {
+      id: '/admin/_dash/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminDashIndexRouteImport
+      parentRoute: typeof AdminDashRoute
+    }
+    '/admin/_dash/photos': {
+      id: '/admin/_dash/photos'
+      path: '/photos'
+      fullPath: '/admin/photos'
+      preLoaderRoute: typeof AdminDashPhotosRouteImport
+      parentRoute: typeof AdminDashRoute
+    }
+    '/admin/_dash/settings': {
+      id: '/admin/_dash/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminDashSettingsRouteImport
+      parentRoute: typeof AdminDashRoute
+    }
+    '/admin/_dash/projects/': {
+      id: '/admin/_dash/projects/'
+      path: '/projects'
+      fullPath: '/admin/projects/'
+      preLoaderRoute: typeof AdminDashProjectsIndexRouteImport
+      parentRoute: typeof AdminDashRoute
+    }
+    '/admin/_dash/projects/$id': {
+      id: '/admin/_dash/projects/$id'
+      path: '/projects/$id'
+      fullPath: '/admin/projects/$id'
+      preLoaderRoute: typeof AdminDashProjectsIdRouteImport
+      parentRoute: typeof AdminDashRoute
+    }
+    '/admin/_dash/services/': {
+      id: '/admin/_dash/services/'
+      path: '/services'
+      fullPath: '/admin/services/'
+      preLoaderRoute: typeof AdminDashServicesIndexRouteImport
+      parentRoute: typeof AdminDashRoute
+    }
+    '/admin/_dash/services/$id': {
+      id: '/admin/_dash/services/$id'
+      path: '/services/$id'
+      fullPath: '/admin/services/$id'
+      preLoaderRoute: typeof AdminDashServicesIdRouteImport
+      parentRoute: typeof AdminDashRoute
+    }
   }
 }
+
+interface AdminDashRouteChildren {
+  AdminDashPhotosRoute: typeof AdminDashPhotosRoute
+  AdminDashSettingsRoute: typeof AdminDashSettingsRoute
+  AdminDashIndexRoute: typeof AdminDashIndexRoute
+  AdminDashProjectsIdRoute: typeof AdminDashProjectsIdRoute
+  AdminDashServicesIdRoute: typeof AdminDashServicesIdRoute
+  AdminDashProjectsIndexRoute: typeof AdminDashProjectsIndexRoute
+  AdminDashServicesIndexRoute: typeof AdminDashServicesIndexRoute
+}
+
+const AdminDashRouteChildren: AdminDashRouteChildren = {
+  AdminDashPhotosRoute: AdminDashPhotosRoute,
+  AdminDashSettingsRoute: AdminDashSettingsRoute,
+  AdminDashIndexRoute: AdminDashIndexRoute,
+  AdminDashProjectsIdRoute: AdminDashProjectsIdRoute,
+  AdminDashServicesIdRoute: AdminDashServicesIdRoute,
+  AdminDashProjectsIndexRoute: AdminDashProjectsIndexRoute,
+  AdminDashServicesIndexRoute: AdminDashServicesIndexRoute,
+}
+
+const AdminDashRouteWithChildren = AdminDashRoute._addFileChildren(
+  AdminDashRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -225,6 +460,10 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   ProjectsRoute: ProjectsRoute,
   WhySeamlessGuttersRoute: WhySeamlessGuttersRoute,
+  AdminDashRoute: AdminDashRouteWithChildren,
+  AdminLoginRoute: AdminLoginRoute,
+  ApiSplatRoute: ApiSplatRoute,
+  MediaSplatRoute: MediaSplatRoute,
   ServicesSlugRoute: ServicesSlugRoute,
 }
 export const routeTree = rootRouteImport
