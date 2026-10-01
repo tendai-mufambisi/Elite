@@ -68,7 +68,12 @@ function Home() {
         </div>
         <div className="container hero-content">
           <Eyebrow>{site.tagline}</Eyebrow>
-          <h1>{home.h1}</h1>
+          <TextRotator
+            as="h1"
+            className="hero-rotator"
+            lead={home.h1}
+            words={coverage.provinces}
+          />
           <TextRotator lead={home.rotatorLead} words={home.rotator} />
           <p>{home.sub}</p>
           <div className="hero-actions">

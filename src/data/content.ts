@@ -692,7 +692,9 @@ export const home = {
   metaTitle: "Seamless Gutters in South Africa | Stainless Steel & Colour-Coated",
   metaDescription:
     "Seamless gutter specialists. Stainless steel and colour-coated seamless gutters and downpipes, formed on site to fit your roof: no joints, fewer leaks, faster water flow. Free quotes.",
-  h1: "Seamless Gutters in South Africa",
+  // The hero heading names each province we cover in turn (see `coverage`).
+  // Non-breaking space keeps "Gutters in" together on phones.
+  h1: "Seamless Gutters in",
   sub: "Stainless steel and colour-coated seamless gutters and downpipes, formed on site to fit your roof. No joints, far fewer leaks and faster water flow in heavy rain.",
   heroNote: "Also fascia boards, pillar cladding, balustrades, aluminium doors and garage doors.",
   trustLabel: "Seamless gutters for every building",

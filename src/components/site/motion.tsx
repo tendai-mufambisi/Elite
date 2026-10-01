@@ -147,7 +147,17 @@ export function HeroVideo({ slot }: { slot: string }) {
 }
 
 /** "We install [seamless gutters]" with the last part cycling. Screen readers get the full list once. */
-export function TextRotator({ lead, words }: { lead: string; words: readonly string[] }) {
+export function TextRotator({
+  lead,
+  words,
+  as: Tag = "p",
+  className = "rotator",
+}: {
+  lead: string;
+  words: readonly string[];
+  as?: "p" | "h1";
+  className?: string;
+}) {
   const [i, setI] = useState(0);
   useEffect(() => {
     if (reducedMotion()) return;
@@ -155,9 +165,9 @@ export function TextRotator({ lead, words }: { lead: string; words: readonly str
     return () => window.clearInterval(t);
   }, [words.length]);
   return (
-    <p className="rotator">
+    <Tag className={className}>
       <span className="sr-only">
-        {lead} {words.join(", ")}.
+        {lead} {words.slice(0, -1).join(", ")} and {words.at(-1)}.
       </span>
       <span aria-hidden="true">
         {lead}{" "}
@@ -167,7 +177,7 @@ export function TextRotator({ lead, words }: { lead: string; words: readonly str
           </span>
         </span>
       </span>
-    </p>
+    </Tag>
   );
 }
 

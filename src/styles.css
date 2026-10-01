@@ -5091,3 +5091,21 @@ textarea.admin-input {
     width: 100%;
   }
 }
+
+/* Hero heading: "Seamless Gutters in" with the four provinces rotating on their own line. */
+.hero-rotator .rotator-window {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  padding: 0 0 0.12em;
+  white-space: nowrap;
+}
+.hero-rotator .rotator-word {
+  color: inherit;
+}
+.hero-rotator .rotator-window::after {
+  left: 0;
+  right: 0;
+  bottom: 0.02em;
+  height: 0.07em;
+}
