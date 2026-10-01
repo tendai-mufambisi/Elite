@@ -24,7 +24,16 @@ function Projects() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const opener = useRef<HTMLElement | null>(null);
   const closeButton = useRef<HTMLButtonElement>(null);
-  const { projects, photo } = useLive();
+  const live = useLive();
+  const { photo } = live;
+  // Photos only on this page: video slots are dropped, and a project left with no
+  // photos is not shown.
+  const projects = live.projects
+    .map((p) => {
+      const images = p.images.filter((s) => !isVideoSlot(s));
+      return { ...p, images, slot: images[0] ?? "", video: false };
+    })
+    .filter((p) => p.slot);
   const visible = projects.filter((item) => filter === "All" || item.category === filter);
   // The lightbox steps through every photo of every visible project, in order.
   const slides = visible.flatMap((p) =>
