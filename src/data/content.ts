@@ -631,10 +631,11 @@ export const services = [
     finishes: ["Clear glass", "Aluminium", "Charcoal", "Bronze"],
     image: "burglar-proofing-folding-doors",
     drawing: "window-guard",
-    gallery: ["burglar-proofing-folding-doors", "burglar-proofing-windows"],
+    gallery: ["burglar-proofing-folding-doors", "burglar-proofing-windows", "burglar-proofing-bronze-windows"],
     photoLabels: {
       "burglar-proofing-folding-doors": "Retractable burglar proofing",
       "burglar-proofing-windows": "Retractable burglar proofing",
+      "burglar-proofing-bronze-windows": "Retractable burglar proofing",
     },
     faqs: [
       [
@@ -1410,6 +1411,11 @@ export const projects: {
     slot: "burglar-proofing-windows",
     category: "Burglar Proofing",
     caption: "Retractable burglar proofing behind charcoal windows",
+  },
+  {
+    slot: "burglar-proofing-bronze-windows",
+    category: "Burglar Proofing",
+    caption: "Retractable burglar proofing behind bronze windows",
   },
   // Waterproofing
   {

@@ -185,6 +185,13 @@ const photos = [
     1040,
     "Charcoal aluminium windows with retractable burglar proofing fitted behind the glass on a face-brick home",
   ),
+  img(
+    "burglar-proofing-bronze-windows",
+    "burglar-proofing/bronze-retractable-burglar-proofing-windows.webp",
+    780,
+    1040,
+    "Bronze aluminium windows with matching retractable burglar proofing fitted behind the glass",
+  ),
   // Stills taken from the client's waterproofing and roof painting videos.
   img(
     "waterproofing-flat-roof-parapet",
