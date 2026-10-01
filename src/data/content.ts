@@ -689,9 +689,9 @@ export const gutterProfiles = {
 } as const;
 
 export const home = {
-  metaTitle: "Seamless Gutters in South Africa | Stainless Steel & Colour-Coated",
+  metaTitle: "Seamless Gutters in Gauteng, Limpopo, North West & Mpumalanga",
   metaDescription:
-    "Seamless gutter specialists. Stainless steel and colour-coated seamless gutters and downpipes, formed on site to fit your roof: no joints, fewer leaks, faster water flow. Free quotes.",
+    "Seamless gutter specialists in Gauteng, Limpopo, North West and Mpumalanga. Stainless steel and colour-coated seamless gutters and downpipes, formed on site to fit your roof: no joints, fewer leaks, faster water flow. Free quotes.",
   // The hero heading names each province we cover in turn (see `coverage`).
   // Non-breaking space keeps "Gutters in" together on phones.
   h1: "Seamless Gutters in",
