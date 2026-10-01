@@ -26,14 +26,18 @@ function Projects() {
   const closeButton = useRef<HTMLButtonElement>(null);
   const live = useLive();
   const { photo } = live;
-  // Photos only on this page: video slots are dropped, and a project left with no
-  // photos is not shown.
+  // Videos only on this page: photo slots are dropped, and a project left with no
+  // videos is not shown.
   const projects = live.projects
     .map((p) => {
-      const images = p.images.filter((s) => !isVideoSlot(s));
-      return { ...p, images, slot: images[0] ?? "", video: false };
+      const images = p.images.filter((s) => isVideoSlot(s));
+      return { ...p, images, slot: images[0] ?? "", video: true };
     })
     .filter((p) => p.slot);
+  // Only offer filters that have something to show.
+  const categories = projectCategories.filter(
+    (c) => c === "All" || projects.some((p) => p.category === c),
+  );
   const visible = projects.filter((item) => filter === "All" || item.category === filter);
   // The lightbox steps through every photo of every visible project, in order.
   const slides = visible.flatMap((p) =>
@@ -72,7 +76,7 @@ function Projects() {
         <div className="container">
           <SectionHead {...page.head} />
           <div className="filters" role="group" aria-label="Filter projects by product">
-            {projectCategories.map((c) => (
+            {categories.map((c) => (
               <button
                 key={c}
                 type="button"
